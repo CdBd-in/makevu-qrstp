@@ -1,0 +1,23 @@
+{
+  "id": "conv-1779370911925-jcpecq0dq",
+  "providerId": "claude",
+  "title": "Respond to greeting",
+  "titleGenerationStatus": "success",
+  "createdAt": 1779370911926,
+  "updatedAt": 1779370922451,
+  "lastResponseAt": 1779370920159,
+  "sessionId": "333316a2-4208-4003-9bb2-d9cc740f8bb7",
+  "providerState": {
+    "providerSessionId": "333316a2-4208-4003-9bb2-d9cc740f8bb7"
+  },
+  "usage": {
+    "model": "sonnet",
+    "inputTokens": 3,
+    "cacheCreationInputTokens": 14516,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 14519,
+    "percentage": 7,
+    "contextWindowIsAuthoritative": true
+  }
+}

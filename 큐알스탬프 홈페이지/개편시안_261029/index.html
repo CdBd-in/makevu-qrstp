@@ -1,0 +1,602 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>큐알스탬프 | 찍는 맛이 있는 스탬프 투어 — 홈 개편 시안 v3</title>
+<link rel="icon" href="assets/QRSTAMP_favicon.svg">
+<style>
+@font-face{font-family:'Pretendard';font-weight:500;font-display:swap;src:url('assets/fonts/3c13694c08e346a689767efcbcef035c.woff2') format('woff2')}
+@font-face{font-family:'Pretendard';font-weight:600;font-display:swap;src:url('assets/fonts/2bbdd4d76e9b418fb36145a1780300ac.woff2') format('woff2')}
+@font-face{font-family:'Pretendard';font-weight:700;font-display:swap;src:url('assets/fonts/93492f99b73645a7ba72c93301f5d046.woff2') format('woff2')}
+:root{
+  --red:#E8442A;--ink:#16171D;--gray:#DDDDDD;--white:#fff;
+  --pink:#FCE3DF;--cream:#FDF2F0;--ghost:#F4BEB4;--sub:#5f6068;
+  /* 한글 타이포 스케일 — Pretendard 한글 기준
+     큰 제목은 자간을 -3%대까지만 좁히고(영문식 -6% 금지 · 받침이 겹침),
+     줄간격은 한글 세로 높이를 고려해 1.15~1.3 사이 */
+  --t-xl:clamp(52px,8.4vw,136px); --lh-xl:1.14; --ls-xl:-.035em;
+  --t-lg:clamp(40px,5.6vw,92px);  --lh-lg:1.18; --ls-lg:-.032em;
+  --t-md:clamp(30px,3.6vw,58px);  --lh-md:1.24; --ls-md:-.028em;
+  --t-sm:clamp(21px,1.7vw,27px);  --lh-sm:1.38; --ls-sm:-.022em;
+  --t-body:17px; --lh-body:1.7; --ls-body:-.012em;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:Pretendard,system-ui,sans-serif;color:var(--ink);background:var(--cream);font-weight:500;font-size:var(--t-body);line-height:var(--lh-body);letter-spacing:var(--ls-body);word-break:keep-all;overflow-wrap:break-word;overflow-x:hidden;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;letter-spacing:inherit;color:inherit}
+.wrap{max-width:1360px;margin:0 auto;padding:0 40px}
+.xl{font-size:var(--t-xl);line-height:var(--lh-xl);letter-spacing:var(--ls-xl);font-weight:700}
+.lg{font-size:var(--t-lg);line-height:var(--lh-lg);letter-spacing:var(--ls-lg);font-weight:700}
+.md{font-size:var(--t-md);line-height:var(--lh-md);letter-spacing:var(--ls-md);font-weight:700}
+.sm{font-size:var(--t-sm);line-height:var(--lh-sm);letter-spacing:var(--ls-sm);font-weight:700}
+.lead{font-size:clamp(17px,1.35vw,20px);line-height:1.7;letter-spacing:-.015em;font-weight:500;color:var(--sub)}
+.red{color:var(--red)}
+.label{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700;letter-spacing:-.01em;margin-bottom:22px}
+.label i{width:22px;height:22px;background:var(--red);color:#fff;font-style:normal;font-size:12px;font-weight:700;letter-spacing:0;display:flex;align-items:center;justify-content:center}
+.label em{font-style:normal;font-size:12px;letter-spacing:.08em;color:var(--red)}
+.pill{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#fff;font-weight:600;font-size:15px;letter-spacing:-.015em;line-height:1.3;padding:9px 16px;border-radius:999px;white-space:nowrap}
+.pill.r{background:var(--red)}.pill.w{background:#fff;color:var(--ink)}
+.cta{display:inline-flex;align-items:center;gap:14px;background:var(--ink);color:#fff;font-weight:600;font-size:17px;letter-spacing:-.02em;padding:8px 8px 8px 22px;border-radius:999px;transition:transform .2s}
+.cta b{width:38px;height:38px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;transition:transform .3s}
+.cta:hover b{transform:rotate(45deg)}
+.cta.w{background:#fff;color:var(--ink)}
+.stk{position:absolute;z-index:4;transform:rotate(var(--r,-6deg)) scale(0);animation:pop .55s cubic-bezier(.3,1.7,.5,1) forwards,flo 4s ease-in-out infinite;animation-delay:var(--d,1s),calc(var(--d,1s) + .6s)}
+@keyframes pop{to{transform:rotate(var(--r,-6deg)) scale(1)}}
+@keyframes flo{0%,100%{translate:0 0}50%{translate:0 -8px}}
+.px{display:block;shape-rendering:crispEdges}
+.rise{opacity:0;transform:translateY(46px);transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1)}
+.rise.in{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}
+.sec{padding:150px 0}
+.shead{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:end;margin-bottom:56px}
+.shead .lead{max-width:440px}
+
+/* header */
+header{position:fixed;top:0;left:0;right:0;z-index:50;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:16px 24px;pointer-events:none}
+header>*{pointer-events:auto}
+header .l{display:flex;gap:6px}
+header .l a{background:#fff;border-radius:999px;padding:9px 16px;font-size:14px;font-weight:600;letter-spacing:-.015em;transition:background .2s,color .2s}
+header .l a:hover{background:var(--ink);color:#fff}
+header .logo{height:30px}
+header .r{display:flex;justify-content:flex-end}
+.guide{display:inline-flex;align-items:center;gap:10px;background:#fff;border:2px solid var(--ink);border-radius:999px;padding:7px 8px 7px 18px;font-size:15px;font-weight:700;letter-spacing:-.02em}
+.guide b{width:30px;height:30px;border-radius:50%;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;transition:transform .3s}
+.guide:hover b{transform:rotate(45deg)}
+
+/* floating CTA (우측 하단) */
+#fab{position:fixed;right:24px;bottom:24px;z-index:55;display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+#fab .main{display:flex;align-items:center;gap:16px;background:var(--red);color:#fff;font-size:20px;font-weight:700;letter-spacing:-.025em;padding:12px 12px 12px 28px;border-radius:999px;box-shadow:0 14px 34px rgba(232,68,42,.45),0 0 0 4px #fff;animation:fabpulse 2.4s ease-in-out infinite}
+#fab .main b{width:48px;height:48px;border-radius:50%;background:var(--ink);display:flex;align-items:center;justify-content:center;font-size:20px;transition:transform .3s}
+#fab .main:hover b{transform:rotate(45deg)}
+#fab .main:hover{animation:none;transform:translateY(-3px) scale(1.03)}
+#fab .sub{background:#fff;color:var(--ink);font-size:14px;font-weight:700;letter-spacing:-.015em;padding:9px 16px;border-radius:999px;box-shadow:0 8px 20px rgba(22,23,29,.12)}
+@keyframes fabpulse{0%,100%{box-shadow:0 14px 34px rgba(232,68,42,.45),0 0 0 4px #fff}50%{box-shadow:0 14px 34px rgba(232,68,42,.45),0 0 0 4px #fff,0 0 0 14px rgba(232,68,42,.18)}}
+/* board */
+#board{position:fixed;left:24px;bottom:24px;z-index:50;background:#fff;border-radius:16px;padding:10px 12px 9px;box-shadow:0 10px 30px rgba(22,23,29,.12)}
+#board p{font-size:10px;font-weight:700;letter-spacing:.1em;line-height:1;margin-bottom:7px;display:flex;justify-content:space-between}
+#board svg{height:26px;width:auto;display:block;cursor:pointer}
+#board.pop{animation:bp .5s}
+@keyframes bp{40%{transform:scale(1.18) rotate(-3deg)}}
+
+/* hero */
+#hero{background:var(--pink);position:relative;overflow:hidden;padding-top:130px}
+#hero .loops{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+#hero .loops path{fill:none;stroke:var(--red);stroke-width:28;stroke-linecap:round}
+#hero h1{position:relative;text-align:center;color:var(--red);z-index:2}
+#hero h1 .ln{display:block;overflow:hidden;padding:.02em .05em .06em}
+#hero h1 .ln span{display:inline-block;transform:translateY(110%);animation:up .9s cubic-bezier(.2,1,.2,1) forwards}
+#hero h1 .ln:nth-child(2) span{animation-delay:.12s}
+@keyframes up{to{transform:none}}
+#hero .sub{text-align:center;margin:26px auto 0;max-width:620px;color:var(--ink);font-weight:600;position:relative;z-index:2}
+#hero .ctas{display:flex;justify-content:center;gap:10px;margin-top:28px;position:relative;z-index:2}
+.stage{position:relative;height:500px;margin-top:70px;z-index:2}
+.hp{position:absolute;bottom:-40px;width:218px;animation:flo 5s ease-in-out infinite}
+.hp .ph{height:420px;border-radius:30px;overflow:hidden;border:7px solid var(--ink);background:var(--ink);box-shadow:0 30px 60px rgba(22,23,29,.22)}
+.hp .ph img{display:block;width:100%;height:100%;object-fit:cover;object-position:center top;transform:scale(1.02);transform-origin:center top}
+.hp .cap{position:absolute;left:0;right:0;bottom:calc(100% + 10px);display:flex;flex-direction:column;align-items:center;gap:5px;z-index:2;white-space:nowrap}.hp .cap .pill{font-size:13px;padding:6px 12px}
+.walker{position:absolute;bottom:0;z-index:3;animation:walk 24s linear infinite}
+.walker .bob{animation:bob .5s steps(2) infinite}
+@keyframes walk{from{left:-160px}to{left:calc(100% + 40px)}}
+@keyframes bob{50%{transform:translateY(-6px)}}
+.logostrip{background:#fff;position:relative;z-index:3;padding:34px 0;overflow:hidden}
+.logostrip .ttl{position:absolute;left:24px;top:-20px;z-index:2;transform:rotate(-3deg)}
+.mqi{display:flex;gap:28px;width:max-content;animation:mq 70s linear infinite;align-items:center}
+.mqi span{width:240px;height:120px;flex:none;display:flex;align-items:center;justify-content:center;padding:8px 14px;border-radius:20px;background:var(--cream)}
+.mqi img{width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply;transform:scale(1.1)}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* ribbon */
+.ribbon{position:relative;height:260px;z-index:3;pointer-events:none;margin-top:-30px}
+.ribbon svg{position:absolute;left:-2%;width:104%;height:100%;overflow:visible}
+.ribbon text{font-family:Pretendard;font-weight:700;font-size:52px;letter-spacing:-.02em;fill:#fff}
+
+/* field video */
+#field{padding:40px 0 130px}
+.fwrap{display:grid;grid-template-columns:1fr 340px;gap:22px;align-items:stretch}
+.player{position:relative;border-radius:28px;overflow:hidden;background:var(--ink);aspect-ratio:16/9;box-shadow:0 40px 80px rgba(22,23,29,.18)}
+.player video{width:100%;height:100%;object-fit:cover;display:block}
+.player .cap{position:absolute;left:20px;top:20px;display:flex;gap:6px;z-index:2}
+.player .snd{position:absolute;right:20px;top:20px;z-index:2;border:0;cursor:pointer}
+.player .bar{position:absolute;left:0;right:0;bottom:0;height:6px;background:rgba(255,255,255,.25)}
+.player .bar i{display:block;height:100%;width:0;background:var(--red)}
+.vlist{display:flex;flex-direction:column;gap:12px}
+.vi{flex:1;display:grid;grid-template-columns:120px 1fr;gap:14px;align-items:center;background:#fff;border:0;border-radius:22px;padding:12px;cursor:pointer;text-align:left;transition:transform .25s,box-shadow .25s}
+.vi:hover{transform:translateX(-4px)}
+.vi.on{box-shadow:0 0 0 3px var(--red);}
+.vi .th{position:relative;aspect-ratio:16/10;border-radius:14px;overflow:hidden}
+.vi .th img{width:100%;height:100%;object-fit:cover}
+.vi .th em{position:absolute;right:6px;bottom:6px;font-style:normal;font-size:11px;font-weight:700;background:rgba(22,23,29,.8);color:#fff;border-radius:6px;padding:2px 6px}
+.vi b{display:block;font-size:16px;letter-spacing:-.02em;line-height:1.35}
+.vi span{display:block;font-size:13px;color:var(--sub);line-height:1.5;margin-top:4px}
+.vi .pr{display:block;height:4px;border-radius:4px;background:var(--cream);margin-top:10px;overflow:hidden}
+.vi .pr i{display:block;height:100%;width:0;background:var(--red)}
+.hp .cap .vbtn{pointer-events:auto;background:#fff;color:var(--ink);font-size:12px;padding:5px 11px;border:2px solid var(--ink);cursor:pointer}
+
+/* statement */
+#why{padding:150px 0 190px;text-align:center}
+#why .label{justify-content:center}
+#stmt{font-size:clamp(30px,3.6vw,56px);font-weight:700;letter-spacing:-.03em;line-height:1.42;max-width:1120px;margin:0 auto;position:relative}
+#stmt .w{color:var(--ghost);transition:color .15s}
+#stmt .w.on{color:var(--ink)}
+#stmt .w.hot.on{color:var(--red)}
+#stmt .tag{position:absolute;z-index:2;transform:rotate(var(--r,-5deg)) scale(0);transition:transform .45s cubic-bezier(.3,1.7,.5,1);font-size:13px;padding:6px 12px}
+#stmt .tag.on{transform:rotate(var(--r,-5deg)) scale(1)}
+
+/* R custom */
+#custom{height:560vh}
+#custom .stick{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;padding-top:60px}
+#custom .top{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;padding:0 40px;margin-bottom:30px}
+#custom .top .lead{max-width:400px}
+.track{display:flex;align-items:stretch;gap:22px;padding:0 40px;will-change:transform}
+.cc{flex:none;width:580px;min-height:min(540px,62vh);background:#fff;border-radius:28px;display:grid;grid-template-columns:230px 1fr;overflow:hidden}
+.cc .scr{background:var(--pink);display:flex;align-items:center;justify-content:center;padding:24px 20px}
+.cc .frame{display:block;width:180px;height:380px;border-radius:24px;overflow:hidden;border:5px solid var(--ink);background:var(--ink);box-shadow:0 16px 34px rgba(22,23,29,.2);transition:transform .5s}
+.cc:hover .frame{transform:scale(1.04) rotate(-1.5deg)}
+.cc .frame img{display:block;width:100%;height:100%;object-fit:cover;object-position:center top;transform:scale(1.02);transform-origin:center top}
+.cc .frame.l img{object-position:left top}
+.cc .info{padding:30px 30px 32px;display:flex;flex-direction:column}
+.cc .no{font-size:13px;font-weight:700;color:var(--red);letter-spacing:.04em}
+.cc h3{margin:8px 0 4px}
+.cc .ev{font-size:14px;color:var(--sub);line-height:1.5}
+.cc ul{list-style:none;margin-top:18px;display:flex;flex-direction:column;gap:8px}
+.cc li{font-size:15px;line-height:1.55;letter-spacing:-.015em;padding-left:22px;position:relative;font-weight:600}
+.cc li::before{content:"";position:absolute;left:0;top:.45em;width:10px;height:10px;background:var(--red)}
+.cc .chips{margin-top:auto;display:flex;flex-wrap:wrap;gap:6px;padding-top:14px}
+.cc .chips span{font-size:12px;font-weight:700;background:var(--cream);border-radius:999px;padding:4px 10px;letter-spacing:-.01em}
+.cc .go{font-size:13px;font-weight:700;color:var(--red);margin-top:12px}
+.cc.end{width:420px;background:var(--red);color:#fff;display:flex;flex-direction:column;justify-content:flex-end;padding:36px}
+.cc.end .lead{color:#fff;opacity:.9;margin-top:14px}
+
+/* S scan */
+#scan{height:400vh}
+#scan .stick{position:sticky;top:0;height:100vh;display:flex;align-items:center;padding:24px}
+.panel{background:var(--red);border-radius:32px;width:100%;height:calc(100vh - 48px);display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:0 70px;color:#fff;position:relative;overflow:hidden}
+.panel .loopbg{position:absolute;inset:0;width:100%;height:100%;opacity:.13;pointer-events:none}
+.panel .loopbg path{fill:none;stroke:#fff;stroke-width:26;stroke-linecap:round}
+.panel .label i{background:var(--ink)}
+.stepnum{font-size:clamp(110px,13vw,210px);font-weight:700;letter-spacing:-.05em;line-height:.9}
+.steptitle{margin-top:16px}
+.stepdesc{font-size:20px;font-weight:600;letter-spacing:-.02em;margin-top:10px;opacity:.92}
+.stepnote{font-size:14px;line-height:1.6;opacity:.8;margin-top:36px;max-width:440px}
+.stack{position:relative;height:600px;width:330px;margin:0 auto}
+.scard{position:absolute;inset:0;background:var(--cream);border-radius:26px;padding:14px;box-shadow:0 30px 60px rgba(22,23,29,.25);transition:transform .7s cubic-bezier(.3,1.2,.4,1),opacity .5s}
+.scard img{width:100%;height:100%;object-fit:cover;object-position:top;border-radius:14px}
+.scard .no{position:absolute;left:-22px;top:30px}
+
+/* T methods / M fun */
+.mgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.mc{background:#fff;border-radius:28px;overflow:hidden;display:flex;flex-direction:column}
+.mc .how{position:relative;aspect-ratio:3/2;background:var(--ink);overflow:hidden}
+.mc .how>img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.mc:hover .how>img{transform:scale(1.05)}
+.mc .how .tag{position:absolute;left:18px;top:18px}
+.mc .body{padding:26px 28px 28px;display:flex;flex-direction:column;gap:10px;flex:1}
+.mc .body p{color:var(--sub);font-size:16px;line-height:1.65}
+.mc .real{margin-top:auto;display:flex;align-items:center;gap:14px;background:var(--cream);border-radius:18px;padding:12px;transition:background .2s}
+.mc .real:hover{background:var(--pink)}
+.mc .real img{width:64px;height:88px;object-fit:cover;object-position:top;border-radius:10px;flex:none;background:#fff}
+.mc .real small{display:block;font-size:12px;font-weight:700;color:var(--red);letter-spacing:.02em}
+.mc .real b{display:block;font-size:16px;letter-spacing:-.02em;line-height:1.4}
+.mc .real span{font-size:13px;color:var(--sub);line-height:1.5}
+.mc.tall .how{aspect-ratio:4/3;background:var(--cream);display:flex;align-items:center;justify-content:center}
+.mc.tall .how>img{width:auto;height:88%;object-fit:contain}
+.fgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+/* AR */
+#ar{padding:24px}
+#ar .panel{height:auto;min-height:calc(100vh - 48px);padding:90px 70px;background:var(--ink);grid-template-columns:.9fr 1.1fr;gap:50px}
+#ar .panel .loopbg path{stroke:var(--red)}
+.arshots{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:end;position:relative}
+.arshots figure{margin:0;text-align:center}
+.arshots img{width:100%;border-radius:22px;border:5px solid #fff;box-shadow:0 24px 50px rgba(0,0,0,.4)}
+.arshots figure:nth-child(1){transform:rotate(-4deg)}.arshots figure:nth-child(2){transform:translateY(-30px) rotate(2deg)}.arshots figure:nth-child(3){transform:rotate(5deg)}
+.arshots figcaption{margin-top:16px;font-size:15px;font-weight:700;letter-spacing:-.02em}
+.arshots .ex{position:absolute;right:0;bottom:-46px;font-size:12px;opacity:.6}
+.new{display:inline-block;background:var(--red);color:#fff;font-size:15px;font-weight:700;letter-spacing:0;border-radius:999px;padding:6px 14px;vertical-align:middle;transform:rotate(-6deg);margin-left:10px}
+
+/* P works */
+.logowall{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin:0 0 90px}
+.logowall span{aspect-ratio:1.7;background:#fff;border-radius:20px;display:flex;align-items:center;justify-content:center;padding:10px 14px;transition:transform .3s}
+.logowall span:hover{transform:translateY(-6px) rotate(-2deg)}
+.logowall img{width:100%;height:100%;object-fit:contain;transform:scale(1.15)}
+.stats{display:flex;gap:80px;margin:0 0 60px;flex-wrap:wrap}
+.stat b{display:block;font-size:clamp(84px,9.5vw,160px);font-weight:700;letter-spacing:-.045em;line-height:1}
+.stat b em{font-style:normal;font-size:.34em;letter-spacing:-.02em;margin-left:4px}
+.stat span{font-size:15px;font-weight:700;color:var(--sub)}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+.filters button{border:0;cursor:pointer;background:#fff;border-radius:999px;padding:11px 18px;font-weight:700;font-size:15px;letter-spacing:-.02em}
+.filters button.on{background:var(--ink);color:#fff}
+.filters button i{font-style:normal;color:var(--red);margin-left:4px}
+.wgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.wk{display:flex;flex-direction:column}
+.wk .ph{position:relative;aspect-ratio:4/5;border-radius:22px;overflow:hidden;background:var(--pink)}
+.wk .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .4s,transform .6s}
+.wk .ph img.alt{opacity:0;object-fit:contain;padding:18px;background:var(--pink)}
+.wk:hover .ph img.alt{opacity:1}
+.wk:hover .ph img:first-child{transform:scale(1.06)}
+.wk .seg{position:absolute;left:12px;top:12px;z-index:2;font-size:12px;padding:5px 10px}
+.wk b{font-size:17px;letter-spacing:-.025em;line-height:1.4;margin-top:12px}
+.wk span{font-size:14px;color:var(--sub);line-height:1.5;margin-top:2px}
+.wk .dt{font-style:normal;font-size:12px;font-weight:700;color:var(--red);margin-top:4px}.wk.hide{display:none}
+
+/* admin */
+#admin{height:520vh}
+#admin .stick{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:center;padding:84px 32px 28px}
+#admin .row{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:22px;max-width:1500px;width:100%;margin-inline:auto}
+.atabs{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end;max-width:640px}
+.atabs button{border:0;cursor:pointer;background:#fff;border-radius:999px;padding:10px 16px;font-weight:700;font-size:15px;letter-spacing:-.02em;display:flex;align-items:center;gap:8px;transition:background .25s,color .25s}
+.atabs button .sw{width:30px;height:18px;border-radius:999px;background:var(--gray);position:relative;transition:background .25s}
+.atabs button .sw::after{content:"";position:absolute;left:3px;top:3px;width:12px;height:12px;border-radius:50%;background:#fff;transition:left .25s cubic-bezier(.3,1.6,.5,1)}
+.atabs button.on{background:var(--ink);color:#fff}
+.atabs button.on .sw{background:var(--red)}.atabs button.on .sw::after{left:15px}
+.screen{position:relative;margin:0 auto;width:min(1500px,100%,calc((100vh - 230px) * 2.056));aspect-ratio:1809/880;border-radius:22px;overflow:hidden;background:#fff;box-shadow:0 40px 90px rgba(22,23,29,.18);border:6px solid var(--ink)}
+.screen img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top left;opacity:0;transition:opacity .4s}
+.screen img.on{opacity:1}
+.screen .live{position:absolute;right:16px;top:16px;z-index:3}
+.screen .live i{width:9px;height:9px;border-radius:50%;background:#fff;animation:bl 1s infinite}
+@keyframes bl{50%{opacity:.2}}
+.screen .cap{position:absolute;left:16px;bottom:16px;z-index:3;max-width:70%}
+.screen .modal{position:absolute;left:50%;top:50%;z-index:3;background:#fff;border-radius:22px;padding:28px 34px;box-shadow:0 30px 60px rgba(22,23,29,.25);text-align:center;transform:translate(-50%,-50%) scale(0) rotate(-3deg);transition:transform .45s cubic-bezier(.3,1.7,.5,1);display:flex;flex-direction:column;gap:12px;align-items:center;font-weight:600}
+.screen .modal.on{transform:translate(-50%,-50%) scale(1) rotate(-3deg)}
+.toggle{width:84px;height:44px;border-radius:999px;background:var(--red);position:relative}
+.toggle::after{content:"";position:absolute;right:5px;top:5px;width:34px;height:34px;border-radius:50%;background:#fff}
+
+/* plans */
+.times{display:flex;flex-wrap:wrap;gap:12px;margin:34px 0 60px}
+.times .pill{font-size:clamp(17px,1.6vw,23px);padding:14px 24px}
+.flow{display:flex;align-items:center;flex-wrap:wrap;gap:0;margin-bottom:70px}
+.flow span{background:#fff;border-radius:999px;padding:13px 20px;font-weight:700;font-size:16px;letter-spacing:-.02em}
+.flow i{width:40px;height:6px;background:var(--red);border-radius:9px}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.plan{background:#fff;border-radius:28px;padding:34px 32px;display:flex;flex-direction:column;gap:14px;transition:transform .3s}
+.plan:hover{transform:translateY(-8px) rotate(-.8deg)}
+.plan .ld{font-size:15px;color:var(--sub);line-height:1.6;font-weight:600}
+.plan h3{font-size:38px;letter-spacing:-.03em;line-height:1.2}
+.plan .tags{display:flex;flex-wrap:wrap;gap:6px}
+.plan .tags span{background:var(--pink);border-radius:999px;padding:5px 12px;font-size:13px;font-weight:700}
+.plan dl{display:grid;grid-template-columns:auto 1fr;gap:10px 14px;border-top:1px solid var(--gray);padding-top:16px;font-size:16px}
+.plan dt{color:var(--sub)}.plan dd{text-align:right;font-weight:700}
+.plan .price{margin-top:8px;background:var(--red);color:#fff;border-radius:999px;text-align:center;font-size:28px;font-weight:700;letter-spacing:-.03em;padding:11px}
+.extra{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px}
+.extra a{border:2px solid var(--ghost);border-radius:20px;padding:16px 22px;display:flex;justify-content:space-between;align-items:center;font-size:14px;color:var(--sub);font-weight:600;line-height:1.5}
+.extra a b{display:block;color:var(--ink);font-size:17px;letter-spacing:-.02em}
+.extra a:hover{border-color:var(--red)}
+
+/* faq */
+#faq .grid{display:grid;grid-template-columns:1fr 1.25fr;gap:50px}
+.qs{display:flex;flex-direction:column;gap:10px}
+.q{align-self:flex-start;background:var(--pink);border-radius:999px;padding:13px 22px;font-weight:600;font-size:17px;letter-spacing:-.02em;cursor:pointer;border:2px solid transparent;transition:border-color .2s,background .2s;text-align:left}
+.q:hover,.q.on{border-color:var(--red);background:#fff}
+.ans{align-self:flex-end;position:relative;max-width:82%;background:#fff;border:2px solid var(--ghost);border-radius:24px;padding:18px 24px;font-size:16px;line-height:1.7;margin:4px 52px 10px 0;animation:bub .4s cubic-bezier(.3,1.6,.5,1)}
+.ans img{position:absolute;right:-52px;bottom:-4px;width:40px;height:40px}
+@keyframes bub{from{transform:scale(.6) translateY(20px);opacity:0}}
+.dots i{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--ghost);margin-right:4px;animation:dt 1s infinite}
+.dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}
+@keyframes dt{50%{transform:translateY(-5px)}}
+
+/* final */
+#final{background:var(--red);color:#fff;position:relative;overflow:hidden;padding:140px 0 90px}
+#final .loopbg{position:absolute;inset:0;width:100%;height:100%;opacity:.12;pointer-events:none}
+#final .loopbg path{fill:none;stroke:#fff;stroke-width:28;stroke-linecap:round}
+#final .row{display:grid;grid-template-columns:2.2fr 1fr 1fr;gap:40px;position:relative}
+#final nav a{display:block;font-weight:600;font-size:17px;letter-spacing:-.02em;margin-bottom:10px}
+#final nav p{opacity:.75;font-size:14px;margin-bottom:12px}
+footer{background:var(--ink);color:#fff;padding:56px 40px 48px;overflow:hidden}
+footer .big{width:100%;height:auto;display:block;transform:translateY(40px);opacity:0;transition:transform 1s cubic-bezier(.2,1,.2,1),opacity 1s}
+footer .big.in{transform:none;opacity:1}
+footer .meta2{display:flex;justify-content:space-between;font-size:13px;color:#9a9ba3;margin-bottom:28px}
+.confetti{position:fixed;inset:0;pointer-events:none;z-index:60}
+.confetti i{position:absolute;top:-20px;width:14px;height:14px}
+.proto{position:fixed;left:50%;transform:translateX(-50%);bottom:10px;z-index:49;font-size:11px;font-weight:700;color:#9a9ba3}
+
+@media(max-width:1100px){.wgrid{grid-template-columns:repeat(3,1fr)}.fgrid{grid-template-columns:repeat(2,1fr)}.logowall{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:900px){
+  .fwrap{grid-template-columns:1fr}.vlist{flex-direction:row;overflow-x:auto}.vi{min-width:260px}
+  .wrap{padding:0 20px}.sec{padding:96px 0}
+  header{grid-template-columns:auto 1fr;padding:12px 14px}header .l{display:none}
+  .guide{font-size:13px;padding:5px 6px 5px 12px}.guide b{width:24px;height:24px}
+  .stage{height:330px;margin-top:30px}.hp{width:140px}.hp .ph{height:280px}
+  .mqi span{width:150px;height:84px}
+  .shead,#faq .grid,.mgrid,.plans,.extra,#final .row,#ar .panel{grid-template-columns:1fr}
+  .wgrid{grid-template-columns:repeat(2,1fr)}.fgrid{grid-template-columns:1fr}.logowall{grid-template-columns:repeat(3,1fr)}
+  #custom .top{flex-direction:column;align-items:flex-start;padding:0 20px}#custom .top .lead{display:none}
+  .cc{width:300px;grid-template-columns:1fr;grid-template-rows:240px 1fr;height:min(600px,72vh)}.cc ul{display:none}.cc.end{width:260px}
+  .panel{grid-template-columns:1fr;padding:30px 24px;align-content:center;gap:16px}
+  .stack{height:360px;width:200px}.stepnum{font-size:84px}.stepnote{display:none}
+  #ar .panel{padding:60px 24px}
+  #admin .row{flex-direction:column;align-items:flex-start}.atabs{justify-content:flex-start}
+  #fab{right:12px;bottom:12px}#fab .main{font-size:16px;padding:8px 8px 8px 18px}#fab .main b{width:38px;height:38px}#fab .sub{display:none}
+  #board{left:10px;bottom:12px}#board svg{height:18px}
+  #hero .stk{display:none}#hero .ctas{flex-wrap:wrap}
+  .ribbon{height:170px}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rise{opacity:1;transform:none}#hero h1 .ln span{transform:none}.stk{transform:rotate(var(--r)) scale(1)}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="l"><a href="#works">고객 사례</a><a href="#custom">커스텀</a><a href="#type">적립 방식</a><a href="#admin">어드민</a><a href="#plans">플랜</a></div>
+  <a href="#hero"><img class="logo" src="assets/QRSTAMP_logo_A.svg" alt="QRSTAMP 큐알스탬프"></a>
+  <div class="r"><a class="guide" href="https://qrstp.mintlify.app/intro" target="_blank">가이드 센터 <b>↗</b></a></div>
+</header>
+<div id="fab"><a class="sub" href="https://www.qrstp.com/_files/ugd/1722ff_8de6e27d887541429cb3b236ac2dbf10.pdf">소개서 받기 ↓</a><a class="main" href="https://www.qrstp.com/contact">상담 신청하기 <b>↗</b></a></div>
+<div id="board"><p><span>MY STAMP</span><span id="bcount">2/7</span></p><svg viewBox="0 0 354 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="48" height="58" fill="#E8442A"/>
+<path d="M29.9999 33H21.9999V41H29.9999V33Z" fill="white"/>
+<path d="M37.9999 41H29.9999V49H37.9999V41Z" fill="white"/>
+<path d="M30 9H18H10V17V41V49H18H22V41H18V17H30V33H38V17V9H30Z" fill="white"/>
+<rect x="51" width="48" height="58" fill="#E8442A"/>
+<path d="M87.9999 41H79.9999V49H87.9999V41Z" fill="white"/>
+<path d="M81 9H61V49H69V33H73V41H81V33H89V9H81ZM81 25H69V17H81V25Z" fill="white"/>
+<rect x="102" width="48" height="58" fill="#DDDDDD"/>
+<path d="M139.333 17V9H120.099H112V17V24V32H120.099H131.235V41H112V49H131.235H139.333V41V32V24H131.235H120.099V17H139.333Z" fill="#16171D"/>
+<rect x="153" width="48" height="58" fill="#DDDDDD"/>
+<path d="M192 9H181H173H162V17H172.498V49H181.498V17H192V9Z" fill="#16171D"/>
+<rect x="204" width="48" height="58" fill="#DDDDDD"/>
+<path d="M222 9H214V49H222V33H234V49H242V9H222ZM234 25H222V17H234V25Z" fill="#16171D"/>
+<rect x="255" width="48" height="58" fill="#DDDDDD"/>
+<path d="M283 17H275V33H283V17Z" fill="#16171D"/>
+<path d="M271 9H263V17V49H271V17H275V9H271Z" fill="#16171D"/>
+<path d="M287 9H283V17H287V49H295V17V9H287Z" fill="#16171D"/>
+<rect x="306" width="48" height="58" fill="#DDDDDD"/>
+<path d="M336 9H316V49H324V33H344V9H336ZM336 25H324V17H336V25Z" fill="#16171D"/>
+</svg>
+</div>
+<div class="proto">홈 개편 시안 v3 · 내부 검토용</div>
+
+<section id="hero">
+  <svg class="loops" viewBox="0 0 1440 1000" preserveAspectRatio="none"><path d="M-60 120 C 120 60, 220 260, 110 360 C 0 460, -40 300, 80 250 C 240 190, 260 520, 120 640"/><path d="M1500 80 C 1300 140, 1260 380, 1380 420 C 1500 460, 1480 260, 1360 300 C 1200 350, 1220 620, 1500 700"/></svg>
+  <div class="wrap" style="position:relative">
+    <h1 class="xl"><span class="ln"><span>찍는 맛이 있는</span></span><span class="ln"><span>스탬프 투어</span></span></h1>
+    <span class="stk pill" style="left:10%;top:4%;--r:-8deg;--d:.9s">앱 설치 없이</span>
+    <span class="stk pill" style="right:12%;top:-2%;--r:5deg;--d:1.05s">QR 한 번이면 참여 끝</span>
+    <span class="stk pill r" style="left:17%;top:42%;--r:6deg;--d:1.2s">100% 커스텀</span>
+    <span class="stk pill" style="right:9%;top:45%;--r:-6deg;--d:1.35s">급하면 1일 오픈</span>
+    <p class="lead sub">기업 팝업부터 지자체 축제, 외국인 관광객까지.<br>디자인은 100% 우리 행사대로, 운영은 어드민에서 직접.</p>
+    <div class="ctas"><a class="cta" href="https://www.qrstp.com/contact">상담 신청하기 <b>↗</b></a><a class="cta w" href="https://makevu.gitbook.io/qr-stamp-guide/live_demo">샘플 체험해 보기 <b>↗</b></a></div>
+  </div>
+  <div class="stage" id="stage"><a class="hp" style="left:7%;animation-delay:0s;transform:rotate(-4deg)" href="https://www.qrstp.com/post/보물찾기로-재탄생한-모바일-qr-스탬프-투어-2026-67" target="_blank"><span class="cap"><span class="pill">올리브영 X 망그러진 곰</span><span class="pill r">브랜드 팝업 · 4개 언어</span><span class="pill vbtn" data-field="1">▶ 현장 영상</span></span><div class="ph"><img src="assets/img/cases/d69421_a7a20dfef9d14ed79774267aa84912a1~mv2.png" alt="올리브영 X 망그러진 곰 실제 스탬프 투어 화면"></div></a><a class="hp" style="left:29%;animation-delay:-2s;transform:rotate(3deg)" href="https://www.qrstp.com/post/gps-스탬프-투어로-만든-춘천-김유정문학촌-관광-코스-단계별-리워드-설계-사례" target="_blank"><span class="cap"><span class="pill">김유정문학촌</span><span class="pill r">지자체 관광 · GPS</span></span><div class="ph"><img src="assets/img/cases/gimyujeong_screen.png" alt="김유정문학촌 실제 스탬프 투어 화면"></div></a><a class="hp" style="right:29%;animation-delay:-1s;transform:rotate(-3deg)" href="https://www.qrstp.com/post/스탬프투어-대기업사례-2025-03" target="_blank"><span class="cap"><span class="pill">현대자동차 X 쿠키런: 킹덤</span><span class="pill r">기업 팝업 · IP 콜라보</span><span class="pill vbtn" data-field="0">▶ 현장 영상</span></span><div class="ph"><img src="assets/img/cases/hyundai_casper_screen.png" alt="현대자동차 X 쿠키런: 킹덤 실제 스탬프 투어 화면"></div></a><a class="hp" style="right:7%;animation-delay:-3s;transform:rotate(4deg)" href="https://www.qrstp.com/post/수원화성-어드벤처-스탬프-투어-2025-48" target="_blank"><span class="cap"><span class="pill">수원화성 어드벤처</span><span class="pill r">지역 축제 · 2개 언어</span></span><div class="ph"><img src="assets/img/cases/suwon_intro_single.png" alt="수원화성 어드벤처 실제 스탬프 투어 화면"></div></a></div>
+  <div class="logostrip"><span class="ttl pill r">이미 이곳들이 찍었어요 →</span><div class="mqi" id="mq"></div></div>
+</section>
+
+<div class="ribbon"><svg viewBox="0 0 1440 260" preserveAspectRatio="none">
+  <path id="rb" d="M-40 220 C 360 40, 900 20, 1500 100" fill="none" stroke="#E8442A" stroke-width="90"/>
+  <text dy="18"><textPath id="rbt" href="#rb">앱 설치 ✕ • 종이 ✕ • QR 한 번이면 OK • 디자인 100% 커스텀 • 운영은 어드민에서 직접 • 앱 설치 ✕ • 종이 ✕ • QR 한 번이면 OK • 디자인 100% 커스텀 • 운영은 어드민에서 직접 •</textPath></text>
+</svg></div>
+
+<section id="field">
+  <div class="wrap">
+    <div class="shead"><div><div class="label"><i>▶</i>현장 영상 <em>LIVE FROM THE FIELD</em></div><h2 class="lg">설명보다<br><span class="red">현장</span>이 빨라요</h2></div><p class="lead">QR을 찾고, 스캔하고, 리워드를 받기까지. 실제 행사장에서 참여자가 어떻게 움직이는지 보세요.</p></div>
+    <div class="fwrap">
+      <div class="player"><video id="fv" muted playsinline preload="metadata"></video><span class="cap"><span class="pill r">LIVE</span><span class="pill w" id="fvname"></span></span><button class="snd pill" id="snd">🔇 소리 켜기</button><div class="bar"><i id="fvbar"></i></div></div>
+      <div class="vlist" id="vlist"></div>
+    </div>
+  </div>
+</section>
+
+<section id="why" data-cell="0">
+  <div class="wrap">
+    <div class="label"><i>Q</i>솔직히 말하면</div>
+    <p id="stmt">종이 스탬프는 잃어버리고, 앱은 아무도 안 깔아요. 그래서 큐알스탬프는 [QR 한 번]으로 1초 만에 참여하게 했어요. 모든 화면은 [우리 행사 톤]으로 처음부터 만들고, 참여 데이터는 [실시간]으로 모아 엑셀로 드려요. 담당자는 [어드민 하나]로 현장을 직접 움직여요.</p>
+  </div>
+</section>
+
+<section id="custom" data-cell="1">
+  <div class="stick">
+    <div class="top">
+      <div><div class="label"><i>R</i>100% 커스텀 <em>CUSTOM</em></div><h2 class="lg">로고만 얹는 거 말고,<br><span class="red">처음부터 끝까지</span></h2></div>
+      <p class="lead">행사 컨셉과 브랜드 톤에 맞춰 모든 화면을 원하는 대로 만들어요. 아래 일곱 곳은 최근 실제 행사에 납품한 디자인이에요. 무엇을 커스텀했는지는 각 사례 글에서 옮겼어요.</p>
+    </div>
+    <div class="track" id="track"><a class="cc" href="https://www.qrstp.com/post/대한전선-wce-2026-전시-부스-스탬프-투어-2026-107" target="_blank"><div class="scr"><span class="frame"><img src="assets/img/cases/대한전선-wce-2026-전시-부스-스탬프-투어-2026-107--figma_03_stamp_completed.jpg" alt="대한전선 WCE 2026 납품 디자인"></span></div><div class="info"><span class="no">CUSTOM 01</span><h3 class="sm">대한전선 WCE 2026</h3><span class="ev">대한전선 QR 스탬프 투어 (WCE 2026 부스)</span><ul><li>스탬프를 모을 때마다 원형 그림 속 시공선이 조금씩 채색되는 &#x27;완성되는 그림&#x27; 스탬프판</li><li>Step·진행 막대로 현재 단계 표시, 4개 완성 시 럭키드로우 버튼 활성화</li><li>시작 화면 부스 배치도에 선물 수령처 표시, 모든 페이지 버튼 플로팅</li></ul><div class="chips"><span>컨퍼런스·박람회</span><span>2026.10</span></div><span class="go">사례 자세히 ↗</span></div></a><a class="cc" href="https://www.qrstp.com/post/조선왕릉축전-방탈출-스탬프-투어-2026-109" target="_blank"><div class="scr"><span class="frame"><img src="assets/img/cases/조선왕릉축전-방탈출-스탬프-투어-2026-109--live_02_mission.jpg" alt="조선왕릉축전 「조선명탐정」 납품 디자인"></span></div><div class="info"><span class="no">CUSTOM 02</span><h3 class="sm">조선왕릉축전 「조선명탐정」</h3><span class="ev">조선명탐정: 왕릉사관록 (2026 세계유산 조선왕릉축전 프로그램)</span><ul><li>참여자가 &#x27;비밀사관&#x27;이 되어 사라진 글자를 찾아 왕릉사관록을 완성하는 야외 방탈출 스토리</li><li>릉별 QR + 수사 장소 위치 인증 후에만 문제가 열림</li><li>&#x27;갓을 쓴 선배사관&#x27; 힌트맨 안내 화면, 기념품은 스태프 확인 코드로 수령 처리</li></ul><div class="chips"><span>지자체·축제·관광</span><span>2026.10</span></div><span class="go">사례 자세히 ↗</span></div></a><a class="cc" href="https://www.qrstp.com/post/국가유산-미디어아트-스탬프-투어-2026-111" target="_blank"><div class="scr"><span class="frame"><img src="assets/img/cases/국가유산-미디어아트-스탬프-투어-2026-111--fig_03_hint.jpg" alt="국가유산 미디어아트 「Heritage Lucy Rush」 납품 디자인"></span></div><div class="info"><span class="no">CUSTOM 03</span><h3 class="sm">국가유산 미디어아트 「Heritage Lucy Rush」</h3><span class="ev">HERITAGE LUCY RUSH 스탬프투어 (2026 국가유산 미디어아트)</span><ul><li>지역마다 따로 만든 &#x27;루시 위치 HINT&#x27; 팝업(행사장소·기간·부스위치·운영시간)</li><li>적립 부스 QR 스캔 + 위치(GPS) 확인으로 적립, 적립한 지역 일러스트가 컬러로</li><li>완주 대신 최다 적립자에게 주는 &#x27;랭킹 100 도전&#x27; 리워드, 신청 기간을 행사 뒤까지 연장</li></ul><div class="chips"><span>지자체·축제·관광</span><span>2026.10</span></div><span class="go">사례 자세히 ↗</span></div></a><a class="cc" href="https://www.qrstp.com/post/강진만갈대축제-축제-스탬프-투어-2026-121" target="_blank"><div class="scr"><span class="frame"><img src="assets/img/cases/강진만갈대축제-축제-스탬프-투어-2026-121--fig_02_stamp.jpg" alt="강진만 춤추는 갈대축제 납품 디자인"></span></div><div class="info"><span class="no">CUSTOM 04</span><h3 class="sm">강진만 춤추는 갈대축제</h3><span class="ev">제10회 강진만 춤추는 갈대축제 스탬프 투어 &#x27;갈대축제에 놀러온 가우도 십이몬을 잡아라!&#x27;</span><ul><li>12띠 캐릭터 &#x27;십이몬&#x27; 한 마리 = 스탬프존 한 곳, 찍으면 실루엣이 컬러 캐릭터로</li><li>스탬프판 위에 성인(마일리지)·어린이(경품) 리워드 안내를 나눠 배치</li><li>리워드 화면에 모은 개수와 축제장 지도 위 수령 부스 표시</li></ul><div class="chips"><span>지자체·축제·관광</span><span>2026.10</span></div><span class="go">사례 자세히 ↗</span></div></a><a class="cc" href="https://www.qrstp.com/post/지마켓-신사옥-nfc-스탬프-투어-2026-104" target="_blank"><div class="scr"><span class="frame"><img src="assets/img/cases/지마켓-신사옥-nfc-스탬프-투어-2026-104--figma_02_stamp_map.jpg" alt="G마켓 성수 신사옥 납품 디자인"></span></div><div class="info"><span class="no">CUSTOM 05</span><h3 class="sm">G마켓 성수 신사옥</h3><span class="ev">신사옥 스탬프투어 (NEW OFFICE·STAMP TOUR)</span><ul><li>사옥 배치도가 곧 스탬프판 — 각 공간이 &#x27;STAMP MAP&#x27; 위 스탬프 칸</li><li>공간마다 NFC 스티커를 붙여 휴대폰으로 태그(스티커는 큐알스탬프 제공)</li><li>완료 화면에 경품 부스 위치(7F 웰컴라운지), 스태프 확인 코드로 수령 처리</li></ul><div class="chips"><span>기업·브랜드 팝업</span><span>2026.10</span></div><span class="go">사례 자세히 ↗</span></div></a><a class="cc" href="https://www.qrstp.com/post/사회적가치-페스타-스탬프-투어-2026-113" target="_blank"><div class="scr"><span class="frame"><img src="assets/img/cases/사회적가치-페스타-스탬프-투어-2026-113--사회적가치-스탬프판-시안.jpg" alt="대한민국 사회적가치 페스타 납품 디자인"></span></div><div class="info"><span class="no">CUSTOM 06</span><h3 class="sm">대한민국 사회적가치 페스타</h3><span class="ev">제3회 대한민국 사회적가치 페스타</span><ul><li>행사 키비주얼 &#x27;사회적가치 우주&#x27;를 옮긴 로켓 모양 스탬프판, 존마다 지정 색으로 켜짐</li><li>어떤 QR로 들어와도 한글/ENGLISH 언어 선택 화면이 먼저</li><li>완료 화면에 경품 배부처 &#x27;F&amp;B존 앞&#x27;과 굿즈 사진, 리워드 버튼 주의 문구</li></ul><div class="chips"><span>컨퍼런스·박람회</span><span>한글·English</span><span>2026.10</span></div><span class="go">사례 자세히 ↗</span></div></a><a class="cc" href="https://www.qrstp.com/post/롯데월드-x-환경부-esg-캠페인-스탬프투어-2025-57" target="_blank"><div class="scr"><span class="frame l"><img src="assets/img/cases/d69421_5e4c2fd81da543419e2009b80c873e69~mv2.png" alt="롯데월드 X 환경부 납품 디자인"></span></div><div class="info"><span class="no">CUSTOM 07</span><h3 class="sm">롯데월드 X 환경부</h3><span class="ev">GREEN MISSION MAP (그린 미션 맵)</span><ul><li>&#x27;레트로 게임&#x27; 컨셉의 8-bit 픽셀 아트 디자인</li><li>스탬프를 찍을 때마다 흑백 지도에 색이 돌아오고 날씨가 바뀌는 연출</li><li>&#x27;매직에코 요원&#x27;이 되어 롯데월드의 색을 되찾는 세계관</li></ul><div class="chips"><span>기업·브랜드 팝업</span><span>2025.12</span></div><span class="go">사례 자세히 ↗</span></div></a>
+      <div class="cc end"><div id="pxCustom"></div><h3 class="md" style="margin-top:20px">바꿀 수 있는 것,<br>전부.</h3><p class="lead">메인 화면 · 스탬프 모양 · 문구와 색 · 리워드 화면 · 언어까지. 커스텀 디자인은 추가 비용이 발생해요.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="scan" data-cell="2">
+  <div class="stick"><div class="panel">
+    <svg class="loopbg" viewBox="0 0 1400 800" preserveAspectRatio="none"><path d="M-50 600 C 200 300, 500 900, 700 500 C 820 260, 1000 260, 980 420 C 960 600, 760 520, 860 340 C 980 140, 1300 160, 1460 60"/></svg>
+    <div style="position:relative">
+      <div class="label"><i>S</i>참여는 이렇게</div>
+      <div class="stepnum" id="stepnum">01</div>
+      <div class="md steptitle" id="steptitle">QR 스캔</div>
+      <div class="stepdesc" id="stepdesc">이벤트 현장에서 QR을 스캔해요</div>
+      <p class="stepnote">리드·데일리 플랜은 휴대폰/이메일 본인 인증 단계가 더해져요.<br>화면: 마이크로소프트 AI Tour Seoul 실제 운영 화면</p>
+    </div>
+    <div class="stack" id="stack">
+      <div class="scard"><img src="assets/img/ms5_complete.png" alt=""><span class="no pill">04 리워드</span></div>
+      <div class="scard"><img src="assets/img/ms3_done.png" alt=""><span class="no pill">03 완주</span></div>
+      <div class="scard"><img src="assets/img/ms2_board.png" alt=""><span class="no pill">02 적립</span></div>
+      <div class="scard"><img src="assets/img/ms1_start.png" alt=""><span class="no pill">01 스캔</span></div>
+    </div>
+  </div></div>
+</section>
+
+<section class="sec" id="type" data-cell="3">
+  <div class="wrap">
+    <div class="shead"><div><div class="label"><i>T</i>적립 방식 <em>HOW TO STAMP</em></div><h2 class="lg">찍는 법은<br>골라 쓰세요</h2></div><p class="lead">행사장 구조와 목적에 맞춰 적립 방식을 고르세요. 방식마다 어떻게 찍는지, 실제로 쓴 행사는 어디인지 함께 보여드려요.</p></div>
+    <div class="mgrid"><div class="mc rise"><div class="how"><img src="assets/img/how_qr.jpg" alt="QR 스캔 적립 방법 그림"><span class="tag pill w">이렇게 찍어요</span></div><div class="body"><h3 class="sm">QR 스캔</h3><p>현장에 비치된 QR을 휴대폰 카메라로 스캔하면 바로 적립돼요. 가장 익숙하고 운영이 간단한 방식이에요.</p><a class="real" href="https://www.qrstp.com/post/세종시-전시관-스탬프-투어-2026-118" target="_blank"><img src="assets/img/cases/세종시-전시관-스탬프-투어-2026-118--01_start.jpg" alt=""><div><small>실제로 쓴 행사</small><b>세종특별자치시 전시관</b><span>&#x27;선물이 팡팡! QR 스탬프 이벤트&#x27; 시작 화면(세종특별자치시 로고)</span></div></a></div></div><div class="mc rise"><div class="how"><img src="assets/img/how_nfc.jpg" alt="NFC 태그 적립 방법 그림"><span class="tag pill w">이렇게 찍어요</span></div><div class="body"><h3 class="sm">NFC 태그</h3><p>NFC 카드·스티커에 휴대폰을 갖다 대면 적립돼요. 현장에 와야만 찍을 수 있어 허위 적립 걱정이 없어요.</p><a class="real" href="https://www.qrstp.com/post/msi-26-fan-festa-약-3만-명이-참여한-e스포츠-스탬프-투어-nfc로-어뷰징을-막은-방법" target="_blank"><img src="assets/img/cases/d554dc_6e4b6fe146654689aa256da95b81c92b~mv2.jpg" alt=""><div><small>실제로 쓴 행사</small><b>MSI 26 FAN FESTA</b><span>스탬프 판 14칸(존별 로고 스탬프) + 리워드 수령 완료</span></div></a></div></div><div class="mc rise"><div class="how"><img src="assets/img/how_gps.jpg" alt="GPS 위치 적립 방법 그림"><span class="tag pill w">이렇게 찍어요</span></div><div class="body"><h3 class="sm">GPS 위치</h3><p>정해진 존 안에 들어오면 적립 버튼이 열려요. QR을 붙이기 어려운 야외 코스에서 동선을 자연스럽게 이끌어요.</p><a class="real" href="https://www.qrstp.com/post/칠선-깨어나다-지리산-국립공원-gps-스탬프-투어-2026-103" target="_blank"><img src="assets/img/cases/칠선-깨어나다-지리산-국립공원-gps-스탬프-투어-2026-103--02_mission1_kr.jpg" alt=""><div><small>실제로 쓴 행사</small><b>지리산 칠선계곡 「칠선, 깨어나다」</b><span>선녀 캐릭터와 계곡 배경의 언어 선택 화면(한국어/English 안내)</span></div></a></div></div><div class="mc rise"><div class="how"><img src="assets/img/how_gpsqr.jpg" alt="GPS + QR 적립 방법 그림"><span class="tag pill w">이렇게 찍어요</span></div><div class="body"><h3 class="sm">GPS + QR</h3><p>QR을 스캔한 뒤 위치까지 확인돼야 적립돼요. QR 이미지가 유출돼도 허위 적립을 막을 수 있어요.</p><a class="real" href="https://www.qrstp.com/post/남도콘텐츠페어-박람회-스탬프-투어-2026-108" target="_blank"><img src="assets/img/cases/남도콘텐츠페어-박람회-스탬프-투어-2026-108--fig_03_stamp.jpg" alt=""><div><small>실제로 쓴 행사</small><b>2026 남도 콘텐츠 페어</b><span>&#x27;축하합니다!&#x27; 완료 화면 — 인형뽑기 기계 일러스트와 기념품 티켓 뽑기 참여 안내</span></div></a></div></div></div>
+  </div>
+</section>
+
+<section id="ar" data-cell="4">
+  <div class="panel">
+    <svg class="loopbg" viewBox="0 0 1400 800" preserveAspectRatio="none"><path d="M1460 700 C 1200 500, 900 900, 760 520 C 680 300, 480 260, 520 440 C 560 620, 760 520, 660 320 C 560 120, 200 160, -60 60"/></svg>
+    <div style="position:relative">
+      <div class="label"><i>A</i>AR 이미지 인식 <em>NEW</em></div>
+      <h2 class="lg">찾아서, 비추면,<br><span class="red">튀어나와요</span><span class="new">NEW</span></h2>
+      <p class="lead" style="color:#d6d6dc;margin-top:24px;max-width:500px">현장 어딘가에 있는 이미지를 찾아 카메라로 비추면 스탬프가 적립돼요. QR 대신 캐릭터·조형물·안내판이 스탬프가 됩니다. 앱 설치 없이 브라우저에서 바로 카메라가 열려요.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:30px"><span class="pill w">보물찾기형 행사</span><span class="pill w">캐릭터·IP 행사</span><span class="pill w">전시·조형물</span></div>
+    </div>
+    <div class="arshots">
+      <figure><img src="assets/img/ar0.png" alt="AR 이미지 안내 화면 예시"><figcaption>① 찾을 이미지 안내</figcaption></figure>
+      <figure><img src="assets/img/ar2.png" alt="AR 인식 중 화면 예시"><figcaption>② 실루엣에 맞춰 비추기</figcaption></figure>
+      <figure><img src="assets/img/ar3.png" alt="AR 인식 완료 화면 예시"><figcaption>③ 이미지가 살아나며 적립!</figcaption></figure>
+      <span class="ex">화면 예시 (기획 화면)</span>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="mission" data-cell="5">
+  <div class="wrap">
+    <div class="shead"><div><div class="label"><i>M</i>재미 장치 <em>MISSION</em></div><h2 class="lg">찍기만 하면<br>심심하니까</h2></div><p class="lead">끝까지 돌게 만드는 장치들이에요. 어떤 화면인지, 실제로 어디서 썼는지 확인해 보세요.</p></div>
+    <div class="fgrid"><div class="mc tall rise d0"><div class="how"><img src="assets/img/fun_quiz.png" alt="퀴즈·미션 화면"></div><div class="body"><h3 class="sm">퀴즈·미션</h3><p>정답을 맞히거나 미션을 해야 스탬프가 적립돼요.</p><a class="real" href="https://www.qrstp.com/post/재팬모빌리티쇼-전시-부스-스탬프-투어-2026-123" target="_blank"><img src="assets/img/cases/재팬모빌리티쇼-전시-부스-스탬프-투어-2026-123--fig_02_quiz.jpg" alt=""><div><small>실제로 쓴 행사</small><b>Japan Mobility Show 2025 Hyundai 부스</b></div></a></div></div><div class="mc tall rise d1"><div class="how"><img src="assets/img/fun_roulette.png" alt="룰렛 리워드 화면"></div><div class="body"><h3 class="sm">룰렛 리워드</h3><p>완주하면 룰렛을 돌려요. 당첨 확률을 조정해 리워드 예산을 관리해요.</p><a class="real" href="https://www.qrstp.com/post/koica-ai-파트너스-페어-스탬프-투어-2026-112" target="_blank"><img src="assets/img/cases/koica-ai-파트너스-페어-스탬프-투어-2026-112--koica-룰렛-시안.jpg" alt=""><div><small>실제로 쓴 행사</small><b>KOICA AI Partners Fair</b></div></a></div></div><div class="mc tall rise d2"><div class="how"><img src="assets/img/cases/sk하이닉스-sedex-2026-박람회-스탬프-투어-2026-105--figma_02_stamp_track.jpg" alt="단계별 리워드 화면"></div><div class="body"><h3 class="sm">단계별 리워드</h3><p>적립 개수에 따라 받을 수 있는 리워드를 다르게 줄 수 있어요.</p><a class="real" href="https://www.qrstp.com/post/sk하이닉스-sedex-2026-박람회-스탬프-투어-2026-105" target="_blank"><img src="assets/img/cases/sk하이닉스-sedex-2026-박람회-스탬프-투어-2026-105--live_01_start.jpg" alt=""><div><small>실제로 쓴 행사</small><b>SK하이닉스 SEDEX 2026</b></div></a></div></div><div class="mc tall rise d3"><div class="how"><img src="assets/img/fun_survey.png" alt="설문 화면"></div><div class="body"><h3 class="sm">설문</h3><p>참여 흐름 안에 만족도·피드백 설문을 넣어 답변을 모아요.</p><a class="real" href="https://www.qrstp.com/post/삼양식품-sial-파리-2026-다국어-스탬프-투어-2026-106" target="_blank"><img src="assets/img/cases/삼양식품-sial-파리-2026-다국어-스탬프-투어-2026-106--figma_03_survey.jpg" alt=""><div><small>실제로 쓴 행사</small><b>삼양식품 SIAL Paris 2026</b></div></a></div></div></div>
+  </div>
+</section>
+
+<section class="sec" id="works" data-cell="6" style="padding-top:60px">
+  <div class="wrap">
+    <div class="label"><i>P</i>고객 사례 <em>PROOF</em></div><h2 class="lg" style="margin-bottom:40px">누구나 아는 곳들이<br>이미 찍었어요</h2><div class="stats"><div class="stat"><b><i class="cnt" data-to="100">0</i><em>건~</em></b><span>운영 행사</span></div><div class="stat"><b><i class="cnt" data-to="20">0</i><em>만 명~</em></b><span>누적 참가자</span></div></div>
+    <div class="logowall" id="logowall"></div>
+    <h3 class="md" style="margin-bottom:24px">위에서 못 보여드린 사례, <span class="red">전부</span> <span class="lead" style="font-size:16px;font-weight:600">· 최신순</span></h3>
+    <div class="filters" id="filters"></div>
+    <div class="wgrid" id="wgrid"><a class="wk rise" data-seg="공공기관·교육" href="https://www.qrstp.com/post/양주미래교육페스타-스탬프-투어-2026-114" target="_blank"><div class="ph"><img src="assets/img/cases/양주미래교육페스타-스탬프-투어-2026-114--양주-시작화면-시안.jpg" alt="양주시"><img class="alt" src="assets/img/cases/양주미래교육페스타-스탬프-투어-2026-114--양주-리워드-시안.jpg" alt=""><span class="seg pill w">공공기관·교육</span></div><b>양주시</b><span>Jump Up 2026 양주미래교육페스타 (2026년 양주진로진학박람회)</span><em class="dt">2026.10</em></a><a class="wk rise" data-seg="공공기관·교육" href="https://www.qrstp.com/post/경산시평생학습-박람회-스탬프-투어-2026-120" target="_blank"><div class="ph"><img src="assets/img/cases/경산시평생학습-박람회-스탬프-투어-2026-120--live_02_reward.jpg" alt="경산시"><img class="alt" src="assets/img/cases/경산시평생학습-박람회-스탬프-투어-2026-120--live_01_hero.jpg" alt=""><span class="seg pill w">공공기관·교육</span></div><b>경산시</b><span>제10회 경산시 평생학습 재능나눔 박람회</span><em class="dt">2026.10</em></a><a class="wk rise" data-seg="기타" href="https://www.qrstp.com/post/춘천교구-청년대회-축제-스탬프-투어-2026-116" target="_blank"><div class="ph"><img src="assets/img/cases/춘천교구-청년대회-축제-스탬프-투어-2026-116--01_hero_start.jpg" alt="천주교 춘천교구"><span class="seg pill w">기타</span></div><b>천주교 춘천교구</b><span>Pre-WYD 춘천교구 청년대회 &#x27;열린 마당 축제&#x27;</span><em class="dt">2026.10</em></a><a class="wk rise" data-seg="지자체·축제·관광" href="https://www.qrstp.com/post/고향사랑페스타-팔도-스탬프-투어-2026-110" target="_blank"><div class="ph"><img src="assets/img/cases/고향사랑페스타-팔도-스탬프-투어-2026-110--고향사랑-시작화면.jpg" alt="행정안전부·SBS"><img class="alt" src="assets/img/cases/고향사랑페스타-팔도-스탬프-투어-2026-110--고향사랑-리워드화면.jpg" alt=""><span class="seg pill w">지자체·축제·관광</span></div><b>행정안전부·SBS</b><span>제1회 고향사랑페스타 「팔도 스탬프 투어」</span><em class="dt">2026.10</em></a><a class="wk rise" data-seg="지자체·축제·관광" href="https://www.qrstp.com/post/충청북도-전시관-스탬프-투어-2026-119" target="_blank"><div class="ph"><img src="assets/img/cases/충청북도-전시관-스탬프-투어-2026-119--01_start.jpg" alt="충청북도 전시관"><img class="alt" src="assets/img/cases/충청북도-전시관-스탬프-투어-2026-119--02_reward.jpg" alt=""><span class="seg pill w">지자체·축제·관광</span></div><b>충청북도 전시관</b><span>충청북도 전시관 &#x27;선물 팡팡&#x27; 스탬프 이벤트</span><em class="dt">2026.10</em></a><a class="wk rise" data-seg="컨퍼런스·박람회" href="https://www.qrstp.com/post/sk-wave-2026-전시관-스탬프-투어-2026-115" target="_blank"><div class="ph"><img src="assets/img/cases/sk-wave-2026-전시관-스탬프-투어-2026-115--sk-스탬프판-시안.jpg" alt="SK 전시관"><img class="alt" src="assets/img/cases/sk-wave-2026-전시관-스탬프-투어-2026-115--sk-시작화면-시안.jpg" alt=""><span class="seg pill w">컨퍼런스·박람회</span></div><b>SK 전시관</b><span>울산세계미래산업박람회(WAVE 2026) SK 전시관 스탬프 투어 &#x27;SK, Leading AX Future&#x27;</span><em class="dt">2026.10</em></a><a class="wk rise" data-seg="공공기관·교육" href="https://www.qrstp.com/post/민주평통-입문과정-출석-스탬프-2026-117" target="_blank"><div class="ph"><img src="assets/img/cases/민주평통-입문과정-출석-스탬프-2026-117--01_live_start_login.jpg" alt="민주평화통일자문회의"><img class="alt" src="assets/img/cases/민주평통-입문과정-출석-스탬프-2026-117--03_figma_stamp_reward.jpg" alt=""><span class="seg pill w">공공기관·교육</span></div><b>민주평화통일자문회의</b><span>민주평화통일자문회의 입문 과정 출석 스탬프</span><em class="dt">2026.10</em></a><a class="wk rise" data-seg="지자체·축제·관광" href="https://www.qrstp.com/post/김포시가-다시-선택한-방법-김포맛집-nfc-스탬프-투어-3주-운영-설계" target="_blank"><div class="ph"><img src="assets/img/cases/d554dc_3d5fee0dd187472cb7ba0a04822b2a36~mv2.png" alt="김포시"><img class="alt" src="assets/img/cases/d554dc_146c118640b948bea3af92bdef618d7a~mv2.png" alt=""><span class="seg pill w">지자체·축제·관광</span></div><b>김포시</b><span>김포맛집 전자스탬프 투어 (FULL LIFE GIMPO)</span><em class="dt">2026.09</em></a><a class="wk rise" data-seg="기업·브랜드 팝업" href="https://www.qrstp.com/post/이틀-동안-2-000명-가까이-종이-스탬프-한-장-없이-하퍼스-바자-30주년-바자하우스-전시-팝업-스탬프-투어-사례" target="_blank"><div class="ph"><img src="assets/img/cases/d554dc_f398a421778c4672805e8f1dfbc5a7ec~mv2.png" alt="하퍼스 바자 코리아"><img class="alt" src="assets/img/cases/d554dc_66c34f95b06a4189bd56f9a4085100bf~mv2.png" alt=""><span class="seg pill w">기업·브랜드 팝업</span></div><b>하퍼스 바자 코리아</b><span>바자하우스 (BAZAAR HOUSE)</span><em class="dt">2026.09</em></a><a class="wk rise" data-seg="기업·브랜드 팝업" href="https://www.qrstp.com/post/전국-어느-지점을-가도-스탬프가-쌓입니다-할리데이비슨-ride-seek-매장-방문-스탬프-투어-사례" target="_blank"><div class="ph"><img src="assets/img/cases/d554dc_eab3ea2f3fe649b980770dcd82431a6c~mv2.png" alt="할리데이비슨 코리아"><img class="alt" src="assets/img/cases/d554dc_8dd53657639a47ddaf5b24432a60b9f1~mv2.png" alt=""><span class="seg pill w">기업·브랜드 팝업</span></div><b>할리데이비슨 코리아</b><span>RIDE &amp; SEEK (라이드 앤 시크)</span><em class="dt">2026.08</em></a><a class="wk rise" data-seg="컨퍼런스·박람회" href="https://www.qrstp.com/post/매일-바뀌는-퀴즈로-재방문을-이끈다-2026-금융권-공동채용-박람회-금공채-스탬프-투어-운영-사례" target="_blank"><div class="ph"><img src="assets/img/cases/d554dc_20781ccab1a5484ca269ceb72746baa4~mv2.png" alt="금융권 공동채용 박람회 사무국"><img class="alt" src="assets/img/cases/d554dc_184653a71ff94a93ad5fd2cabd51f551~mv2.png" alt=""><span class="seg pill w">컨퍼런스·박람회</span></div><b>금융권 공동채용 박람회 사무국</b><span>2026 금융권 공동채용 박람회 &#x27;금공채 스탬프 투어&#x27;</span><em class="dt">2026.08</em></a><a class="wk rise" data-seg="지자체·축제·관광" href="https://www.qrstp.com/post/6개-축제-4개국어-글로벌축제-체크인-릴레이-스탬프-투어" target="_blank"><div class="ph"><img src="assets/img/cases/d554dc_0c8036f9c9464b92a867524e7ae39e0d~mv2.png" alt="문화체육관광부 · 행정안전부 · 한국관광공사"><img class="alt" src="assets/img/cases/d554dc_5db4480e06174cb7a41834bf074263c5~mv2.png" alt=""><span class="seg pill w">지자체·축제·관광 · 다국어</span></div><b>문화체육관광부 · 행정안전부 · 한국관광공사</b><span>2026 글로벌축제 체크인 (Global Festa Check-In)</span><em class="dt">2026.08</em></a><a class="wk rise" data-seg="기타" href="https://www.qrstp.com/post/1만-4천-갤러리가-즐긴-골프-축제-제13회-제주삼다수-마스터스-qr-스탬프-투어" target="_blank"><div class="ph"><img src="assets/img/cases/d554dc_1b3eba4cae0744cea8777037aedf425c~mv2.png" alt="제주특별자치도개발공사 · KLPGA"><img class="alt" src="assets/img/cases/d554dc_0f3fdfe074d24378bf07b3b23fb64fb0~mv2.png" alt=""><span class="seg pill w">기타</span></div><b>제주특별자치도개발공사 · KLPGA</b><span>제13회 제주삼다수 마스터스</span><em class="dt">2026.08</em></a><a class="wk rise" data-seg="컨퍼런스·박람회" href="https://www.qrstp.com/post/경기수의컨퍼런스-2026-리워드-받기-버튼-을-뺀-학회-스탬프-투어-스탬프-개수별-티어드-상품을-지급하는-법" target="_blank"><div class="ph"><img src="assets/img/cases/d554dc_ecf3913d3162436f9d07ef46ce4c9364~mv2.png" alt="경기도수의사회"><img class="alt" src="assets/img/cases/d554dc_52e89cc0fefd414f8b7c86eaf2606d24~mv2.jpg" alt=""><span class="seg pill w">컨퍼런스·박람회</span></div><b>경기도수의사회</b><span>2026 경기수의컨퍼런스 (Gyeonggi Veterinary Conference 2026)</span><em class="dt">2026.08</em></a><a class="wk rise" data-seg="지자체·축제·관광" href="https://www.qrstp.com/post/은평구-감-減-탄-co-한-바퀴-완주-후기-게시판이-있는-지자체-qr-스탬프-투어" target="_blank"><div class="ph"><img src="assets/img/cases/d554dc_185b82ee70844829ab870ecb98502e88~mv2.jpg" alt="서울 은평구청 기후환경과"><img class="alt" src="assets/img/cases/d554dc_5aaf766fc91f46e4a297d2edd23ec26c~mv2.jpg" alt=""><span class="seg pill w">지자체·축제·관광</span></div><b>서울 은평구청 기후환경과</b><span>스탬프투어 감(減)탄(CO₂) 한 바퀴</span><em class="dt">2026.08</em></a><a class="wk rise" data-seg="공공기관·교육" href="https://www.qrstp.com/post/창대십리길-울프런-챌린지-대학-캠퍼스-상시-qr-nfc-스탬프-투어-사례" target="_blank"><div class="ph"><img src="assets/img/cases/d554dc_0fef9522d44e409b902126110f4f08fb~mv2.jpg" alt="국립창원대학교"><img class="alt" src="assets/img/cases/d554dc_cd56b070296a41718f3167986d163cce~mv2.jpg" alt=""><span class="seg pill w">공공기관·교육</span></div><b>국립창원대학교</b><span>창대십리길 울프런 챌린지</span><em class="dt">2026.08</em></a><a class="wk rise" data-seg="컨퍼런스·박람회" href="https://www.qrstp.com/post/캐릭터-라이선싱-페어-보드게임콘-2026-코엑스-hall-a-b1를-잇는-qr-스탬프-투어" target="_blank"><div class="ph"><img src="assets/img/cases/d554dc_412002e5a54b4c52bf3ecfc97265fcf7~mv2.jpg" alt="캐릭터 라이선싱 페어 × 보드게임콘 2026"><img class="alt" src="assets/img/cases/d554dc_7d52dd5d17ea44aaaba8112bed12e17a~mv2.jpg" alt=""><span class="seg pill w">컨퍼런스·박람회</span></div><b>캐릭터 라이선싱 페어 × 보드게임콘 2026</b><span>캐릭터 라이선싱 페어 × 보드게임콘 2026</span><em class="dt">2026.08</em></a><a class="wk rise" data-seg="기업·브랜드 팝업" href="https://www.qrstp.com/post/팝업-qr-스탬프-투어-스타필드-땡겨요랜드-2026-84" target="_blank"><div class="ph"><img src="assets/img/cases/1722ff_562b1cd4facd416f894c832969097221~mv2.png" alt="스타필드 × 땡겨요"><img class="alt" src="assets/img/cases/1722ff_8be7c6087ec14781814da47bfacbd7a9~mv2.png" alt=""><span class="seg pill w">기업·브랜드 팝업</span></div><b>스타필드 × 땡겨요</b><span>땡겨요랜드</span><em class="dt">2026.07</em></a><a class="wk rise" data-seg="공공기관·교육" href="https://www.qrstp.com/post/행사-3일-전-요청도-ok-청주시-청소년의-날-qr-스탬프-투어-사례" target="_blank"><div class="ph"><img src="assets/img/cases/d554dc_6247755c4d034548abda7f4b96aabca8~mv2.png" alt="청주시청소년수련관"><img class="alt" src="assets/img/cases/d554dc_73dfcd60f5fe48ed8208ebfd38ece795~mv2.jpg" alt=""><span class="seg pill w">공공기관·교육</span></div><b>청주시청소년수련관</b><span>청주시 청소년의 날 기념행사 &#x27;YOUTH LAND&#x27;</span><em class="dt">2026.07</em></a><a class="wk rise" data-seg="컨퍼런스·박람회" href="https://www.qrstp.com/post/56개국-바이어-앞에서-4만-명의-피드백을-수집한-방법-삼양식품-thaifex-2026-qr-스탬프-투어" target="_blank"><div class="ph"><img src="assets/img/cases/d554dc_d2ba3706c97a43b4806723e0e82594d5~mv2.jpg" alt="삼양식품"><img class="alt" src="assets/img/cases/d554dc_ddd998f6d35d4268a93e95b7f3ef35dd~mv2.png" alt=""><span class="seg pill w">컨퍼런스·박람회 · 다국어</span></div><b>삼양식품</b><span>THAIFEX-ANUGA 2026 — SAMYANG CRAVE LAB</span><em class="dt">2026.06</em></a><a class="wk rise" data-seg="지자체·축제·관광" href="https://www.qrstp.com/post/솥바위-기운-수사국-스탬프투어-2026-82" target="_blank"><div class="ph"><img src="assets/img/cases/d554dc_cc31e997c578436a919cd7e6b5d03b5a~mv2.jpg" alt="함안군"><img class="alt" src="assets/img/cases/d554dc_0687c7484f974739b39256bb352d5e8a~mv2.jpg" alt=""><span class="seg pill w">지자체·축제·관광</span></div><b>함안군</b><span>K-거상 솥바위 기운 수사국</span><em class="dt">2026.06</em></a><a class="wk rise" data-seg="기타" href="https://www.qrstp.com/post/렛츠런파크-2026-대상경주-스탬프-투어-2026-81" target="_blank"><div class="ph"><img src="assets/img/cases/1110c5_c65c0cf06f0748e6b6cb431a9ece7b5c~mv2.png" alt="한국마사회"><img class="alt" src="assets/img/cases/1110c5_67c160342dca449581b1b2d0eb6af7b8~mv2.png" alt=""><span class="seg pill w">기타</span></div><b>한국마사회</b><span>2026년 대상경주 모바일 스탬프 투어</span><em class="dt">2026.06</em></a><a class="wk rise" data-seg="기업·브랜드 팝업" href="https://www.qrstp.com/post/tissot-gentleman-38mm-popup-2026" target="_blank"><div class="ph"><img src="assets/img/cases/d554dc_34207faa0d28458f8783a6a92656bfbd~mv2.jpg" alt="티쏘"><img class="alt" src="assets/img/cases/d554dc_d861ad1fbd9142c9b6b08c3019fc337f~mv2.jpg" alt=""><span class="seg pill w">기업·브랜드 팝업</span></div><b>티쏘</b><span>TISSOT GENTLEMAN 38MM POPUP</span><em class="dt">2026.06</em></a><a class="wk rise" data-seg="지자체·축제·관광" href="https://www.qrstp.com/post/곡성세계장미축제-스탬프-투어-2026-78" target="_blank"><div class="ph"><img src="assets/img/cases/d554dc_4f591f5e9e544d2e9732e4c418ade17b~mv2.png" alt="곡성군 / 곡성세계장미축제 운영본부"><img class="alt" src="assets/img/cases/d554dc_abda8a22ecce4457b00fc16f2aecf5b2~mv2.png" alt=""><span class="seg pill w">지자체·축제·관광</span></div><b>곡성군 / 곡성세계장미축제 운영본부</b><span>곡성세계장미축제 &#x27;로지와 함께! 스탬프 투어&#x27;</span><em class="dt">2026.06</em></a><a class="wk rise" data-seg="지자체·축제·관광" href="https://www.qrstp.com/post/송도해상케이블카-스탬프-투어-2026-77" target="_blank"><div class="ph"><img src="assets/img/cases/d554dc_3c40b0fcca6f42c8b6ee47f3ffedce69~mv2.jpg" alt="송도해상케이블카"><img class="alt" src="assets/img/cases/d554dc_900fdde397ae4dfa8161db5f6dc5596a~mv2.jpg" alt=""><span class="seg pill w">지자체·축제·관광 · 다국어</span></div><b>송도해상케이블카</b><span>스탬프 어드벤처</span><em class="dt">2026.06</em></a><a class="wk rise" data-seg="지자체·축제·관광" href="https://www.qrstp.com/post/고양국제꽃박람회-qr-스탬프-투어-2026-76" target="_blank"><div class="ph"><img src="assets/img/cases/d554dc_b620103f7e684b2c8c721267d291e94e~mv2.jpg" alt="고양국제박람회재단"><img class="alt" src="assets/img/cases/d554dc_3b2a1a1912394248b2ff83437de71280~mv2.jpg" alt=""><span class="seg pill w">지자체·축제·관광</span></div><b>고양국제박람회재단</b><span>2026년 고양국제꽃박람회 &#x27;꽃, 시간을 물들이다&#x27;</span><em class="dt">2026.05</em></a><a class="wk rise" data-seg="지자체·축제·관광" href="https://www.qrstp.com/post/리워드가-하루-만에-동난-축제-스탬프-투어-2026-울산옹기축제-옹귀의-모험" target="_blank"><div class="ph"><img src="assets/img/cases/d554dc_7582099d2eb54fd08776ee8f796bbcc0~mv2.jpg" alt="2026 울산옹기축제"><img class="alt" src="assets/img/cases/d554dc_c6f783a8df754163a5323081528297b2~mv2.jpg" alt=""><span class="seg pill w">지자체·축제·관광</span></div><b>2026 울산옹기축제</b><span>옹귀의 모험</span><em class="dt">2026.05</em></a><a class="wk rise" data-seg="기업·브랜드 팝업" href="https://www.qrstp.com/post/복합쇼핑몰-체류시간-끌어올린-모바일-qr-스탬프-투어-던던-동대문점-find-the-spring-운영-사례" target="_blank"><div class="ph"><img src="assets/img/cases/1110c5_2dc11b65132b42b2bac2e6f6e1a1d9e3~mv2.png" alt="던던 동대문점"><img class="alt" src="assets/img/cases/1110c5_f61c7f33837d435f8966c2f87bf7bbab~mv2.png" alt=""><span class="seg pill w">기업·브랜드 팝업 · 다국어</span></div><b>던던 동대문점</b><span>Find the Spring</span><em class="dt">2026.05</em></a><a class="wk rise" data-seg="컨퍼런스·박람회" href="https://www.qrstp.com/post/박람회-스탬프투어로-2-000명-모은-방법-simtos-2026-qr-이벤트-운영-사례" target="_blank"><div class="ph"><img src="assets/img/cases/d554dc_d9434eb1b50344558f20ea3fa1064c92~mv2.jpg" alt="SIMTOS 조직위원회"><span class="seg pill w">컨퍼런스·박람회</span></div><b>SIMTOS 조직위원회</b><span>SIMTOS 2026</span><em class="dt">2026.05</em></a><a class="wk rise" data-seg="컨퍼런스·박람회" href="https://www.qrstp.com/post/b2b-컨퍼런스-참여-이벤트-스탬프-투어-2026-71" target="_blank"><div class="ph"><img src="assets/img/cases/d69421_b34b355425db4078bde1f06d1fccddd4~mv2.png" alt="SK ON"><img class="alt" src="assets/img/cases/d69421_81bcb383ca0b4160be05d746052780c2~mv2.png" alt=""><span class="seg pill w">컨퍼런스·박람회</span></div><b>SK ON</b><span>Unlock the Next Energy</span><em class="dt">2026.04</em></a><a class="wk rise" data-seg="엔터·게임·IP" href="https://www.qrstp.com/post/아이돌-팝업-이벤트-스탬프-투어가-대세-2026-70" target="_blank"><div class="ph"><img src="assets/img/cases/d69421_ff37ca747e01408c8faf9afa2a8a881c~mv2.png" alt="킥플립"><img class="alt" src="assets/img/cases/d69421_b5eb12ab77604a56b2e1a2c7b56359d0~mv2.png" alt=""><span class="seg pill w">엔터·게임·IP</span></div><b>킥플립</b><span>킥플립 &#x27;My First Kick&#x27; 발매 기념 팝업스토어</span><em class="dt">2026.04</em></a><a class="wk rise" data-seg="기업·브랜드 팝업" href="https://www.qrstp.com/post/퀴즈형-스탬프-투어-신제품-출시-팝업-2026-68" target="_blank"><div class="ph"><img src="assets/img/cases/d69421_2b1359c045424df3ae38aa44a5a3c54e~mv2.jpg" alt="드리미"><img class="alt" src="assets/img/cases/d69421_6cf66e772dc44b9fad3e2a7c26c1143c~mv2.jpg" alt=""><span class="seg pill w">기업·브랜드 팝업</span></div><b>드리미</b><span>드리미(Dreame) X60 시리즈 신제품 팝업스토어</span><em class="dt">2026.04</em></a><a class="wk rise" data-seg="컨퍼런스·박람회" href="https://www.qrstp.com/post/모바일-스탬프-투어-벨톤-포럼-2026-66" target="_blank"><div class="ph"><img src="assets/img/cases/d69421_52eb1012f0c941fbba950ba8a1dfb477~mv2.png" alt="지엔히어링코리아"><img class="alt" src="assets/img/cases/d69421_275b90c7f84146be9ba9935547e6c548~mv2.png" alt=""><span class="seg pill w">컨퍼런스·박람회</span></div><b>지엔히어링코리아</b><span>벨톤 포럼 2026 (Beltone Forum 2026)</span><em class="dt">2026.02</em></a><a class="wk rise" data-seg="엔터·게임·IP" href="https://www.qrstp.com/post/fgo-8주년-모바일-스탬프-투어-사례-2026-64" target="_blank"><div class="ph"><img src="assets/img/cases/d69421_0049aa29543847d68773ed8ce4ce1b57~mv2.png" alt="페이트 그랜드 오더"><span class="seg pill w">엔터·게임·IP</span></div><b>페이트 그랜드 오더</b><span>페이트/그랜드 오더 8주년 기념(Fate/Grand Order 8th Anniversary) QR 스탬프 이벤트</span><em class="dt">2026.01</em></a><a class="wk rise" data-seg="지자체·축제·관광" href="https://www.qrstp.com/post/로컬푸드-스탬프-투어-들여다보기-2026-63" target="_blank"><div class="ph"><img src="assets/img/cases/d69421_35944810607a44b7a1da2141bfcb677f~mv2.png" alt="김포 로컬푸드 미식투어"><span class="seg pill w">지자체·축제·관광</span></div><b>김포 로컬푸드 미식투어</b><span>통하는 7도시 우리 김포 - 김포 로컬푸드 미식투어</span><em class="dt">2026.01</em></a><a class="wk rise" data-seg="기업·브랜드 팝업" href="https://www.qrstp.com/post/추리형-모바일-스탬프-투어-2026-62" target="_blank"><div class="ph"><img src="assets/img/cases/d69421_5b1ccfe9c3aa486faef003f47942ff64~mv2.png" alt="실라리안"><img class="alt" src="assets/img/cases/d69421_b096ade70e87450e98fdbaf6a3e2b140~mv2.png" alt=""><span class="seg pill w">기업·브랜드 팝업</span></div><b>실라리안</b><span>HOUSE OF SILLARIAN - 실라리안이 사라졌다</span><em class="dt">2026.01</em></a><a class="wk rise" data-seg="엔터·게임·IP" href="https://www.qrstp.com/post/ox-퀴즈-스탬프-투어-2025-60" target="_blank"><div class="ph"><img src="assets/img/cases/d69421_bfbfaf2de7f04ce9a912b6d5cb1cf70d~mv2.png" alt="한국콘텐츠진흥원"><img class="alt" src="assets/img/cases/d69421_5b19502eac304305a1e5a9e531021ad8~mv2.png" alt=""><span class="seg pill w">엔터·게임·IP</span></div><b>한국콘텐츠진흥원</b><span>2025 KIPLUS X K-Story &amp; Comics in Thailand</span><em class="dt">2025.12</em></a><a class="wk rise" data-seg="기업·브랜드 팝업" href="https://www.qrstp.com/post/팝업-스토어-스탬프-투어-2025-59" target="_blank"><div class="ph"><img src="assets/img/cases/d69421_43d72ff3a2d94f57bb32eaf6b522290b~mv2.png" alt="맥캘란"><img class="alt" src="assets/img/cases/d69421_024e82ccc5c24eeabaace8e7750295a8~mv2.png" alt=""><span class="seg pill w">기업·브랜드 팝업</span></div><b>맥캘란</b><span>THE MACALLAN 360 (맥캘란 360 팝업스토어)</span><em class="dt">2025.12</em></a><a class="wk rise" data-seg="기업·브랜드 팝업" href="https://www.qrstp.com/post/룰렛과-럭키-드로우-까지-품은-스탬프투어-2025-56" target="_blank"><div class="ph"><img src="assets/img/cases/d69421_e773b629ef6640ebb981814556e0c8b7~mv2.png" alt="소낙스 코리아 X BMW 내쇼날 모터스"><span class="seg pill w">기업·브랜드 팝업</span></div><b>소낙스 코리아 X BMW 내쇼날 모터스</b><span>소낙스 페스타 2025 (SONAX FESTA 2025)</span><em class="dt">2025.11</em></a><a class="wk rise" data-seg="컨퍼런스·박람회" href="https://www.qrstp.com/post/박람회-스탬프투어-2025-54" target="_blank"><div class="ph"><img src="assets/img/cases/d69421_4929bdaab78c4fc3b07c9fe1b53e1eb7~mv2.png" alt="한국도로공사"><span class="seg pill w">컨퍼런스·박람회</span></div><b>한국도로공사</b><span>2025 국제도로교통박람회(ROTREX 2025)</span><em class="dt">2025.11</em></a><a class="wk rise" data-seg="엔터·게임·IP" href="https://www.qrstp.com/post/아이돌-팝업-스탬프-투어-2025-55" target="_blank"><div class="ph"><img src="assets/img/cases/d69421_9c6de951ef6b43c18a168922dc4646ea~mv2.webp" alt="ITZY [TUNNEL VISION] 팝업 스토어"><span class="seg pill w">엔터·게임·IP</span></div><b>ITZY [TUNNEL VISION] 팝업 스토어</b><span>MISSING ITZY (사라진 멤버들을 찾아라)</span><em class="dt">2025.11</em></a><a class="wk rise" data-seg="지자체·축제·관광" href="https://www.qrstp.com/post/서울대공원-스탬프투어-2025-53" target="_blank"><div class="ph"><img src="assets/img/cases/d69421_6af73f5078074f94961ac99a9e992148~mv2.png" alt="서울대공원"><img class="alt" src="assets/img/cases/d69421_4a54c03c40af4ed88ab7a955d6f2b435~mv2.png" alt=""><span class="seg pill w">지자체·축제·관광</span></div><b>서울대공원</b><span>2025 서울대공원 가을단풍축제 – 가을빛 대공원</span><em class="dt">2025.11</em></a><a class="wk rise" data-seg="기업·브랜드 팝업" href="https://www.qrstp.com/post/세부퍼시픽-팝업-스토어-스탬프투어-2025-52" target="_blank"><div class="ph"><img src="assets/img/cases/d69421_1e24b7d7543a42aab4b2c9585ac3c3ae~mv2.png" alt="세부퍼시픽"><span class="seg pill w">기업·브랜드 팝업</span></div><b>세부퍼시픽</b><span>세부퍼시픽 해피 스토어 (&#x27;Fly to Your Happy Philippines&#x27; 캠페인)</span><em class="dt">2025.11</em></a><a class="wk rise" data-seg="컨퍼런스·박람회" href="https://www.qrstp.com/post/실내-박람회-qr-스탬프투어-2025-51" target="_blank"><div class="ph"><img src="assets/img/cases/d69421_4c788128a3794bc29a00fa7799c99a8a~mv2.png" alt="LS전선"><span class="seg pill w">컨퍼런스·박람회 · 다국어</span></div><b>LS전선</b><span>데이터센터월드 아시아 2025</span><em class="dt">2025.11</em></a><a class="wk rise" data-seg="지자체·축제·관광" href="https://www.qrstp.com/post/제주관광공사-qr-스탬프-투어-2025-49" target="_blank"><div class="ph"><img src="assets/img/cases/d69421_783fb2372e624d8d9a24cd9d0b65ee08~mv2.png" alt="제주관광공사"><img class="alt" src="assets/img/cases/d69421_aa12acd856fd4273b89bb8bd96fa2ae5~mv2.png" alt=""><span class="seg pill w">지자체·축제·관광</span></div><b>제주관광공사</b><span>쿠키런 in 제주</span><em class="dt">2025.10</em></a><a class="wk rise" data-seg="컨퍼런스·박람회" href="https://www.qrstp.com/post/2년-연속-서울시가-선택한-스탬프-투어-2025-47" target="_blank"><div class="ph"><img src="assets/img/cases/d69421_f21151fba6d544059a0037e585f39ad5~mv2.png" alt="서울특별시"><span class="seg pill w">컨퍼런스·박람회</span></div><b>서울특별시</b><span>2025 서울 기후테크 컨퍼런스 — 탄소중립 챌린지</span><em class="dt">2025.10</em></a><a class="wk rise" data-seg="기업·브랜드 팝업" href="https://www.qrstp.com/post/더-현대-팝업-스탬프투어-2025-46" target="_blank"><div class="ph"><img src="assets/img/cases/d69421_0b7b453f79614c78b4a92ad6ab59c79b~mv2.jpg" alt="국가유산진흥원"><span class="seg pill w">기업·브랜드 팝업</span></div><b>국가유산진흥원</b><span>&#x27;더 공예, 더 현대&#x27; 팝업스토어</span><em class="dt">2025.10</em></a><a class="wk rise" data-seg="지자체·축제·관광" href="https://www.qrstp.com/post/연천군-관광-스탬프-투어-2025-45" target="_blank"><div class="ph"><img src="assets/img/cases/d69421_c42fcf8d87eb48d29f7e4a12f6cbf1a1~mv2.png" alt="연천군"><img class="alt" src="assets/img/cases/d69421_89432f2a3cb04b61a19fe8b3dd3463ef~mv2.png" alt=""><span class="seg pill w">지자체·축제·관광</span></div><b>연천군</b><span>관광술래</span><em class="dt">2025.09</em></a><a class="wk rise" data-seg="공공기관·교육" href="https://www.qrstp.com/post/서울청년정책네트워크-스탬프-투어-2025-41" target="_blank"><div class="ph"><img src="assets/img/cases/d69421_26d8e7fc9fed437980fe09919cea3b54~mv2.png" alt="서울청년정책네트워크"><span class="seg pill w">공공기관·교육</span></div><b>서울청년정책네트워크</b><span></span><em class="dt">2025.09</em></a><a class="wk rise" data-seg="지자체·축제·관광" href="https://www.qrstp.com/post/페스티벌-모바일스탬프투어-2025-44" target="_blank"><div class="ph"><img src="assets/img/cases/d69421_5672778e23d44cb9974a375b72cd378c~mv2.png" alt="송도 재즈 페스티벌"><span class="seg pill w">지자체·축제·관광</span></div><b>송도 재즈 페스티벌</b><span>2025 송도 재즈 페스티벌</span><em class="dt">2025.09</em></a><a class="wk rise" data-seg="공공기관·교육" href="https://www.qrstp.com/post/광복-80주년-기넘-스탬프-투어-2025-40" target="_blank"><div class="ph"><img src="assets/img/cases/d69421_d6d5a3285ce948088a5b991193818cfa~mv2.png" alt="광복 80주년 기념사업추진위원회"><span class="seg pill w">공공기관·교육</span></div><b>광복 80주년 기념사업추진위원회</b><span>광복 80주년 ‘스탬프 투어&#x27;</span><em class="dt">2025.08</em></a><a class="wk rise" data-seg="지자체·축제·관광" href="https://www.qrstp.com/post/지역-축제-스탬프-투어-2025-34" target="_blank"><div class="ph"><img src="assets/img/cases/d69421_e873cf63ed184dc3b6ac46f0aef504fb~mv2.png" alt="강원관광재단"><span class="seg pill w">지자체·축제·관광</span></div><b>강원관광재단</b><span>오감자 페스타</span><em class="dt">2025.06</em></a><a class="wk rise" data-seg="지자체·축제·관광" href="https://www.qrstp.com/post/축제-모바일-스탬프-투어-2025-32" target="_blank"><div class="ph"><img src="assets/img/cases/d69421_3b3a5dcf0e344ad5a1337d144ec0cc29~mv2.png" alt="삼척 장미 축제"><span class="seg pill w">지자체·축제·관광</span></div><b>삼척 장미 축제</b><span>황금장미를 잡아라 QR 스탬프 미션</span><em class="dt">2025.05</em></a><a class="wk rise" data-seg="지자체·축제·관광" href="https://www.qrstp.com/post/야외-축제-스탬프-투어-2025-30" target="_blank"><div class="ph"><img src="assets/img/cases/d69421_df1a4add6b714619bcf656110b2bd8b5~mv2.png" alt="제6회 횡성호수길 축제"><img class="alt" src="assets/img/cases/d69421_8595d70a145c4b2481e3d47f90ba1614~mv2.png" alt=""><span class="seg pill w">지자체·축제·관광</span></div><b>제6회 횡성호수길 축제</b><span>횡성호수길 호수요정 QR 스탬프 투어</span><em class="dt">2025.05</em></a><a class="wk rise" data-seg="기업·브랜드 팝업" href="https://www.qrstp.com/post/스탬프투어-명품브랜드-고객미션-2025-27" target="_blank"><div class="ph"><img src="assets/img/cases/d69421_90d26f47a4114c42ba10b45c614b1344~mv2.jpg" alt="불가리"><span class="seg pill w">기업·브랜드 팝업</span></div><b>불가리</b><span>불가리 전시</span><em class="dt">2025.04</em></a><a class="wk rise" data-seg="기업·브랜드 팝업" href="https://www.qrstp.com/post/스탬프-투어-활용-사례-체험형-팝업스토어-에서-100-활용하기" target="_blank"><div class="ph"><img src="assets/img/cases/ef5ba5_8ffff42cb8924035a12c76f6c7d6953f~mv2.jpg" alt="다이슨"><span class="seg pill w">기업·브랜드 팝업</span></div><b>다이슨</b><span>DYSON COOL CLUB</span><em class="dt">2025.03</em></a><a class="wk rise" data-seg="엔터·게임·IP" href="https://www.qrstp.com/post/축제-스탬프투어-2025-22" target="_blank"><div class="ph"><img src="assets/img/cases/ef5ba5_f8b5046690414a7dad0d854256a56ec3~mv2.jpg" alt="롯데월드"><span class="seg pill w">엔터·게임·IP</span></div><b>롯데월드</b><span>미라클 윈터: 마루의 럭키 New Year (&#x27;행운 편지 찾기&#x27; 이벤트)</span><em class="dt">2025.01</em></a><a class="wk rise" data-seg="지자체·축제·관광" href="https://www.qrstp.com/post/스탬프투어-대규모-이벤트-2025-20" target="_blank"><div class="ph"><img src="assets/img/cases/ef5ba5_3d550a96f46f45208425c8e1575daefe~mv2.jpg" alt="광주시"><span class="seg pill w">지자체·축제·관광</span></div><b>광주시</b><span>광주시 시민 체감형 실증 제품 체험 이벤트</span><em class="dt">2024.12</em></a><a class="wk rise" data-seg="공공기관·교육" href="https://www.qrstp.com/post/스탬프투어-학습도구-2025-18" target="_blank"><div class="ph"><img src="assets/img/cases/ef5ba5_97ec14ee36184048a19aaae0a8130e0a~mv2.jpg" alt="삼성 시니어 디지털 아카데미"><span class="seg pill w">공공기관·교육</span></div><b>삼성 시니어 디지털 아카데미</b><span></span><em class="dt">2024.12</em></a><a class="wk rise" data-seg="공공기관·교육" href="https://www.qrstp.com/post/스탬프투어-공공기관-2025-16" target="_blank"><div class="ph"><img src="assets/img/cases/ef5ba5_5170c57d986e4459885045f933f2cdd8~mv2.jpg" alt="안산시청소년재단"><span class="seg pill w">공공기관·교육</span></div><b>안산시청소년재단</b><span></span><em class="dt">2024.11</em></a><a class="wk rise" data-seg="공공기관·교육" href="https://www.qrstp.com/post/스탬프투어-공공기관-2025-02" target="_blank"><div class="ph"><img src="assets/img/cases/96977f_26bb998e585b46f6ac4818fe9dbdafb8~mv2.png" alt="파주시 청소년수련관"><img class="alt" src="assets/img/cases/96977f_762c253c6518441a8fd1c6b642d756a6~mv2.png" alt=""><span class="seg pill w">공공기관·교육</span></div><b>파주시 청소년수련관</b><span>N차 창의융합 Next Level</span><em class="dt">2024.05</em></a><a class="wk rise" data-seg="기업·브랜드 팝업" href="https://www.qrstp.com/post/스탬프투어-현대팝업-2025-01" target="_blank"><div class="ph"><img src="assets/img/cases/96977f_5292ebfe8f7849d49f5790dc7a6a4ed4~mv2.png" alt="현대자동차"><img class="alt" src="assets/img/cases/96977f_862896d6d35549199f6b09e3536863e9~mv2.png" alt=""><span class="seg pill w">기업·브랜드 팝업</span></div><b>현대자동차</b><span>아이오닉 플레이그라운드 (&#x27;더 뉴 아이오닉 5&#x27; 출시 기념)</span><em class="dt">2024.05</em></a></div>
+  </div>
+</section>
+
+<section id="admin">
+  <div class="stick">
+    <div class="row">
+      <div><div class="label"><i>✦</i>판 완성! 이제 담당자 차례</div><h2 class="md">참여자는 찍고,<br>운영은 <span class="red">어드민</span>에서 끝</h2></div>
+      <div class="atabs" id="atabs">
+        <button class="on">실시간 현황<span class="sw"></span></button><button>참여자별 상태 변경<span class="sw"></span></button><button>초기화·삭제<span class="sw"></span></button><button>이벤트 온·오프<span class="sw"></span></button><button>데이터 다운로드<span class="sw"></span></button><button>룰렛 확률 조정<span class="sw"></span></button>
+      </div>
+    </div>
+    <div class="screen" id="screen"><span class="live pill r"><i></i>LIVE</span>
+      <img class="on" data-k="0 3" src="assets/img/adm_live.jpg" alt="실시간 요약 화면"><img data-k="1 2" src="assets/img/adm_state.jpg" alt="참여자 상태 변경 화면"><img data-k="4" src="assets/img/adm_download.jpg" alt="데이터 다운로드 화면"><img data-k="5" src="assets/img/adm_roulette.jpg" alt="룰렛 확률 조정 화면">
+      <div class="modal" data-k="2"><b class="sm">데이터를 초기화할까요?</b><span style="color:var(--sub)">완전 초기화 · 참여자별 데이터 삭제</span><span class="pill r">초기화</span></div>
+      <div class="modal" data-k="3"><b class="sm">이벤트 오픈</b><span class="toggle"></span><span class="pill">ON</span></div>
+      <span class="cap pill w" id="acap">참여 수·완주율을 한눈에</span>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="plans">
+  <div class="wrap">
+    <div class="label"><i>✦</i>제작과 플랜</div>
+    <h2 class="lg rise">다 모으셨네요!<br>이제 우리 행사 차례</h2>
+    <div class="times rise d1"><span class="pill w">평균 1주일이면 오픈</span><span class="pill r" style="transform:rotate(-3deg)">급하면 1일 안에도 ⚡</span></div>
+    <div class="flow rise d2"><span>요청사항 접수</span><i></i><span>페이지 디자인</span><i></i><span>개발 진행</span><i></i><span>검수 및 오픈</span><i></i><span>운영 어드민 전달</span></div>
+    <div class="plans">
+      <div class="plan rise"><p class="ld">참여율이 가장 중요할 때<br>본인인증 없이 참여하는</p><h3>이지 플랜</h3><div class="tags"><span>#지역축제</span><span>#대규모 박람회</span></div><dl><dt>본인 인증</dt><dd>없음</dd><dt>기간</dt><dd>7일~</dd><dt>스탬프</dt><dd>5회~</dd></dl><div class="price">100만원~</div></div>
+      <div class="plan rise d1"><p class="ld">이벤트 참여자의<br>개인 정보 수집이 가능한</p><h3>리드 플랜</h3><div class="tags"><span>#신제품 팝업</span><span>#기업 세미나</span></div><dl><dt>본인 인증</dt><dd>휴대폰/이메일</dd><dt>기간</dt><dd>7일~</dd><dt>스탬프</dt><dd>5회~</dd></dl><div class="price">200만원~</div></div>
+      <div class="plan rise d2"><p class="ld">출석 체크 방식으로<br>재방문을 유도하는</p><h3>데일리 플랜</h3><div class="tags"><span>#프랜차이즈</span><span>#백화점</span><span>#F&amp;B 매장</span></div><dl><dt>본인 인증</dt><dd>휴대폰/이메일</dd><dt>기간</dt><dd>90일~</dd><dt>스탬프</dt><dd>10회~</dd></dl><div class="price">200만원~</div></div>
+    </div>
+    <div class="extra"><a href="#"><span><b>QR로 상품 판매도 — 샵플랜</b>단말기 없이 QR 하나로 · 카드·간편결제·계좌이체</span><span>↗</span></a><a href="#"><span><b>이벤트 안내 모바일 페이지</b>이벤트 내용·스탬프 스팟 지도까지 함께</span><span>↗</span></a></div>
+  </div>
+</section>
+
+<section class="sec" id="faq">
+  <div class="wrap grid">
+    <div><div class="label"><i>?</i>자주 묻는 질문</div><h2 class="lg">물어보실<br>것 같아서</h2><p class="lead" style="margin-top:20px">더 자세한 사용법은 <a href="https://qrstp.mintlify.app/intro" target="_blank" style="color:var(--red);font-weight:700">가이드 센터 ↗</a>에 있어요.</p></div>
+    <div class="qs" id="qs"></div>
+  </div>
+</section>
+
+<section id="final">
+  <svg class="loopbg" viewBox="0 0 1400 700" preserveAspectRatio="none"><path d="M-60 500 C 200 200, 420 700, 620 420 C 760 220, 960 240, 920 400 C 880 560, 700 480, 800 300 C 920 100, 1240 140, 1460 40"/></svg>
+  <div class="wrap row">
+    <div><h2 class="md">여기까지 보셨으면,<br>한 칸 남았어요</h2><p style="font-size:19px;font-weight:600;letter-spacing:-.02em;margin:20px 0 28px;opacity:.92">우리 행사 스탬프 판을 만들어 보세요.</p><a class="cta" href="https://www.qrstp.com/contact">상담 신청하기 <b>↗</b></a></div>
+    <nav><p>바로가기</p><a href="#works">고객 사례</a><a href="#custom">커스텀</a><a href="#type">적립 방식</a><a href="#plans">플랜</a></nav>
+    <nav><p>더 보기</p><a href="https://qrstp.mintlify.app/intro" target="_blank">가이드 센터 ↗</a><a href="https://www.qrstp.com/blog">블로그 ↗</a><a href="https://www.qrstp.com/_files/ugd/1722ff_8de6e27d887541429cb3b236ac2dbf10.pdf">소개서 받기 ↗</a><a href="https://makevu.gitbook.io/qr-stamp-guide/live_demo">샘플 체험 ↗</a></nav>
+  </div>
+</section>
+<footer><div class="meta2"><span>앱 설치 없이, QR 한 번이면 참여 끝.</span><span>© QRSTAMP</span></div><img class="big" id="bigLogo" src="assets/QRSTAMP_logo_C.svg" alt="QRSTAMP"></footer>
+<div class="confetti" id="confetti"></div>
+
+<script>
+const LOGOS=[{"src": "assets/logos/l00.png", "alt": "롯데월드"}, {"src": "assets/logos/l01.png", "alt": "워커힐"}, {"src": "assets/logos/l02.png", "alt": "다이슨"}, {"src": "assets/logos/l03.png", "alt": "메르세데스 벤츠"}, {"src": "assets/logos/l04.png", "alt": "현대"}, {"src": "assets/logos/l05.png", "alt": "불가리"}, {"src": "assets/logos/l06.png", "alt": "삼성"}, {"src": "assets/logos/l07.png", "alt": "삼다수"}, {"src": "assets/logos/l08.png", "alt": "올리브영"}, {"src": "assets/logos/l09.png", "alt": "HD 현대"}, {"src": "assets/logos/l10.png", "alt": "티쏘"}, {"src": "assets/logos/l11.png", "alt": "sk on"}, {"src": "assets/logos/l12.png", "alt": "마이크로소프트"}, {"src": "assets/logos/l13.png", "alt": "삼양"}, {"src": "assets/logos/l14.png", "alt": "ITZY"}, {"src": "assets/logos/l15.png", "alt": "서울특별시"}, {"src": "assets/logos/l16.png", "alt": "광주광역시"}, {"src": "assets/logos/l17.png", "alt": "연천군"}, {"src": "assets/logos/l18.png", "alt": "강원특별자치도"}, {"src": "assets/logos/l19.png", "alt": "횡성군"}, {"src": "assets/logos/l20.png", "alt": "삼척시"}, {"src": "assets/logos/l21.png", "alt": "제주특별자치도"}, {"src": "assets/logos/l22.png", "alt": "수원시"}, {"src": "assets/logos/l23.png", "alt": "안산시 청소년재단"}, {"src": "assets/logos/l24.png", "alt": "파주시청소년재단"}, {"src": "assets/logos/l25.png", "alt": "춘천시"}, {"src": "assets/logos/l26.png", "alt": "곡성군"}, {"src": "assets/logos/l27.png", "alt": "고양국제박람회재단"}, {"src": "assets/logos/l28.png", "alt": "환경재단"}, {"src": "assets/logos/l29.png", "alt": "국가유산진흥원"}, {"src": "assets/logos/l30.png", "alt": "한국마사회"}, {"src": "assets/logos/l31.png", "alt": "광복80"}];
+const PIX={send:["00000011","00001111","00111110","11111110","00111100","00011100","00001100","00000100"]};
+const F={A:"1111/1001/1111/1001/1001",C:"1111/1000/1000/1000/1111",M:"10001/11011/10101/10001/10001",O:"1111/1001/1001/1001/1111",S:"1111/1000/1111/0001/1111",T:"11111/00100/00100/00100/00100",U:"1001/1001/1001/1001/1111",0:"1111/1001/1001/1001/1111",1:"110/010/010/010/111","%":"1001/0010/0110/0100/1001"," ":"00/00/00/00/00"};
+function pword(t,color,h){let x=0,r='';for(const ch of t){const g=(F[ch]||F[' ']).split('/');g.forEach((row,y)=>[...row].forEach((c,i)=>{if(c==='1')r+=`<rect x="${x+i}" y="${y}" width="1.03" height="1.03"/>`}));x+=g[0].length+1}return `<svg class="px" viewBox="0 0 ${x-1} 5" fill="${color}" style="height:${h};width:auto">${r}</svg>`}
+document.getElementById('pxCustom').innerHTML=pword('100% CUSTOM','#fff','34px');
+
+const FAQ=[['💰 서비스 비용은 어떻게 책정되나요?','비용은 선택하신 플랜, 스탬프 갯수, 이용 기간, 리워드 지급 조건, 커스텀 요구사항 등에 따라 달라집니다.'],['⚙️ 제작기간은 보통 어느정도 걸리나요?','커스텀 요청 사항이 없으면 1일 안에 완성됩니다. 만약 커스텀 요청이 있을 경우, 완성까지 약 1~2주 정도 소요됩니다.'],['🎨 커스텀 디자인은 어디까지 가능한가요?','모든 페이지에 커스텀 디자인을 적용할 수 있습니다. 원본 디자인 파일을 주시면 페이지에 맞게 적용해 드리며, 추가 비용이 발생됩니다.'],['🔐 이지 플랜과 리드 플랜의 차이는 무엇인가요?',"두 플랜의 차이점은 '인증 여부'입니다. 리드 플랜은 고객이 핸드폰 번호 또는 이메일로 본인 인증을 해야 스탬프를 적립할 수 있습니다."],['📱 태블릿, PC로도 참여할 수 있나요?',"QR 코드 스캔이 가능한 기기라면 '종류에 관계없이' 이벤트에 참여할 수 있습니다."],['🖍️ 이벤트 운영 중 수정이 가능한가요?','특정 페이지의 이미지는 언제든지 즉시 수정할 수 있습니다. 다만, 기능 수정은 추가 비용이 발생될 수 있습니다.'],['👣 반드시 현장에 와야만 적립되게 할 수 있나요?','NFC 스티커나 GPS를 이용하면 QR코드를 복사하여 부정 적립하는 것을 막을 수 있습니다.'],['📍 스탬프는 몇 개까지 추가 가능한가요?','스탬프는 원하는 만큼 무제한으로 추가할 수 있습니다.'],['🏆 적립 갯수에 따라 리워드를 다르게 줄 수 있나요?',"네, 가능합니다. 적립 횟수에 따라 '차등 지급'하거나, 특정 스탬프 적립 시 리워드를 지급하도록 설정할 수 있습니다."],['📊 이벤트 종료 후 참여 데이터는 어떻게 되나요?','모든 참여 기록은 관리자 페이지에서 확인하고 다운로드할 수 있습니다. 이벤트 종료 시 모든 기록은 삭제됩니다.'],['🔑 고객정보 수집, 보안상 이슈는 없나요?','모든 데이터는 암호화를 거쳐 안전하게 저장 및 관리됩니다.'],['📋 이용 신청은 어떻게 하나요?','상담 신청서를 작성하거나, 전화 또는 온라인 채팅으로 빠르게 상담을 요청하실 수 있습니다.']];
+const qs=document.getElementById('qs');
+function openQ(i){qs.querySelectorAll('.ans').forEach(a=>a.remove());qs.querySelectorAll('.q').forEach((q,j)=>q.classList.toggle('on',i===j));const a=document.createElement('div');a.className='ans';a.innerHTML='<span class="dots"><i></i><i></i><i></i></span><img src="assets/QRSTAMP_favicon.svg" alt="">';qs.children[i].after(a);setTimeout(()=>{a.firstChild.outerHTML=`<span>${FAQ[i][1]}</span>`},500)}
+qs.innerHTML=FAQ.map(f=>`<button class="q">${f[0]}</button>`).join('');[...qs.querySelectorAll('.q')].forEach((b,i)=>b.onclick=()=>openQ(i));openQ(0);
+/* 로고 */
+document.getElementById('mq').innerHTML=(LOGOS.map(l=>`<span><img src="${l.src}" alt="${l.alt}"></span>`).join('')).repeat(2);
+document.getElementById('logowall').innerHTML=LOGOS.map(l=>`<span title="${l.alt}"><img src="${l.src}" alt="${l.alt}"></span>`).join('');
+/* 사례 필터 */
+(function(){const g=document.getElementById('wgrid');const cards=[...g.children];const segs=['전체',...new Set(cards.map(c=>c.dataset.seg))];const f=document.getElementById('filters');f.innerHTML=segs.map(s=>`<button>${s}<i>${s==='전체'?cards.length:cards.filter(c=>c.dataset.seg===s).length}</i></button>`).join('');const bs=[...f.children];function pick(i){bs.forEach((b,j)=>b.classList.toggle('on',i===j));cards.forEach(c=>c.classList.toggle('hide',i>0&&c.dataset.seg!==segs[i]))}bs.forEach((b,i)=>b.onclick=()=>pick(i));pick(0)})();
+/* 현장 영상 */
+(function(){const V=[
+ {id:'96977f_0ce7a7c0ac20412aa6cd5a349809ecde',p:'field_hyundai',n:'현대자동차 X 쿠키런: 킹덤 팝업',d:'핸들·트렁크 등 차량 구석구석에 숨은 QR을 찾아 게임처럼 탐험',t:'1:27',h:'스탬프투어-대기업사례-2025-03'},
+ {id:'d69421_075b2040da0a4dc283bb1baac1323e11',p:'field_oliveyoung',n:'올리브영 X 망그러진 곰 팝업',d:'층별 구역마다 숨은 힌트를 찾는 보물찾기형 미션',t:'0:45',h:'보물찾기로-재탄생한-모바일-qr-스탬프-투어-2026-67'},
+ {id:'96977f_60d95803ae184e639d3eac0dead51470',p:'field_walkerhill',n:'그랜드 워커힐 스프링 페스티벌',d:'벚꽃 모양 스탬프와 페스티벌 맞춤 랜딩 페이지',t:'0:41',h:'스탬프투어-호텔사례-2025-04'}];
+ const v=document.getElementById('fv'),L=document.getElementById('vlist');let cur=0,inView=false;
+ L.innerHTML=V.map(x=>`<button class="vi"><span class="th"><img src="assets/video/${x.p}.jpg" alt=""><em>${x.t}</em></span><span><b>${x.n}</b><span>${x.d}</span><span class="pr"><i></i></span></span></button>`).join('');
+ const items=[...L.children];
+ function load(i,play){cur=i;const x=V[i];v.src=`https://www.qrstp.com/media/video/${x.id}.mp4`;v.poster=`assets/video/${x.p}.jpg`;document.getElementById('fvname').textContent=x.n;items.forEach((b,j)=>{b.classList.toggle('on',j===i);b.querySelector('.pr i').style.width='0'});if(play)v.play().catch(()=>{})}
+ items.forEach((b,i)=>b.onclick=()=>load(i,true));
+ v.addEventListener('timeupdate',()=>{const k=v.duration?v.currentTime/v.duration*100:0;document.getElementById('fvbar').style.width=k+'%';items[cur].querySelector('.pr i').style.width=k+'%'});
+ v.addEventListener('ended',()=>load((cur+1)%V.length,true));
+ document.getElementById('snd').onclick=e=>{v.muted=!v.muted;e.currentTarget.textContent=v.muted?'🔇 소리 켜기':'🔊 소리 끄기';if(!v.muted)v.play()};
+ new IntersectionObserver(es=>es.forEach(e=>{inView=e.isIntersecting;if(inView)v.play().catch(()=>{});else v.pause()}),{threshold:.35}).observe(v);
+ load(0,false);
+ window.playField=i=>{document.getElementById('field').scrollIntoView({behavior:'smooth'});load(i,true)};
+ document.querySelectorAll('[data-field]').forEach(b=>b.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();playField(+b.dataset.field)}));
+})();
+/* 문단 */
+(function(){const p=document.getElementById('stmt');let html='',k=0;p.textContent.split(/(\[[^\]]+\])/).forEach(seg=>{if(seg.startsWith('[')){seg.slice(1,-1).split(' ').forEach((w,j,a)=>html+=`<span class="w hot" data-i="${k++}"${j===a.length-1?' data-tag':''}>${w}</span> `)}else seg.split(/\s+/).filter(Boolean).forEach(w=>html+=`<span class="w" data-i="${k++}">${w}</span> `)});p.innerHTML=html;const labels=['1초 참여','100% 커스텀','LIVE','직접 운영'],rots=[-6,5,-4,6];p.querySelectorAll('[data-tag]').forEach((s,i)=>{const t=document.createElement('span');t.className='tag pill r';t.style.setProperty('--r',rots[i]+'deg');t.textContent=labels[i];t.dataset.at=s.dataset.i;p.appendChild(t);s._tag=t});
+ window._stmt={p,words:[...p.querySelectorAll('.w')],tags:[...p.querySelectorAll('.tag')]};
+ function place(){const pr=p.getBoundingClientRect();_stmt.words.forEach(w=>{if(w._tag){const r=w.getBoundingClientRect();w._tag.style.left=(r.right-pr.left-14)+'px';w._tag.style.top=(r.top-pr.top-26)+'px'}})}place();addEventListener('load',place);addEventListener('resize',place)})();
+/* 보드 */
+const board=document.querySelector('#board svg');
+function cellsOf(svg){const rects=[...svg.querySelectorAll('rect')].filter(r=>+r.getAttribute('width')<60);const paths=[...svg.querySelectorAll('path')];return rects.map(r=>{const x0=+(r.getAttribute('x')||0),x1=x0+ +r.getAttribute('width');return{r,p:paths.filter(p=>{const b=p.getBBox();const cx=b.x+b.width/2;return cx>x0&&cx<x1})}})}
+const bc=cellsOf(board);const stamped=[true,true,false,false,false,false,false];let done=false;
+function paint(){bc.forEach((c,i)=>{c.r.setAttribute('fill',stamped[i]?'#E8442A':'#DDDDDD');c.p.forEach(p=>p.setAttribute('fill',stamped[i]?'#fff':'#16171D'))});document.getElementById('bcount').textContent=stamped.filter(Boolean).length+'/7'}paint();
+const secs=[...document.querySelectorAll('[data-cell]')];
+board.addEventListener('click',e=>{const i=Math.min(6,Math.floor(e.offsetX/board.getBoundingClientRect().width*7));secs.find(s=>+s.dataset.cell===i)?.scrollIntoView({behavior:'smooth'})});
+function stamp(i){if(stamped[i])return;stamped[i]=true;paint();const b=document.getElementById('board');b.classList.remove('pop');void b.offsetWidth;b.classList.add('pop');if(stamped.every(Boolean)&&!done){done=true;confetti()}}
+function confetti(){const c=document.getElementById('confetti');for(let i=0;i<100;i++){const e=document.createElement('i');e.style.left=Math.random()*100+'vw';e.style.background=['#E8442A','#16171D','#DDDDDD','#E8442A','#fff'][i%5];e.style.borderRadius=i%3?'0':'50%';e.animate([{transform:'translateY(0) rotate(0)'},{transform:`translateY(${innerHeight+60}px) rotate(${720*Math.random()}deg)`}],{duration:1700+Math.random()*1500,delay:Math.random()*300,easing:'cubic-bezier(.2,.6,.4,1)',fill:'forwards'});c.appendChild(e)}setTimeout(()=>c.innerHTML='',4000)}
+/* 걷는 픽셀 스탬프 */
+(function(){const st=document.getElementById('stage');const body=["0111111110","1111111111","1101111011","1101111011","1111111111","1111001111","1111111111","0111111110"];const A=["0110000110","0110000110"],B=["0011001100","0011001100"];
+ function walker(color,delay,size){const mk=l=>{let r='';[...body,...l].forEach((row,y)=>[...row].forEach((c,x)=>{if(c==='1')r+=`<rect x="${x}" y="${y}" width="1.03" height="1.03" fill="${(y==2||y==3)&&(x==2||x==7)?'#fff':color}"/>`}));return r};const d=document.createElement('div');d.className='walker';d.style.animationDelay=delay+'s';d.style.width=size+'px';d.innerHTML=`<div class="bob"><svg class="px" viewBox="0 0 10 10"><g class="fa">${mk(A)}</g><g class="fb" style="display:none">${mk(B)}</g></svg></div>`;st.appendChild(d);setInterval(()=>{const a=d.querySelector('.fa'),b=d.querySelector('.fb');const s=a.style.display==='none';a.style.display=s?'':'none';b.style.display=s?'none':''},250)}
+ walker('#E8442A',0,96);walker('#16171D',-8,72);walker('#E8442A',-16,84)})();
+/* 리빌 */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const t=e.target;io.unobserve(t);if(t.classList.contains('cnt')){const to=+t.dataset.to,t0=performance.now();(function f(n){const k=Math.min(1,(n-t0)/1500);t.textContent=Math.round(to*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(f)})(t0)}else t.classList.add('in')}),{threshold:.2});
+document.querySelectorAll('.rise,.cnt,#bigLogo').forEach(e=>io.observe(e));
+const io2=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)stamp(+e.target.dataset.cell)}),{threshold:.2});secs.forEach(s=>io2.observe(s));
+/* 스크롤 연동 */
+const prog=el=>{const r=el.getBoundingClientRect();return Math.min(1,Math.max(0,-r.top/(r.height-innerHeight)))};
+const track=document.getElementById('track'),stackCards=[...document.querySelectorAll('#stack .scard')].reverse();
+const STEPS=[['01','QR 스캔','이벤트 현장에서 QR을 스캔해요'],['02','스탬프 적립','스캔 즉시 스탬프가 바로 적립돼요'],['03','다 모으면','스탬프를 모두 모으면 미션 완료!'],['04','리워드 수령','스탬프를 다 모으고 리워드를 받아요']];
+const ACAP=['참여 수·완주율을 한눈에','참여자마다 스탬프 적립·리워드 수령 상태를 직접 바꿔요','테스트가 끝나면 완전 초기화 · 참여자별 데이터 삭제','이벤트 열고 닫기를 버튼 하나로','참여 데이터를 엑셀로 받아 보고서·후속 마케팅에','리워드별 당첨 확률·개수를 현장 상황에 맞게'];
+let si=-1,ai=-1,aiLock=0;
+function setAdmin(a){ai=a;document.querySelectorAll('#atabs button').forEach((b,j)=>b.classList.toggle('on',j===a));document.querySelectorAll('#screen [data-k]').forEach(el=>el.classList.toggle('on',el.dataset.k.split(' ').includes(String(a))));document.getElementById('acap').textContent=ACAP[a]}
+document.querySelectorAll('#atabs button').forEach((b,i)=>b.onclick=()=>{aiLock=performance.now();setAdmin(i)});
+function tick(){const y=scrollY;document.getElementById('rbt').setAttribute('startOffset',String(-((y*.6)%1300)));
+ const sp=_stmt.p.getBoundingClientRect();const k=Math.min(1,Math.max(0,(innerHeight*.8-sp.top)/(sp.height+innerHeight*.25)));const n=Math.floor(k*_stmt.words.length);_stmt.words.forEach((w,i)=>w.classList.toggle('on',i<n));_stmt.tags.forEach(t=>t.classList.toggle('on',+t.dataset.at<n));
+ track.style.transform=`translateX(${-prog(document.getElementById('custom'))*Math.max(0,track.scrollWidth-innerWidth+40)}px)`;
+ const s=Math.min(3,Math.floor(prog(document.getElementById('scan'))*4));if(s!==si){si=s;stackCards.forEach((c,i)=>{if(i<s){c.style.transform=`translate(${-160-i*20}px,-120vh) rotate(${-20+i*6}deg)`;c.style.opacity=0}else{const d=i-s;c.style.transform=`translate(${d*14}px,${d*14}px) rotate(${d===0?-3:d*4}deg)`;c.style.opacity=1}});const t=STEPS[s];stepnum.textContent=t[0];steptitle.textContent=t[1];stepdesc.textContent=t[2];stepnum.animate([{transform:'scale(1.2) rotate(-6deg)'},{transform:'none'}],{duration:400,easing:'cubic-bezier(.3,1.6,.5,1)'})}
+ const a=Math.min(5,Math.floor(prog(document.getElementById('admin'))*6));if(a!==ai&&performance.now()-aiLock>1500)setAdmin(a)}
+let raf=0;addEventListener('scroll',()=>{if(!raf)raf=requestAnimationFrame(()=>{raf=0;tick()})},{passive:true});tick();
+document.querySelectorAll('#hero .loops path').forEach((p,i)=>{const L=p.getTotalLength();p.style.strokeDasharray=L;p.animate([{strokeDashoffset:L},{strokeDashoffset:0}],{duration:1800,delay:300+i*200,easing:'cubic-bezier(.6,0,.2,1)',fill:'both'})});
+</script>
+</body>
+</html>

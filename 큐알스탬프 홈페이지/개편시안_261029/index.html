@@ -203,7 +203,7 @@ header .r{display:flex;justify-content:flex-end}
 .mc .real span{font-size:13px;color:var(--sub);line-height:1.5}
 .mc.tall .how{aspect-ratio:4/3;background:var(--cream);display:flex;align-items:center;justify-content:center}
 .mc.tall .how>img{width:auto;height:88%;object-fit:contain}
-.fgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.fgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 /* AR */
 #ar{padding:24px}
 #ar .panel{height:auto;min-height:calc(100vh - 48px);padding:90px 70px;background:var(--ink);grid-template-columns:.9fr 1.1fr;gap:50px}
@@ -215,6 +215,53 @@ header .r{display:flex;justify-content:flex-end}
 .arshots figcaption{margin-top:16px;font-size:15px;font-weight:700;letter-spacing:-.02em}
 .arshots .ex{position:absolute;right:0;bottom:-46px;font-size:12px;opacity:.6}
 .new{display:inline-block;background:var(--red);color:#fff;font-size:15px;font-weight:700;letter-spacing:0;border-radius:999px;padding:6px 14px;vertical-align:middle;transform:rotate(-6deg);margin-left:10px}
+
+/* game */
+#game{padding:24px}
+#game .panel{height:auto;min-height:calc(100vh - 48px);padding:100px 70px;background:var(--ink);grid-template-columns:.95fr 1.05fr;gap:40px;align-items:center}
+#game .panel .loopbg path{stroke:var(--red)}
+#game .panel>*{min-width:0}
+#game .gl{position:relative}
+#game .lead{color:#d6d6dc;margin-top:20px;max-width:520px}
+.gtabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:30px 0 16px}
+.gtab{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.09);border:2px solid transparent;color:#fff;border-radius:16px;padding:10px 14px;cursor:pointer;text-align:left;font-weight:700;font-size:17px;letter-spacing:-.025em;line-height:1.2;transition:background .25s,color .25s,transform .25s}
+.gtab:hover{transform:translateY(-2px)}
+.gtab .ic{width:34px;height:34px;flex:none;border-radius:10px;background:var(--red);display:flex;align-items:center;justify-content:center;font-size:18px}
+.gtab small{display:block;font-size:11px;font-weight:700;letter-spacing:.05em;color:#9a9ba3;margin-top:2px}
+.gtab .nw{margin-left:auto;background:var(--red);color:#fff;font-size:10px;font-weight:700;border-radius:999px;padding:3px 7px;letter-spacing:0}
+.gtab.on{background:#fff;color:var(--ink);border-color:var(--red)}
+.gtab.on small{color:var(--red)}
+.ginfo{background:rgba(255,255,255,.09);border-radius:22px;padding:22px 24px;min-height:210px}
+.ginfo h3{font-size:26px;font-weight:700;letter-spacing:-.04em;line-height:1.2;display:flex;align-items:center;gap:10px}
+.ginfo p{font-size:16px;line-height:1.7;color:#d6d6dc;margin-top:10px}
+.gchips{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.gchips span{border:2px solid rgba(255,255,255,.35);border-radius:999px;padding:4px 11px;font-size:12px;font-weight:700}
+.greal{display:flex;align-items:center;gap:12px;background:#fff;color:var(--ink);border-radius:16px;padding:8px 14px 8px 8px;margin-top:14px}
+.greal img{width:46px;height:62px;object-fit:cover;object-position:top;border-radius:8px;flex:none}
+.greal small{display:block;font-size:11px;font-weight:700;color:var(--red)}
+.greal b{display:block;font-size:15px;letter-spacing:-.02em;line-height:1.3}
+.gnote{font-size:12px;color:#9a9ba3;margin-top:14px}
+.gr{position:relative;height:660px;margin:0 auto;width:min(600px,100%)}
+.gp{position:absolute;aspect-ratio:375/720;border:5px solid #fff;border-radius:32px;overflow:hidden;background:#0b1530;box-shadow:0 30px 60px rgba(0,0,0,.5)}
+.gp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;transition:opacity .45s}
+.gp img.off{opacity:0}
+.gp.main{width:300px;left:calc(50% - 150px);top:20px;z-index:3;animation:flo 5s ease-in-out infinite}
+.gp.sd{width:178px;top:150px;z-index:1;opacity:.95}
+.gp.sd.b{left:-6px;transform:rotate(-8deg)}
+.gp.sd.c{right:-6px;transform:rotate(8deg)}
+.gp.sd.pop{animation:gpop .5s cubic-bezier(.3,1.6,.5,1)}
+@keyframes gpop{from{transform:scale(.7) rotate(0);opacity:0}}
+.gcap{position:absolute;z-index:4;font-size:12px;padding:5px 11px}
+.gcap.b{left:20px;top:112px;transform:rotate(-8deg)}
+.gcap.c{right:20px;top:142px;transform:rotate(8deg)}
+.tap{position:absolute;z-index:5;width:54px;height:54px;margin:-27px 0 0 -27px;border-radius:50%;border:4px solid var(--red);background:rgba(232,68,42,.3);pointer-events:none;transition:left .5s cubic-bezier(.3,1.4,.5,1),top .5s cubic-bezier(.3,1.4,.5,1),opacity .3s;animation:tp 1.2s ease-out infinite}
+.tap.hide{opacity:0}
+@keyframes tp{0%{box-shadow:0 0 0 0 rgba(232,68,42,.6);transform:scale(.8)}70%{box-shadow:0 0 0 22px rgba(232,68,42,0);transform:scale(1)}100%{box-shadow:0 0 0 0 rgba(232,68,42,0)}}
+.gsteps{position:absolute;left:0;right:0;bottom:0;display:flex;flex-direction:column;align-items:center;gap:10px;z-index:4}
+.gsteps .pill{font-size:15px;padding:10px 18px;white-space:normal;text-align:center;max-width:94%;transition:transform .3s}
+.gsteps .dots{display:flex;gap:6px}
+.gsteps .dots i{width:26px;height:6px;border-radius:6px;background:rgba(255,255,255,.25);transition:background .3s,width .3s}
+.gsteps .dots i.on{background:var(--red);width:40px}
 
 /* P works */
 .logowall{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin:0 0 90px}
@@ -319,7 +366,8 @@ footer .meta2{display:flex;justify-content:space-between;font-size:13px;color:#9
   .guide{font-size:13px;padding:5px 6px 5px 12px}.guide b{width:24px;height:24px}
   .stage{height:330px;margin-top:30px}.hp{width:140px}.hp .ph{height:280px}
   .mqi span{width:150px;height:84px}
-  .shead,#faq .grid,.mgrid,.plans,.extra,#final .row,#ar .panel{grid-template-columns:1fr}
+  .shead,#faq .grid,.mgrid,.plans,.extra,#final .row,#ar .panel,#game .panel{grid-template-columns:1fr}
+  #game .panel{padding:60px 24px}.gtabs{grid-template-columns:1fr 1fr}.gp.sd,.gcap{display:none}.gr{height:660px;width:100%}.gp.main{width:min(280px,76vw);left:calc(50% - min(140px,38vw))}.gtab{padding:8px 10px;font-size:15px;gap:8px}.gtab .ic{width:28px;height:28px;font-size:15px}.gtab small{font-size:9px}
   .wgrid{grid-template-columns:repeat(2,1fr)}.fgrid{grid-template-columns:1fr}.logowall{grid-template-columns:repeat(3,1fr)}
   #custom .top{flex-direction:column;align-items:flex-start;padding:0 20px}#custom .top .lead{display:none}
   .cc{width:300px;grid-template-columns:1fr;grid-template-rows:240px 1fr;height:min(600px,72vh)}.cc ul{display:none}.cc.end{width:260px}
@@ -463,7 +511,26 @@ footer .meta2{display:flex;justify-content:space-between;font-size:13px;color:#9
 <section class="sec" id="mission" data-cell="5">
   <div class="wrap">
     <div class="shead"><div><div class="label"><i>M</i>재미 장치 <em>MISSION</em></div><h2 class="lg">찍기만 하면<br>심심하니까</h2></div><p class="lead">끝까지 돌게 만드는 장치들이에요. 어떤 화면인지, 실제로 어디서 썼는지 확인해 보세요.</p></div>
-    <div class="fgrid"><div class="mc tall rise d0"><div class="how"><img src="assets/img/fun_quiz.png" alt="퀴즈·미션 화면"></div><div class="body"><h3 class="sm">퀴즈·미션</h3><p>정답을 맞히거나 미션을 해야 스탬프가 적립돼요.</p><a class="real" href="https://www.qrstp.com/post/재팬모빌리티쇼-전시-부스-스탬프-투어-2026-123" target="_blank"><img src="assets/img/cases/재팬모빌리티쇼-전시-부스-스탬프-투어-2026-123--fig_02_quiz.jpg" alt=""><div><small>실제로 쓴 행사</small><b>Japan Mobility Show 2025 Hyundai 부스</b></div></a></div></div><div class="mc tall rise d1"><div class="how"><img src="assets/img/fun_roulette.png" alt="룰렛 리워드 화면"></div><div class="body"><h3 class="sm">룰렛 리워드</h3><p>완주하면 룰렛을 돌려요. 당첨 확률을 조정해 리워드 예산을 관리해요.</p><a class="real" href="https://www.qrstp.com/post/koica-ai-파트너스-페어-스탬프-투어-2026-112" target="_blank"><img src="assets/img/cases/koica-ai-파트너스-페어-스탬프-투어-2026-112--koica-룰렛-시안.jpg" alt=""><div><small>실제로 쓴 행사</small><b>KOICA AI Partners Fair</b></div></a></div></div><div class="mc tall rise d2"><div class="how"><img src="assets/img/cases/sk하이닉스-sedex-2026-박람회-스탬프-투어-2026-105--figma_02_stamp_track.jpg" alt="단계별 리워드 화면"></div><div class="body"><h3 class="sm">단계별 리워드</h3><p>적립 개수에 따라 받을 수 있는 리워드를 다르게 줄 수 있어요.</p><a class="real" href="https://www.qrstp.com/post/sk하이닉스-sedex-2026-박람회-스탬프-투어-2026-105" target="_blank"><img src="assets/img/cases/sk하이닉스-sedex-2026-박람회-스탬프-투어-2026-105--live_01_start.jpg" alt=""><div><small>실제로 쓴 행사</small><b>SK하이닉스 SEDEX 2026</b></div></a></div></div><div class="mc tall rise d3"><div class="how"><img src="assets/img/fun_survey.png" alt="설문 화면"></div><div class="body"><h3 class="sm">설문</h3><p>참여 흐름 안에 만족도·피드백 설문을 넣어 답변을 모아요.</p><a class="real" href="https://www.qrstp.com/post/삼양식품-sial-파리-2026-다국어-스탬프-투어-2026-106" target="_blank"><img src="assets/img/cases/삼양식품-sial-파리-2026-다국어-스탬프-투어-2026-106--figma_03_survey.jpg" alt=""><div><small>실제로 쓴 행사</small><b>삼양식품 SIAL Paris 2026</b></div></a></div></div></div>
+    <div class="fgrid"><div class="mc tall rise d0"><div class="how"><img src="assets/img/fun_quiz.png" alt="퀴즈·미션 화면"></div><div class="body"><h3 class="sm">퀴즈·미션</h3><p>정답을 맞히거나 미션을 해야 스탬프가 적립돼요.</p><a class="real" href="https://www.qrstp.com/post/재팬모빌리티쇼-전시-부스-스탬프-투어-2026-123" target="_blank"><img src="assets/img/cases/재팬모빌리티쇼-전시-부스-스탬프-투어-2026-123--fig_02_quiz.jpg" alt=""><div><small>실제로 쓴 행사</small><b>Japan Mobility Show 2025 Hyundai 부스</b></div></a></div></div><div class="mc tall rise d1"><div class="how"><img src="assets/img/cases/sk하이닉스-sedex-2026-박람회-스탬프-투어-2026-105--figma_02_stamp_track.jpg" alt="단계별 리워드 화면"></div><div class="body"><h3 class="sm">단계별 리워드</h3><p>적립 개수에 따라 받을 수 있는 리워드를 다르게 줄 수 있어요.</p><a class="real" href="https://www.qrstp.com/post/sk하이닉스-sedex-2026-박람회-스탬프-투어-2026-105" target="_blank"><img src="assets/img/cases/sk하이닉스-sedex-2026-박람회-스탬프-투어-2026-105--live_01_start.jpg" alt=""><div><small>실제로 쓴 행사</small><b>SK하이닉스 SEDEX 2026</b></div></a></div></div><div class="mc tall rise d2"><div class="how"><img src="assets/img/fun_survey.png" alt="설문 화면"></div><div class="body"><h3 class="sm">설문</h3><p>참여 흐름 안에 만족도·피드백 설문을 넣어 답변을 모아요.</p><a class="real" href="https://www.qrstp.com/post/삼양식품-sial-파리-2026-다국어-스탬프-투어-2026-106" target="_blank"><img src="assets/img/cases/삼양식품-sial-파리-2026-다국어-스탬프-투어-2026-106--figma_03_survey.jpg" alt=""><div><small>실제로 쓴 행사</small><b>삼양식품 SIAL Paris 2026</b></div></a></div></div></div>
+  </div>
+</section>
+
+<section id="game">
+  <div class="panel">
+    <svg class="loopbg" viewBox="0 0 1400 800" preserveAspectRatio="none"><path d="M-50 200 C 200 500, 400 -100, 640 260 C 820 520, 1000 640, 980 440 C 960 260, 760 340, 860 560 C 960 760, 1300 700, 1460 760"/></svg>
+    <div class="gl">
+      <div class="label"><i>★</i>리워드 게임 <em>REWARD GAME</em></div>
+      <h2 class="lg">룰렛만<br>있는 줄 <span class="red">알았죠?</span></h2>
+      <p class="lead">스탬프를 다 모으면 게임 한 판. 리워드를 뽑는 방식을 룰렛을 포함한 6가지 게임 중에 골라요.</p>
+      <div class="gtabs" id="gtabs"></div>
+      <div class="ginfo" id="ginfo"></div>
+    </div>
+    <div class="gr" id="gr">
+      <div class="gp main" id="gmain"><div class="tap" id="gtap"></div></div>
+      <div class="gp sd b" id="gB"><img alt=""></div><span class="gcap pill w b">박스형</span>
+      <div class="gp sd c" id="gC"><img alt=""></div><span class="gcap pill w c">라인형</span>
+      <div class="gsteps"><span class="pill r" id="gstep"></span><span class="dots" id="gdots"></span></div>
+    </div>
   </div>
 </section>
 
@@ -543,6 +610,53 @@ document.getElementById('mq').innerHTML=(LOGOS.map(l=>`<span><img src="${l.src}"
 document.getElementById('logowall').innerHTML=LOGOS.map(l=>`<span title="${l.alt}"><img src="${l.src}" alt="${l.alt}"></span>`).join('');
 /* 사례 필터 */
 (function(){const g=document.getElementById('wgrid');const cards=[...g.children];const segs=['전체',...new Set(cards.map(c=>c.dataset.seg))];const f=document.getElementById('filters');f.innerHTML=segs.map(s=>`<button>${s}<i>${s==='전체'?cards.length:cards.filter(c=>c.dataset.seg===s).length}</i></button>`).join('');const bs=[...f.children];function pick(i){bs.forEach((b,j)=>b.classList.toggle('on',i===j));cards.forEach(c=>c.classList.toggle('hide',i>0&&c.dataset.seg!==segs[i]))}bs.forEach((b,i)=>b.onclick=()=>pick(i));pick(0)})();
+/* 리워드 게임 */
+(function(){
+ const R={link:'https://www.qrstp.com/post/koica-ai-파트너스-페어-스탬프-투어-2026-112',img:'assets/img/cases/koica-ai-파트너스-페어-스탬프-투어-2026-112--koica-룰렛-시안.jpg'};
+ const G=[
+  {k:'roulette',ic:'🎡',n:'룰렛',en:'REWARD ROULETTE',nw:0,
+   d:'룰렛 돌리기 버튼을 누르면 룰렛이 돌아가요. 멈추면 자동으로 리워드 화면으로 넘어가요.',
+   chips:['리워드별 당첨 확률 조정','당첨 가능 개수 조정'],real:{name:'KOICA AI Partners Fair'},
+   fr:[['roulette',50,81,'① 룰렛 돌리기 버튼을 누르면 룰렛이 돌아가요'],['roulette',null,null,'② 멈추면 자동으로 리워드 화면으로 이동해요']]},
+  {k:'scratch',ic:'🎟️',n:'스크래치 카드',en:'SCRATCH CARD',nw:1,
+   d:'카드를 긁어서 결과를 확인해요. 70% 이상 긁으면 전체가 자동으로 공개되고, 결과 확인하기 버튼이 켜지면 리워드 화면으로 이동해요.',
+   chips:['배경 이미지 설정','옵션 이미지·옵션명 입력'],
+   fr:[['scratch_ready',50,46,'① 카드를 긁어서 결과를 확인해요'],['scratch_doing',40,50,'② 긁는 만큼 공개돼요 · 70% 이상이면 전체 공개'],['scratch_done',50,83,'③ 결과 확인하기를 누르면 리워드 화면으로']]},
+  {k:'slot',ic:'🎰',n:'슬롯머신',en:'SLOT MACHINE',nw:1,
+   d:'슬롯 돌리기 버튼을 누르면 슬롯이 돌아가요. 슬롯이 멈추면 자동으로 리워드 화면으로 넘어가요.',
+   chips:['배경 이미지 설정','옵션 이미지 입력'],
+   fr:[['slot',50,83,'① 슬롯 돌리기 버튼을 누르면 슬롯이 돌아가요'],['slot',null,null,'② 멈추면 자동으로 리워드 화면으로 이동해요']]},
+  {k:'mystery',ic:'📦',n:'미스터리 박스',en:'MYSTERY BOX',nw:1,
+   d:'박스 열기 버튼을 누르면 박스가 열리는 영상이 재생돼요. 영상이 끝나면 자동으로 리워드 화면으로 넘어가요.',
+   chips:['배경 이미지 설정'],
+   fr:[['mystery',50,83,'① 박스 열기 버튼을 눌러요'],['mystery',null,null,'② 영상이 끝나면 자동으로 리워드 화면으로 이동해요']]},
+  {k:'flip',ic:'🃏',n:'카드 뒤집기',en:'CARD FLIP',nw:1,
+   d:'카드 9장 중 같은 카드 3장을 찾으면 리워드 당첨! 3장이 맞으면 성공이고, 뒤집어 본 카드 중 짝이 안 맞은 카드는 흑백으로 바뀌어요.',
+   chips:['배경 이미지 설정','옵션 이미지·옵션명 입력'],
+   fr:[['flip_ready',50,43,'① 카드를 뒤집어 같은 카드를 찾아요'],['flip_doing',50,87,'② 같은 카드 3장이 맞으면 당첨! 결과 확인하기가 켜져요']]},
+  {k:'ladder',ic:'🪜',n:'사다리 타기',en:'LADDER GAME',nw:1,
+   d:'시작할 번호를 골라 사다리를 타요. 길을 따라 내려가 도착한 칸에서 결과를 확인하고, 도착하면 느낌표(!)가 나타나요. 옵션은 2개부터 만들 수 있어요.',
+   chips:['배경 이미지 설정'],
+   fr:[['ladder_ready',39,30,'① 시작할 번호를 골라요'],['ladder_doing',39,30,'② 사다리를 타고 내려가 결과를 확인해요']]}
+ ];
+ const tabs=document.getElementById('gtabs'),info=document.getElementById('ginfo'),main=document.getElementById('gmain'),tap=document.getElementById('gtap'),step=document.getElementById('gstep'),dots=document.getElementById('gdots');
+ const img=n=>`assets/img/game/${n}.png`;
+ tabs.innerHTML=G.map(g=>`<button class="gtab"><span class="ic">${g.ic}</span><span><span>${g.n}</span><small>${g.en}</small></span>${g.nw?'<span class="nw">NEW</span>':''}</button>`).join('');
+ const tb=[...tabs.children];let cur=0,fi=0,timer=0,locked=false,vis=false;
+ function show(i){cur=i;fi=0;tb.forEach((b,j)=>b.classList.toggle('on',j===i));const g=G[i];
+  info.innerHTML=`<h3>${g.n}${g.nw?'<span class="pill r" style="font-size:12px;padding:3px 9px">NEW</span>':''}</h3><p>${g.d}</p><div class="gchips">${g.chips.map(c=>`<span>${c}</span>`).join('')}</div>`+(g.real?`<a class="greal" href="${R.link}" target="_blank"><img src="${R.img}" alt=""><div><small>실제로 쓴 행사</small><b>${g.real.name}</b></div></a>`:'<p class="gnote">※ 화면은 템플릿 예시예요. 기본형·박스형·라인형 3가지 디자인 중에서 골라요.</p>');
+  main.querySelectorAll('img').forEach(e=>e.remove());
+  [...new Set(g.fr.map(f=>f[0]))].forEach(n=>{const e=document.createElement('img');e.src=img(n);e.dataset.n=n;e.alt=g.n+' 화면 예시';e.className='off';main.insertBefore(e,tap)});
+  ['B','C'].forEach(v=>{const w=document.getElementById('g'+v),e=w.querySelector('img');e.src=img(g.k+'_'+v);e.alt=g.n+(v==='B'?' 박스형':' 라인형');w.classList.remove('pop');void w.offsetWidth;w.classList.add('pop')});
+  dots.innerHTML=g.fr.map(()=>'<i></i>').join('');frame(0)}
+ function frame(j){fi=j;const g=G[cur],f=g.fr[j];main.querySelectorAll('img').forEach(e=>e.classList.toggle('off',e.dataset.n!==f[0]));
+  if(f[1]==null)tap.classList.add('hide');else{tap.classList.remove('hide');tap.style.left=f[1]+'%';tap.style.top=f[2]+'%'}
+  step.textContent=f[3];[...dots.children].forEach((d,k)=>d.classList.toggle('on',k===j))}
+ function tick(){if(!vis)return;const g=G[cur];if(fi+1<g.fr.length)frame(fi+1);else if(!locked)show((cur+1)%G.length);else frame(0)}
+ tb.forEach((b,i)=>b.onclick=()=>{locked=true;show(i)});
+ show(0);setInterval(tick,2600);
+ new IntersectionObserver(es=>es.forEach(e=>vis=e.isIntersecting),{threshold:.25}).observe(document.getElementById('game'));
+})();
 /* 현장 영상 */
 (function(){const V=[
  {id:'96977f_0ce7a7c0ac20412aa6cd5a349809ecde',p:'field_hyundai',n:'현대자동차 X 쿠키런: 킹덤 팝업',d:'핸들·트렁크 등 차량 구석구석에 숨은 QR을 찾아 게임처럼 탐험',t:'1:27',h:'스탬프투어-대기업사례-2025-03'},

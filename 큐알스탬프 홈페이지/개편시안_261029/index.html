@@ -279,6 +279,30 @@ header .r{display:flex;justify-content:flex-end}
 .gcard:nth-child(2n) .gst .m{animation-delay:-1.7s}.gcard:nth-child(3n) .gst .m{animation-delay:-3.2s}
 .gst .sb,.gst .sc{width:25%;top:30%;z-index:1;opacity:.95}
 .gst .sb{left:12%;transform:rotate(-8deg)}.gst .sc{right:12%;transform:rotate(8deg)}
+/* 게임 화면 애니메이션 — 카드가 화면에 들어오면(.in) 시작, 감소 모션 설정이면 첫 화면만 */
+.gst .gp.m .gscr{position:absolute;inset:0;overflow:hidden;background:#0b1530}
+.gst .gp.m .gscr img{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:fill}
+.gp.m .fx-wheel,.gp.m .fx-box{position:absolute;overflow:hidden}
+.gp.m .fx-wheel{border-radius:50%}
+.gp.m .fx-wheel img,.gp.m .fx-box img{position:absolute;max-width:none}
+.fx-wheel,.fx-box,.fx-reel img,.fx-f{animation-play-state:paused}
+.gcard.in .fx-wheel,.gcard.in .fx-box,.gcard.in .fx-reel img,.gcard.in .fx-f{animation-play-state:running}
+.fx-wheel{animation:fxwheel 5.2s cubic-bezier(.25,.1,.2,1) infinite}
+@keyframes fxwheel{0%,10%{transform:rotate(0)}62%,100%{transform:rotate(1080deg)}}
+.fx-box{animation:fxbox 4.2s ease-in-out infinite;transform-origin:50% 70%}
+@keyframes fxbox{0%,18%{transform:none}22%{transform:rotate(-5deg)}26%{transform:rotate(5deg)}30%{transform:rotate(-5deg)}34%{transform:rotate(5deg)}38%{transform:rotate(-3deg)}42%{transform:none}52%{transform:translateY(-6%) scale(1.07)}60%{transform:translateY(0) scale(.97)}68%,100%{transform:none}}
+.fx-reel{position:absolute;overflow:hidden;-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 26%,#000 74%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0,#000 26%,#000 74%,transparent 100%)}
+.gst .gp.m .fx-reel img{left:0;top:0;width:100%;height:auto;transform:translateY(-53.84%)}
+.fx-reel.r1 img{animation:fxr1 4.6s linear infinite}.fx-reel.r2 img{animation:fxr2 4.6s linear infinite}.fx-reel.r3 img{animation:fxr3 4.6s linear infinite}
+@keyframes fxr1{0%{transform:translateY(-53.84%);filter:blur(1.5px);animation-timing-function:cubic-bezier(.2,.7,.3,1)}50%,100%{transform:translateY(-18.12%);filter:none}}
+@keyframes fxr2{0%{transform:translateY(-53.84%);filter:blur(1.5px);animation-timing-function:cubic-bezier(.2,.7,.3,1)}64%,100%{transform:translateY(-10.98%);filter:none}}
+@keyframes fxr3{0%{transform:translateY(-53.84%);filter:blur(1.5px);animation-timing-function:cubic-bezier(.2,.7,.3,1)}78%,100%{transform:translateY(-3.84%);filter:none}}
+.fx-pick{position:absolute;left:38.67%;top:40.69%;width:22.13%;height:10.97%;border:3px solid #3d77ff;border-radius:14px;pointer-events:none}
+.gst .gp.m .fx-f{opacity:0}
+.fx-f3-1{animation:fxs1 7.5s ease-in-out infinite}.fx-f3-2{animation:fxs2 7.5s ease-in-out infinite}.fx-f2-1{animation:fxs3 6s ease-in-out infinite}
+@keyframes fxs1{0%,24%{opacity:0}33%,90%{opacity:1}98%,100%{opacity:0}}
+@keyframes fxs2{0%,58%{opacity:0}66%,90%{opacity:1}98%,100%{opacity:0}}
+@keyframes fxs3{0%,36%{opacity:0}46%,90%{opacity:1}98%,100%{opacity:0}}
 .gst .vt{position:absolute;bottom:12px;z-index:4;font-size:11px;font-weight:700;background:#fff;color:var(--ink);border-radius:999px;padding:3px 9px}
 .gst .vt.vl{left:9%}.gst .vt.vr{right:9%}
 .gcard .nw{position:absolute;left:16px;top:16px;z-index:5;background:var(--red);color:#fff;font-size:12px;font-weight:700;border-radius:999px;padding:5px 12px;transform:rotate(-6deg)}
@@ -719,7 +743,18 @@ document.getElementById('logowall').innerHTML=LOGOS.map(l=>`<span title="${l.alt
  ];
  const img=n=>`assets/img/game/${n}.png`;
  const MAIN={roulette:'roulette',scratch:'scratch_ready',slot:'slot',mystery:'mystery',flip:'flip_ready',ladder:'ladder_ready'};
- document.getElementById('ggrid').innerHTML=G.map(g=>`<article class="gcard rise"><div class="gst">${g.nw?'<span class="nw">NEW</span>':''}<div class="gp sb"><img src="${img(g.k+'_B')}" alt="${g.n} 박스형" loading="lazy"></div><div class="gp sc"><img src="${img(g.k+'_C')}" alt="${g.n} 라인형" loading="lazy"></div><div class="gp m"><img src="${img(MAIN[g.k])}" alt="${g.n} 화면 예시" loading="lazy"></div><span class="vt vl">박스형</span><span class="vt vr">라인형</span></div><div class="gb"><h3><small>${g.en}</small>${g.n}</h3><p>${g.d}</p><div class="gchips">${g.chips.map(c=>`<span>${c}</span>`).join('')}</div></div></article>`).join('');
+ /* 게임 화면 애니메이션 — 템플릿 실제 화면 위에서 움직임(2026-10-31). 바퀴·릴·상자는 같은 화면의 해당 부분을 잘라 움직이고, 단계 화면이 있는 게임은 실제 단계 화면을 순서대로 전환 */
+ const im=n=>`<img src="${img(n)}" alt="" loading="lazy">`;
+ const crop=(cls,x,y,w,h)=>`<div class="${cls}" style="left:${x/3.75}%;top:${y/7.2}%;width:${w/3.75}%;height:${h/7.2}%"><img src="${img(cls==='fx-wheel'?'roulette':'mystery')}" alt="" loading="lazy" style="width:${375/w*100}%;height:${720/h*100}%;left:${-x/w*100}%;top:${-y/h*100}%"></div>`;
+ const reel=(x,w,n)=>`<div class="fx-reel r${n}" style="left:${x/3.75}%;top:${227/7.2}%;width:${w/3.75}%;height:${208/7.2}%"><img src="${img('slot_strip')}" alt=""></div>`;
+ function screen(k){
+  if(k==='roulette')return im('roulette')+crop('fx-wheel',40,210,294,294);
+  if(k==='slot')return im('slot')+reel(40,92,1)+reel(141,93,2)+reel(242,94,3)+'<i class="fx-pick"></i>';
+  if(k==='mystery')return im('mystery')+crop('fx-box',74,222,228,238);
+  const seq={scratch:['scratch_ready','scratch_doing','scratch_done'],flip:['flip_ready','flip_doing'],ladder:['ladder_ready','ladder_doing']}[k];
+  return im(seq[0])+seq.slice(1).map((n,i)=>`<img class="fx-f fx-f${seq.length}-${i+1}" src="${img(n)}" alt="" loading="lazy">`).join('');
+ }
+ document.getElementById('ggrid').innerHTML=G.map(g=>`<article class="gcard rise"><div class="gst">${g.nw?'<span class="nw">NEW</span>':''}<div class="gp sb"><img src="${img(g.k+'_B')}" alt="${g.n} 박스형" loading="lazy"></div><div class="gp sc"><img src="${img(g.k+'_C')}" alt="${g.n} 라인형" loading="lazy"></div><div class="gp m"><div class="gscr" role="img" aria-label="${g.n} 화면 예시(움직이는 화면)">${screen(g.k)}</div></div><span class="vt vl">박스형</span><span class="vt vr">라인형</span></div><div class="gb"><h3><small>${g.en}</small>${g.n}</h3><p>${g.d}</p><div class="gchips">${g.chips.map(c=>`<span>${c}</span>`).join('')}</div></div></article>`).join('');
 })();
 /* 현장 영상 */
 (function(){const V=[

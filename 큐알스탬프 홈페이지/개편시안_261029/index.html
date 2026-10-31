@@ -243,49 +243,33 @@ header .r{display:flex;justify-content:flex-end}
 .new{display:inline-block;background:var(--red);color:#fff;font-size:15px;font-weight:700;letter-spacing:0;border-radius:999px;padding:6px 14px;vertical-align:middle;transform:rotate(-6deg);margin-left:10px}
 
 /* game */
-#game .pgrid{display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(32px,4vw,56px);align-items:center}
-#game .pgrid>*{min-width:0}
-#game .gl{position:relative}
-#game .lead{margin-top:20px;max-width:520px}
-.gtabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:30px 0 16px}
-.gtab{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.09);border:2px solid transparent;color:#fff;border-radius:16px;padding:10px 14px;cursor:pointer;text-align:left;font-weight:700;font-size:17px;letter-spacing:-.025em;line-height:1.2;transition:background .25s,color .25s,transform .25s}
-.gtab:hover{transform:translateY(-2px)}
-.gtab .ic{width:34px;height:34px;flex:none;border-radius:10px;background:var(--red);display:flex;align-items:center;justify-content:center;font-size:18px}
-.gtab small{display:block;font-size:11px;font-weight:700;letter-spacing:.05em;color:#9a9ba3;margin-top:2px}
-.gtab .nw{margin-left:auto;background:var(--red);color:#fff;font-size:10px;font-weight:700;border-radius:999px;padding:3px 7px;letter-spacing:0}
-.gtab.on{background:#fff;color:var(--ink);border-color:var(--red)}
-.gtab.on small{color:var(--red)}
-.ginfo{background:rgba(255,255,255,.09);border-radius:22px;padding:22px 24px;min-height:210px}
-.ginfo h3{font-size:26px;font-weight:700;letter-spacing:-.04em;line-height:1.2;display:flex;align-items:center;gap:10px}
-.ginfo p{font-size:16px;line-height:1.7;color:#d6d6dc;margin-top:10px}
-.gchips{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
-.gchips span{border:2px solid rgba(255,255,255,.35);border-radius:999px;padding:4px 11px;font-size:12px;font-weight:700}
-.greal{display:flex;align-items:center;gap:12px;background:#fff;color:var(--ink);border-radius:16px;padding:8px 14px 8px 8px;margin-top:14px}
+#game .shead{margin-bottom:clamp(28px,3.5vw,48px)}
+.ggrid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap)}
+.gcard{background:rgba(255,255,255,.08);border-radius:var(--r-card);overflow:hidden;display:flex;flex-direction:column;transition:transform .3s,background .3s}
+.gcard:hover{transform:translateY(-6px);background:rgba(255,255,255,.12)}
+.gst{position:relative;aspect-ratio:1/.82;background:rgba(255,255,255,.06);overflow:hidden}
+.gst .gp{position:absolute;aspect-ratio:375/720;border:4px solid #fff;border-radius:22px;overflow:hidden;background:#0b1530;box-shadow:0 18px 36px rgba(0,0,0,.45)}
+.gst .gp img{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
+.gst .m{width:34%;left:33%;top:9%;z-index:3;animation:flo 5s ease-in-out infinite}
+.gcard:nth-child(2n) .gst .m{animation-delay:-1.7s}.gcard:nth-child(3n) .gst .m{animation-delay:-3.2s}
+.gst .sb,.gst .sc{width:25%;top:30%;z-index:1;opacity:.95}
+.gst .sb{left:12%;transform:rotate(-8deg)}.gst .sc{right:12%;transform:rotate(8deg)}
+.gst .vt{position:absolute;bottom:12px;z-index:4;font-size:11px;font-weight:700;background:#fff;color:var(--ink);border-radius:999px;padding:3px 9px}
+.gst .vt.vl{left:9%}.gst .vt.vr{right:9%}
+.gcard .nw{position:absolute;left:16px;top:16px;z-index:5;background:var(--red);color:#fff;font-size:12px;font-weight:700;border-radius:999px;padding:5px 12px;transform:rotate(-6deg)}
+.gb{padding:22px 24px 24px;display:flex;flex-direction:column;gap:8px;flex:1}
+.gb h3{font-size:24px;font-weight:700;letter-spacing:-.04em;line-height:1.2}
+.gb h3 small{display:block;font-size:11px;font-weight:700;letter-spacing:.06em;color:var(--red);margin-bottom:4px}
+.gb p{font-size:15px;line-height:1.65;color:#d6d6dc;min-height:5em}
+.gchips{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:6px}
+.gchips span{border:2px solid rgba(255,255,255,.3);border-radius:999px;padding:4px 11px;font-size:12px;font-weight:700}
+.gfoot{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:var(--gap)}
+.greal{display:flex;align-items:center;gap:12px;background:#fff;color:var(--ink);border-radius:18px;padding:8px 18px 8px 8px}
 .greal img{width:46px;height:62px;object-fit:cover;object-position:top;border-radius:8px;flex:none}
 .greal small{display:block;font-size:11px;font-weight:700;color:var(--red)}
 .greal b{display:block;font-size:15px;letter-spacing:-.02em;line-height:1.3}
-.gnote{font-size:12px;color:#9a9ba3;margin-top:14px}
-.gr{position:relative;height:660px;margin:0 auto;width:min(600px,100%)}
-.gp{position:absolute;aspect-ratio:375/720;border:5px solid #fff;border-radius:32px;overflow:hidden;background:#0b1530;box-shadow:0 30px 60px rgba(0,0,0,.5)}
-.gp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;transition:opacity .45s}
-.gp img.off{opacity:0}
-.gp.main{width:300px;left:calc(50% - 150px);top:20px;z-index:3;animation:flo 5s ease-in-out infinite}
-.gp.sd{width:178px;top:150px;z-index:1;opacity:.95}
-.gp.sd.b{left:-6px;transform:rotate(-8deg)}
-.gp.sd.c{right:-6px;transform:rotate(8deg)}
-.gp.sd.pop{animation:gpop .5s cubic-bezier(.3,1.6,.5,1)}
-@keyframes gpop{from{transform:scale(.7) rotate(0);opacity:0}}
-.gcap{position:absolute;z-index:4;font-size:12px;padding:5px 11px}
-.gcap.b{left:20px;top:112px;transform:rotate(-8deg)}
-.gcap.c{right:20px;top:142px;transform:rotate(8deg)}
-.tap{position:absolute;z-index:5;width:54px;height:54px;margin:-27px 0 0 -27px;border-radius:50%;border:4px solid var(--red);background:rgba(232,68,42,.3);pointer-events:none;transition:left .5s cubic-bezier(.3,1.4,.5,1),top .5s cubic-bezier(.3,1.4,.5,1),opacity .3s;animation:tp 1.2s ease-out infinite}
-.tap.hide{opacity:0}
-@keyframes tp{0%{box-shadow:0 0 0 0 rgba(232,68,42,.6);transform:scale(.8)}70%{box-shadow:0 0 0 22px rgba(232,68,42,0);transform:scale(1)}100%{box-shadow:0 0 0 0 rgba(232,68,42,0)}}
-.gsteps{position:absolute;left:0;right:0;bottom:0;display:flex;flex-direction:column;align-items:center;gap:10px;z-index:4}
-.gsteps .pill{font-size:15px;padding:10px 18px;white-space:normal;text-align:center;max-width:94%;transition:transform .3s}
-.gsteps .dots{display:flex;gap:6px}
-.gsteps .dots i{width:26px;height:6px;border-radius:6px;background:rgba(255,255,255,.25);transition:background .3s,width .3s}
-.gsteps .dots i.on{background:var(--red);width:40px}
+.gnote{font-size:13px;color:#9a9ba3}
+.gswipe{display:none}
 
 /* P works */
 .logowall{display:grid;grid-template-columns:repeat(6,1fr);gap:var(--gap);margin:0 0 clamp(56px,6vw,88px)}
@@ -404,7 +388,7 @@ footer .meta2{display:flex;justify-content:space-between;font-size:13px;color:#9
 .proto{position:fixed;left:50%;transform:translateX(-50%);bottom:10px;z-index:49;font-size:11px;font-weight:700;color:#9a9ba3}
 
 @media(max-width:1100px){
-  .wgrid{grid-template-columns:repeat(3,1fr)}.fgrid{grid-template-columns:repeat(2,1fr)}.logowall{grid-template-columns:repeat(4,1fr)}
+  .wgrid{grid-template-columns:repeat(3,1fr)}.fgrid{grid-template-columns:repeat(2,1fr)}.ggrid{grid-template-columns:repeat(2,1fr)}.logowall{grid-template-columns:repeat(4,1fr)}
   .steps4{grid-template-columns:repeat(2,1fr);row-gap:48px}.st:nth-child(2)::after{display:none}
 }
 @media(max-width:900px){
@@ -414,7 +398,7 @@ footer .meta2{display:flex;justify-content:space-between;font-size:13px;color:#9
   .guide{font-size:13px;padding:5px 6px 5px 12px}.guide b{width:24px;height:24px}
   #hero{padding-top:84px}#hero .wrap{padding:0 20px}#hero .stk{display:none}#hero .ctas{flex-wrap:wrap}
   .stage{--ph:240px;margin-top:36px}
-  .shead,#faq .grid,.mgrid,.plans,.extra,#final .row,#ar .pgrid,#game .pgrid,.fwrap{grid-template-columns:1fr}
+  .shead,#faq .grid,.mgrid,.plans,.extra,#final .row,#ar .pgrid,.fwrap{grid-template-columns:1fr}
   .times{justify-content:flex-start}.stats{gap:28px}
   .vlist{flex-direction:row;overflow-x:auto}.vi{min-width:260px}
   .pad{padding:0}.panel{border-radius:0;padding:56px 0}
@@ -422,7 +406,8 @@ footer .meta2{display:flex;justify-content:space-between;font-size:13px;color:#9
   .wgrid{grid-template-columns:repeat(2,1fr)}.fgrid{grid-template-columns:1fr}.logowall{grid-template-columns:repeat(3,1fr)}
   .atabs{flex-wrap:nowrap;overflow-x:auto;padding-bottom:6px}.atabs button{flex:none}
   .flow{flex-direction:column;align-items:stretch;gap:6px}.flow i{width:6px;height:14px;align-self:center}.flow span{white-space:normal}
-  .gtabs{grid-template-columns:1fr 1fr}.gp.sd,.gcap{display:none}.gr{height:660px;width:100%}.gp.main{width:min(280px,76vw);left:calc(50% - min(140px,38vw))}.gtab{padding:8px 10px;font-size:15px;gap:8px}.gtab .ic{width:28px;height:28px;font-size:15px}.gtab small{font-size:9px}
+  .gswipe{display:block;font-size:14px;font-weight:700;color:var(--red);margin:-8px 0 14px}
+  .ggrid{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 calc(var(--wl)*-1);padding:0 var(--wl) 14px;scroll-padding-left:var(--wl);-webkit-overflow-scrolling:touch}.gcard{flex:0 0 78%;scroll-snap-align:start}.gb p{min-height:0}.gfoot{margin-top:8px}
   #fab{right:12px;bottom:12px}#fab .main{font-size:16px;padding:8px 8px 8px 18px}#fab .main b{width:38px;height:38px}#fab .sub{display:none}
   #board{left:10px;bottom:12px}#board svg{height:18px}
   .ribbon{height:170px;margin-top:-30px}
@@ -575,20 +560,11 @@ footer .meta2{display:flex;justify-content:space-between;font-size:13px;color:#9
 <section id="game" class="pad">
   <div class="panel ink">
     <svg class="loopbg" viewBox="0 0 1400 800" preserveAspectRatio="none"><path d="M-50 200 C 200 500, 400 -100, 640 260 C 820 520, 1000 640, 980 440 C 960 260, 760 340, 860 560 C 960 760, 1300 700, 1460 760"/></svg>
-    <div class="wrap pgrid">
-      <div class="gl">
-        <div class="label"><i>★</i>리워드 게임 <em>REWARD GAME</em></div>
-        <h2 class="lg">룰렛만<br>있는 줄 <span class="red">알았죠?</span></h2>
-        <p class="lead">스탬프를 다 모으면 게임 한 판. 리워드를 뽑는 방식을 룰렛을 포함한 6가지 게임 중에 골라요.</p>
-        <div class="gtabs" id="gtabs"></div>
-        <div class="ginfo" id="ginfo"></div>
-      </div>
-      <div class="gr" id="gr">
-        <div class="gp main" id="gmain"><div class="tap" id="gtap"></div></div>
-        <div class="gp sd b" id="gB"><img alt=""></div><span class="gcap pill w b">박스형</span>
-        <div class="gp sd c" id="gC"><img alt=""></div><span class="gcap pill w c">라인형</span>
-        <div class="gsteps"><span class="pill r" id="gstep"></span><span class="dots" id="gdots"></span></div>
-      </div>
+    <div class="wrap">
+      <div class="shead"><div><div class="label"><i>★</i>리워드 게임 <em>REWARD GAME</em></div><h2 class="lg">룰렛만<br>있는 줄 <span class="red">알았죠?</span></h2></div><p class="lead">스탬프를 다 모으면 게임 한 판. 리워드를 뽑는 방식을 룰렛을 포함한 6가지 게임 중에 골라요. 게임마다 기본형·박스형·라인형 3가지 디자인이 있어요.</p></div>
+      <p class="gswipe">옆으로 넘겨서 6가지 게임을 모두 보세요 →</p>
+      <div class="ggrid" id="ggrid"></div>
+      <div class="gfoot" id="gfoot"></div>
     </div>
   </div>
 </section>
@@ -710,23 +686,10 @@ document.getElementById('logowall').innerHTML=LOGOS.map(l=>`<span title="${l.alt
    chips:['배경 이미지 설정'],
    fr:[['ladder_ready',39,30,'① 시작할 번호를 골라요'],['ladder_doing',39,30,'② 사다리를 타고 내려가 결과를 확인해요']]}
  ];
- const tabs=document.getElementById('gtabs'),info=document.getElementById('ginfo'),main=document.getElementById('gmain'),tap=document.getElementById('gtap'),step=document.getElementById('gstep'),dots=document.getElementById('gdots');
  const img=n=>`assets/img/game/${n}.png`;
- tabs.innerHTML=G.map(g=>`<button class="gtab"><span class="ic">${g.ic}</span><span><span>${g.n}</span><small>${g.en}</small></span>${g.nw?'<span class="nw">NEW</span>':''}</button>`).join('');
- const tb=[...tabs.children];let cur=0,fi=0,timer=0,locked=false,vis=false;
- function show(i){cur=i;fi=0;tb.forEach((b,j)=>b.classList.toggle('on',j===i));const g=G[i];
-  info.innerHTML=`<h3>${g.n}${g.nw?'<span class="pill r" style="font-size:12px;padding:3px 9px">NEW</span>':''}</h3><p>${g.d}</p><div class="gchips">${g.chips.map(c=>`<span>${c}</span>`).join('')}</div>`+(g.real?`<a class="greal" href="${R.link}" target="_blank"><img src="${R.img}" alt=""><div><small>실제로 쓴 행사</small><b>${g.real.name}</b></div></a>`:'<p class="gnote">※ 화면은 템플릿 예시예요. 기본형·박스형·라인형 3가지 디자인 중에서 골라요.</p>');
-  main.querySelectorAll('img').forEach(e=>e.remove());
-  [...new Set(g.fr.map(f=>f[0]))].forEach(n=>{const e=document.createElement('img');e.src=img(n);e.dataset.n=n;e.alt=g.n+' 화면 예시';e.className='off';main.insertBefore(e,tap)});
-  ['B','C'].forEach(v=>{const w=document.getElementById('g'+v),e=w.querySelector('img');e.src=img(g.k+'_'+v);e.alt=g.n+(v==='B'?' 박스형':' 라인형');w.classList.remove('pop');void w.offsetWidth;w.classList.add('pop')});
-  dots.innerHTML=g.fr.map(()=>'<i></i>').join('');frame(0)}
- function frame(j){fi=j;const g=G[cur],f=g.fr[j];main.querySelectorAll('img').forEach(e=>e.classList.toggle('off',e.dataset.n!==f[0]));
-  if(f[1]==null)tap.classList.add('hide');else{tap.classList.remove('hide');tap.style.left=f[1]+'%';tap.style.top=f[2]+'%'}
-  step.textContent=f[3];[...dots.children].forEach((d,k)=>d.classList.toggle('on',k===j))}
- function tick(){if(!vis)return;const g=G[cur];if(fi+1<g.fr.length)frame(fi+1);else if(!locked)show((cur+1)%G.length);else frame(0)}
- tb.forEach((b,i)=>b.onclick=()=>{locked=true;show(i)});
- show(0);setInterval(tick,2600);
- new IntersectionObserver(es=>es.forEach(e=>vis=e.isIntersecting),{threshold:.25}).observe(document.getElementById('game'));
+ const MAIN={roulette:'roulette',scratch:'scratch_ready',slot:'slot',mystery:'mystery',flip:'flip_ready',ladder:'ladder_ready'};
+ document.getElementById('ggrid').innerHTML=G.map(g=>`<article class="gcard rise"><div class="gst">${g.nw?'<span class="nw">NEW</span>':''}<div class="gp sb"><img src="${img(g.k+'_B')}" alt="${g.n} 박스형" loading="lazy"></div><div class="gp sc"><img src="${img(g.k+'_C')}" alt="${g.n} 라인형" loading="lazy"></div><div class="gp m"><img src="${img(MAIN[g.k])}" alt="${g.n} 화면 예시" loading="lazy"></div><span class="vt vl">박스형</span><span class="vt vr">라인형</span></div><div class="gb"><h3><small>${g.en}</small>${g.n}</h3><p>${g.d}</p><div class="gchips">${g.chips.map(c=>`<span>${c}</span>`).join('')}</div></div></article>`).join('');
+ const r=G.find(g=>g.real);document.getElementById('gfoot').innerHTML=`<a class="greal" href="${R.link}" target="_blank"><img src="${R.img}" alt=""><div><small>룰렛을 실제로 쓴 행사</small><b>${r.real.name}</b></div></a><p class="gnote">※ 화면은 템플릿 예시예요. 룰렛 외 5종은 새로 추가됐어요.</p>`;
 })();
 /* 현장 영상 */
 (function(){const V=[

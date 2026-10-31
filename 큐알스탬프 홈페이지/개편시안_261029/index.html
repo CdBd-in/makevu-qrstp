@@ -310,9 +310,9 @@ header .r{display:flex;justify-content:flex-end}
 .filters button{border:0;cursor:pointer;background:#fff;border-radius:999px;padding:11px 18px;font-weight:700;font-size:15px;letter-spacing:-.02em}
 .filters button.on{background:var(--ink);color:#fff}
 .filters button i{font-style:normal;color:var(--red);margin-left:4px}
-.wgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gap)}
+.wgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap)}
 .wk{display:flex;flex-direction:column}
-.wk .ph{position:relative;aspect-ratio:1/1.04;border-radius:24px;background:var(--pink);display:flex;align-items:center;justify-content:center;overflow:hidden;transition:background .3s,transform .3s}
+.wk .ph{position:relative;aspect-ratio:1/1.1;border-radius:24px;background:var(--pink);display:flex;align-items:center;justify-content:center;overflow:hidden;transition:background .3s,transform .3s}
 .wk:hover .ph{background:#f9cfc8;transform:translateY(-4px)}
 .wk .fr{position:relative;display:block;overflow:hidden;transition:transform .4s cubic-bezier(.3,1.4,.5,1)}
 .wk:hover .fr{transform:scale(1.04) rotate(-1.2deg)}
@@ -323,18 +323,18 @@ header .r{display:flex;justify-content:flex-end}
 h2.split.in .sw>i{transform:none}
 .cta,#fab .main{translate:var(--mx,0) var(--my,0);transition:translate .25s cubic-bezier(.2,.8,.2,1)}
 /* 모든 카드가 같은 휴대폰 프레임(크기 고정) */
-.wk .ph.phone .fr{height:82%;aspect-ratio:9/18;border:4px solid var(--ink);border-radius:20px;background:var(--ink);box-shadow:0 14px 28px rgba(22,23,29,.16)}
+.wk .ph.phone .fr{height:88%;aspect-ratio:9/18;border:4px solid var(--ink);border-radius:20px;background:var(--ink);box-shadow:0 14px 28px rgba(22,23,29,.16)}
 .wk .ph.phone .fr img{object-fit:cover;object-position:center top}
 .wk .ph.phone .fr img.alt{opacity:0}
 .wk:hover .ph.phone .fr img.alt{opacity:1}
 /* 화면 캡처가 없는 사례: 사진 · 합성/가로 이미지는 잘리지 않게 */
-.wk .ph.photo .fr{height:82%;aspect-ratio:4/5;border-radius:18px;box-shadow:0 14px 28px rgba(22,23,29,.14)}
+.wk .ph.photo .fr{height:88%;aspect-ratio:4/5;border-radius:18px;box-shadow:0 14px 28px rgba(22,23,29,.14)}
 .wk .ph.photo .fr img{object-fit:cover}
 .wk .ph.phone.poster .fr img{object-fit:contain;object-position:center top}
 .wk .ph.wide .fr{width:82%;height:62%;border-radius:14px;background:#fff;box-shadow:0 14px 28px rgba(22,23,29,.14)}
 .wk .ph.wide .fr img{object-fit:contain;padding:6px}
-.wk b{font-size:18px;letter-spacing:-.03em;line-height:1.35;margin-top:14px;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
-.wk .ev{font-size:14px;color:var(--sub);line-height:1.5;margin-top:3px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:3em}
+.wk b{font-size:20px;letter-spacing:-.03em;line-height:1.35;margin-top:14px;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+.wk .ev{font-size:15px;color:var(--sub);line-height:1.5;margin-top:3px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:3em}
 .wk .dt{font-style:normal;font-size:12px;font-weight:700;color:var(--red);margin-top:6px;letter-spacing:-.01em}
 .wk.hide{display:none}
 .morebar{display:flex;justify-content:center;margin-top:44px}
@@ -415,7 +415,7 @@ footer .meta2{display:flex;justify-content:space-between;font-size:13px;color:#9
 .proto{position:fixed;left:50%;transform:translateX(-50%);bottom:10px;z-index:49;font-size:11px;font-weight:700;color:#9a9ba3}
 
 @media(max-width:1100px){
-  .wgrid{grid-template-columns:repeat(3,1fr)}.fgrid{grid-template-columns:repeat(2,1fr)}.ggrid{grid-template-columns:repeat(2,1fr)}.logowall{grid-template-columns:repeat(4,1fr)}
+  .wgrid{grid-template-columns:repeat(2,1fr)}.fgrid{grid-template-columns:repeat(2,1fr)}.ggrid{grid-template-columns:repeat(2,1fr)}.logowall{grid-template-columns:repeat(4,1fr)}
   .steps4{grid-template-columns:repeat(2,1fr);row-gap:48px}.st:nth-child(2)::after{display:none}
 }
 @media(max-width:900px){
@@ -449,6 +449,7 @@ footer .meta2{display:flex;justify-content:space-between;font-size:13px;color:#9
   .cc.end{width:min(70vw,280px);min-height:300px}
   .cmeta .bar,.cmeta .cnt2,.cmeta .hs{display:none}.cmeta .hn{display:inline}
 }
+@media(max-width:560px){.wgrid{grid-template-columns:1fr}}
 @media(max-width:620px){.mt{grid-template-columns:1fr}.mtl{padding:24px 22px 20px}.mtr .fr{width:min(100%,200px)}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rise{opacity:1;transform:none}#hero h1 .ln span{transform:none}.sw>i{transform:none}.stk{transform:rotate(var(--r)) scale(1)}}
 </style>
@@ -673,7 +674,7 @@ document.getElementById('mq').innerHTML=(LOGOS.map(l=>`<span><img src="${l.src}"
 document.getElementById('logowall').innerHTML=LOGOS.map(l=>`<span title="${l.alt}"><img src="${l.src}" alt="${l.alt}"></span>`).join('');
 /* 사례 필터 + 더 보기 */
 (function(){const g=document.getElementById('wgrid'),cards=[...g.children],segs=['전체',...new Set(cards.map(c=>c.dataset.seg))],f=document.getElementById('filters'),btn=document.getElementById('morebtn'),bar=document.getElementById('morebar'),fade=document.getElementById('wfade');
- const LIM=()=>innerWidth<900?6:8;let sel=0,open=false;
+ const LIM=()=>innerWidth<560?4:innerWidth<900?6:9;let sel=0,open=false;
  f.innerHTML=segs.map(s=>`<button>${s}<i>${s==='전체'?cards.length:cards.filter(c=>c.dataset.seg===s).length}</i></button>`).join('');const bs=[...f.children];
  function render(){const list=cards.filter(c=>sel===0||c.dataset.seg===segs[sel]),lim=LIM(),over=list.length>lim;
   cards.forEach(c=>c.classList.add('hide'));list.forEach((c,i)=>{const show=open||i<lim;c.classList.toggle('hide',!show);if(show)c.classList.add('in')});

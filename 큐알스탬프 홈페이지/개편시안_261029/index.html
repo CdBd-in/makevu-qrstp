@@ -64,7 +64,9 @@ header>*{pointer-events:auto}
 header .l{display:flex;gap:6px}
 header .l a{background:#fff;border-radius:999px;padding:9px 16px;font-size:14px;font-weight:600;letter-spacing:-.015em;transition:background .2s,color .2s}
 header .l a:hover{background:var(--ink);color:#fff}
-header .brand{display:block;justify-self:center;background:#fff;border-radius:999px;padding:8px 22px;box-shadow:0 6px 18px rgba(22,23,29,.08)}
+header .brand{display:block;justify-self:center;padding:8px 6px}
+header .logo{transition:filter .25s}
+header.ondark .logo{filter:drop-shadow(1.5px 0 0 #fff) drop-shadow(-1.5px 0 0 #fff) drop-shadow(0 1.5px 0 #fff) drop-shadow(0 -1.5px 0 #fff)}
 header .logo{height:24px;width:auto}
 header .l a.on{background:var(--ink);color:#fff}
 header .r{display:flex;justify-content:flex-end}
@@ -123,6 +125,63 @@ header .r{display:flex;justify-content:flex-end}
 .mqi span{background:transparent}
 .mqi img{opacity:.85}
 
+/* 부가 서비스 — 모바일 페이지(강조) · 샵플랜 */
+.mpg{display:flex;flex-direction:column;gap:clamp(28px,3vw,44px)}
+.mpl{display:flex;flex-direction:column;gap:20px}
+.mp-2c{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,3vw,48px);align-items:start}
+.mp-c{display:flex;flex-direction:column;gap:14px}
+.mp-c .sm{margin-top:0}
+.mp-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:12px}
+.mp-stats>div{background:rgba(255,255,255,.1);border:2px solid rgba(255,255,255,.18);border-radius:22px;padding:18px 18px 20px;display:flex;flex-direction:column;gap:6px}
+.mp-stats small{font-size:13px;font-weight:700;color:#d6d6dc}
+.mp-stats b{font-size:clamp(20px,1.7vw,26px);letter-spacing:-.035em;line-height:1.25;font-weight:700}
+.mp-stats b em{font-style:normal;color:var(--red);background:#fff;border-radius:10px;padding:0 8px;margin:0 2px}
+.mp-stats span{font-size:12px;line-height:1.5;color:#c9cad1}
+.mpl .sm{margin-top:10px}
+.mp-note{font-size:16px;line-height:1.65;color:#d6d6dc;margin-top:-6px}
+.mp-chips{display:flex;flex-wrap:wrap;gap:8px}
+.mp-chips span{border:2px solid rgba(255,255,255,.35);border-radius:999px;padding:7px 14px;font-size:14px;font-weight:700}
+.mp-ways{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.mp-ways>div{background:#fff;color:var(--ink);border-radius:20px;padding:16px 18px;display:flex;flex-direction:column;gap:6px}
+.mp-ways b{font-size:16px;letter-spacing:-.02em}
+.mp-ways span{font-size:14px;color:var(--sub);line-height:1.55}
+.mpr{display:flex;flex-direction:column;align-items:center;gap:18px}
+.mp-phones{position:relative;width:100%;container-type:inline-size;height:clamp(300px,calc(100cqw*.345),470px)}
+.mpph{--w:clamp(96px,17.5cqw,250px);position:absolute;width:var(--w);aspect-ratio:380/580;left:50%;margin-left:calc(var(--w)*-.5);top:20px;border:5px solid #fff;border-radius:26px;overflow:hidden;background:#fff;box-shadow:0 26px 50px rgba(0,0,0,.5)}
+.mpph img{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
+.mpph.p1{transform:translate(calc(var(--w)*-1.55),calc(var(--w)*.2)) rotate(-9deg);z-index:1}
+.mpph.p2{transform:translate(calc(var(--w)*-.52),calc(var(--w)*.03)) rotate(-3deg);z-index:3}
+.mpph.p3{transform:translate(calc(var(--w)*.52),calc(var(--w)*.03)) rotate(3deg);z-index:3}
+.mpph.p4{transform:translate(calc(var(--w)*1.55),calc(var(--w)*.2)) rotate(9deg);z-index:1}
+.mp-case{display:flex;flex-direction:column;gap:6px;align-items:center;text-align:center;background:#fff;color:var(--ink);border-radius:22px;padding:18px 24px;max-width:480px;transition:transform .3s}
+.mp-case:hover{transform:translateY(-4px)}
+.mp-case b{font-size:20px;letter-spacing:-.03em}
+.mp-case span:not(.pill){font-size:14px;color:var(--sub);line-height:1.55}
+.mp-flow{margin-top:clamp(36px,5vw,64px)}
+.mp-flow ol{list-style:none;display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:16px;counter-reset:n}
+.mp-flow li{background:rgba(255,255,255,.08);border-radius:20px;padding:16px 16px 18px;display:flex;flex-direction:column;gap:6px;position:relative}
+.mp-flow li b{font-size:16px;letter-spacing:-.025em;color:#fff}
+.mp-flow li span{font-size:13px;line-height:1.55;color:#c9cad1}
+.mp-cta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:clamp(28px,3vw,44px)}
+.mp-cta .cta{background:var(--red)}.mp-cta .cta b{background:#fff;color:var(--ink)}
+.mp-cta .cta.w{background:transparent;color:#fff;box-shadow:inset 0 0 0 2px #fff;font-size:15px;padding:6px 6px 6px 18px}.mp-cta .cta.w b{width:32px;height:32px;background:var(--red);color:#fff}
+.mp-cta p{flex-basis:100%;font-size:13px;color:#c9cad1;margin-top:6px}
+#shop{padding:clamp(40px,5vw,72px) 0}
+.shopc{background:#fff;border-radius:var(--r-panel);padding:clamp(24px,3.4vw,48px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,64px);align-items:start}
+.sh-l .lead{margin-top:14px;color:var(--ink);font-weight:600}
+.sh-q{margin-top:22px;display:flex;flex-direction:column;gap:8px}
+.sh-q small{font-size:13px;font-weight:700;color:var(--red)}
+.sh-q span{background:var(--cream);border-radius:16px;padding:11px 16px;font-size:15px;color:var(--ink);line-height:1.5}
+.sh-r{display:flex;flex-direction:column;gap:12px}
+.sh-t{display:flex;align-items:center;gap:14px;background:var(--pink);border-radius:20px;padding:16px 18px}
+.sh-t i{flex:none;width:36px;height:36px;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-style:normal;font-weight:700}
+.sh-t b{display:block;font-size:17px;letter-spacing:-.025em}
+.sh-t span{display:block;font-size:14px;color:var(--sub);line-height:1.5;margin-top:2px}
+.sh-cta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:8px}
+.sh-cta .cta.w{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink);font-size:15px;padding:6px 6px 6px 18px}.sh-cta .cta.w b{width:32px;height:32px}
+.sh-cta small{flex-basis:100%;font-size:13px;color:var(--sub)}
+@media(max-width:960px){.mp-2c{grid-template-columns:1fr}.shopc{grid-template-columns:1fr}.mp-flow ol{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.mp-stats,.mp-ways{grid-template-columns:1fr}.mp-flow ol{grid-template-columns:1fr}.mp-phones{height:260px}.mpph{--w:clamp(92px,26cqw,150px)}}
 /* ribbon */
 .ribbon{position:relative;height:260px;z-index:3;pointer-events:none;margin-top:-52px;overflow:hidden}
 .ribbon svg{position:absolute;left:-2%;width:104%;height:100%;overflow:visible}
@@ -458,7 +517,7 @@ footer .meta2{display:flex;justify-content:space-between;font-size:13px;color:#9
 @media(max-width:900px){
   :root{--wl:20px;--gap:16px}
   .wrap,.panel>.wrap{padding-inline:20px}.sec{padding:72px 0}
-  header{grid-template-columns:auto auto;justify-content:space-between;padding:12px 14px}header .l{display:none}header .brand{padding:6px 16px}header .logo{height:20px}
+  header{grid-template-columns:auto auto;justify-content:space-between;padding:12px 14px}header .l{display:none}header .brand{padding:6px 4px}header .logo{height:20px}
   .guide{font-size:13px;padding:5px 6px 5px 12px}.guide b{width:24px;height:24px}
   #hero{padding-top:84px}#hero .wrap{padding:0 20px}#hero .stk{display:none}#hero .ctas{flex-wrap:wrap}
   .hP{--w:clamp(110px,26vw,170px)}
@@ -671,8 +730,56 @@ footer .meta2{display:flex;justify-content:space-between;font-size:13px;color:#9
       <div class="plan rise d1"><p class="ld">이벤트 참여자의<br>개인 정보 수집이 가능한</p><h3>리드 플랜</h3><div class="tags"><span>#신제품 팝업</span><span>#기업 세미나</span></div><dl><dt>본인 인증</dt><dd>휴대폰/이메일</dd><dt>기간</dt><dd>7일~</dd><dt>스탬프</dt><dd>5회~</dd></dl><div class="price">200만원~</div></div>
       <div class="plan rise d2"><p class="ld">출석 체크 방식으로<br>재방문을 유도하는</p><h3>데일리 플랜</h3><div class="tags"><span>#프랜차이즈</span><span>#백화점</span><span>#F&amp;B 매장</span></div><dl><dt>본인 인증</dt><dd>휴대폰/이메일</dd><dt>기간</dt><dd>90일~</dd><dt>스탬프</dt><dd>10회~</dd></dl><div class="price">200만원~</div></div>
     </div>
-    <div class="extra"><a href="#"><span><b>QR로 상품 판매도 — 샵플랜</b>단말기 없이 QR 하나로 · 카드·간편결제·계좌이체</span><span>↗</span></a><a href="#"><span><b>이벤트 안내 모바일 페이지</b>이벤트 내용·스탬프 스팟 지도까지 함께</span><span>↗</span></a></div>
   </div>
+</section>
+
+<section id="addon" class="pad">
+  <div class="panel ink">
+    <svg class="loopbg" viewBox="0 0 1400 800" preserveAspectRatio="none"><path d="M-50 600 C 200 300, 500 900, 700 500 C 820 260, 1000 260, 980 440 C 960 600, 760 520, 860 340 C 980 140, 1300 160, 1460 60"/></svg>
+    <div class="wrap">
+      <div class="shead"><div><div class="label"><i>＋</i>부가 서비스 <em>MOBILE PAGE</em></div><h2 class="lg">행사 소개는<br><span class="red">스마트폰 한 화면</span>으로</h2></div><p class="lead">스탬프 투어 참여자에게 행사 취지·동선·미션을 스마트폰 한 화면에서 보여주는 모바일 콘텐츠 페이지를 함께 제작해 드려요. URL 하나로 SNS·문자·QR 어디에든 붙일 수 있어요.</p></div>
+      <div class="mpg">
+        <div class="mpr">
+          <div class="mp-phones">
+            <div class="mpph p1"><img src="assets/img/mp/cover.jpg" alt="모바일 페이지 표지 예시" loading="lazy"></div>
+            <div class="mpph p2"><img src="assets/img/mp/howto.jpg" alt="모바일 페이지 참여 방법 안내 예시" loading="lazy"></div>
+            <div class="mpph p3"><img src="assets/img/mp/venue1.jpg" alt="모바일 페이지 명소 소개 예시" loading="lazy"></div>
+            <div class="mpph p4"><img src="assets/img/mp/goods.jpg" alt="모바일 페이지 기념품 안내 예시" loading="lazy"></div>
+          </div>
+          <a class="mp-case" href="https://www.cdbd.in/ccstamptour/stamptour" target="_blank"><span class="pill r">실제 제작 사례</span><b>김유정 실레마을 시간여행</b><span>참여 방법·실레마을 지도·명소 소개·기념품 안내까지 15장으로 구성한 모바일 페이지 · 직접 넘겨보기 ↗</span></a>
+        </div>
+        <div class="mpl">
+          <div class="mp-stats">
+            <div class="rise"><small>기본 단가</small><b>페이지당 <em>11만 원</em>부터</b></div>
+            <div class="rise d1"><small>평균 제작 기간</small><b>5페이지 기준 <em>약 1주일</em></b></div>
+            <div class="rise d2"><small>수정 횟수</small><b><em>무제한</em></b><span>내용·디자인 컨셉이 바뀌는 큰 변경은 추가 비용이 발생해요</span></div>
+          </div>
+          <div class="mp-2c"><div class="mp-c">
+          <h3 class="sm">어떤 콘텐츠도 만들 수 있어요</h3>
+          <p class="mp-note">이미 만들어진 템플릿이 아니라, 이벤트 취지·톤·타깃에 맞춰 필요한 페이지 수만큼 자유롭게 구성해요.</p>
+          <div class="mp-chips"><span>모바일 리플렛</span><span>모바일 브로셔</span><span>모바일 초대장</span><span>오시는 길·프로그램표</span><span>작가·창작자 소개</span><span>후원·파트너 소개</span><span>사후 리포트</span></div>
+          </div><div class="mp-c">
+          <h3 class="sm">스탬프 투어와 이렇게 이어져요</h3>
+          <div class="mp-ways"><div><b>① 단독으로</b><span>사전 홍보용 SNS 콘텐츠, 초대장, 후원사 소개. QR로 바꿔 현장 부착물에 붙일 수도 있어요</span></div><div><b>② 스탬프 투어 안 버튼으로</b><span>시작·리워드 페이지에 「행사 소개 보기」「오시는 길」 버튼을 달아 연결해요</span></div></div>
+          </div></div>
+        </div>
+      </div>
+      <div class="mp-flow"><h3 class="sm">이렇게 만들어요</h3><ol><li><b>1 상담·기획</b><span>행사 취지·메시지·타깃·페이지 수를 정리해요</span></li><li><b>2 구성안 제안</b><span>페이지별 섹션과 필요한 자료 목록을 드려요</span></li><li><b>3 자료 수령·디자인</b><span>사진이 부족하면 스톡 이미지도 쓸 수 있어요</span></li><li><b>4 검수·수정</b><span>URL로 공유드려 스마트폰에서 직접 확인해요</span></li><li><b>5 배포·연결</b><span>최종 URL과 QR 발행, 스탬프 투어 버튼 연결까지</span></li></ol></div>
+      <div class="mp-cta"><a class="cta" href="상담신청페이지.html">모바일 페이지 제작 문의 <b>↗</b></a><a class="cta w" href="https://qrstp.mintlify.app/add-ons/mobile-content" target="_blank">자세히 알아보기 <b>↗</b></a><p>자료(텍스트·사진·로고)는 고객사에서 준비해 주세요. 페이지 수·디자인 난이도·자료 준비 상태에 따라 견적이 달라져요.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="shop">
+  <div class="wrap"><div class="shopc rise">
+    <div class="sh-l"><div class="label"><i>＋</i>부가 서비스 <em>SHOP PLAN</em></div><h2 class="md">QR로 상품 판매도,<br><span class="red">샵플랜</span></h2><p class="lead">단기 행사를 위한 QR 결제예요. 단말기 대여 없이 카드·간편결제·계좌이체를 받을 수 있어요.</p>
+      <div class="sh-q"><small>운영자님, 이런 적 있으셨죠?</small><span>“행사 며칠 쓰자고 단말기를 사거나 빌려야 하나?”</span><span>“단말기 대여 비용과 보증금, 챙길 게 너무 많아요.”</span><span>“행사 날짜는 코앞인데, 계약하고 심사 받고… 시간 다 가요.”</span><span>“고객마다 선호하는 결제수단이 달라서 모두 대응하기 어려워요.”</span></div></div>
+    <div class="sh-r"><div class="sh-t rise"><i>1</i><div><b>단말기 없이 QR로만</b><span>단말기 대여·설치 없이 QR 하나로 판매할 수 있어요</span></div></div>
+      <div class="sh-t rise d1"><i>2</i><div><b>부담 없이 0원 시작</b><span>0원으로 시작하고 판매 수수료만 부담해요 (최소 이용비 10만 원)</span></div></div>
+      <div class="sh-t rise d2"><i>3</i><div><b>복잡한 심사 없이 시작</b><span>PG 심사·복잡한 계약 없이 이벤트를 진행할 수 있어요</span></div></div>
+      <div class="sh-t rise d3"><i>4</i><div><b>다양한 결제수단</b><span>카드, 계좌이체, 간편결제, 가상계좌 등을 지원해요</span></div></div>
+      <div class="sh-cta"><a class="cta" href="상담신청페이지.html">샵플랜 상담하기 <b>↗</b></a><a class="cta w" href="https://lean-office-a61.notion.site/shop-plan" target="_blank">샵플랜 자세히 보기 <b>↗</b></a><small>팝업·부스·축제 단기 운영에 어울려요</small></div></div>
+  </div></div>
 </section>
 
 <section class="sec" id="faq">
@@ -817,7 +924,7 @@ setInterval(()=>{if(aVis&&!aLock)setAdmin((ai+1)%6)},3300);
 new IntersectionObserver(es=>es.forEach(e=>aVis=e.isIntersecting),{threshold:.4}).observe(document.getElementById('screen'));
 /* 메뉴: 지금 보고 있는 구간 표시 */
 const spy=[['custom','#custom'],['type','#type'],['admin','#admin'],['works','#works'],['plans','#plans']].map(([k,s])=>[document.querySelector('header .l a[href="#'+k+'"]'),document.querySelector(s)]);
-function tick(){const y=scrollY;document.getElementById('rbt').setAttribute('startOffset',String(-((y*.6)%1300)));
+function tick(){const y=scrollY;{const hb=document.querySelector('header .brand').getBoundingClientRect(),cy=hb.top+hb.height/2;document.querySelector('header').classList.toggle('ondark',[...document.querySelectorAll('.panel,#final,footer')].some(e=>{const r=e.getBoundingClientRect();return r.top<=cy&&r.bottom>=cy}))}document.getElementById('rbt').setAttribute('startOffset',String(-((y*.6)%1300)));
  const sp=_stmt.p.getBoundingClientRect();const k=Math.min(1,Math.max(0,(innerHeight*.8-sp.top)/(sp.height+innerHeight*.25)));const n=Math.floor(k*_stmt.words.length);_stmt.words.forEach((w,i)=>w.classList.toggle('on',i<n));_stmt.tags.forEach(t=>t.classList.toggle('on',+t.dataset.at<n));
  if(travel){const r=cpin.getBoundingClientRect();const p=Math.min(1,Math.max(0,-r.top/Math.max(1,r.height-innerHeight)));track.style.transform=`translateX(${-p*travel}px)`;const step=track.children[0].offsetWidth+parseFloat(getComputedStyle(track).columnGap||24);ccount.textContent=String(Math.min(7,Math.round(p*travel/step)+1)).padStart(2,'0')+' / 07';cbar.style.width=(p*100)+'%'}
  let cur=null;spy.forEach(([a,s])=>{if(a&&s.getBoundingClientRect().top<=innerHeight*.4)cur=a});spy.forEach(([a])=>a&&a.classList.toggle('on',a===cur))}

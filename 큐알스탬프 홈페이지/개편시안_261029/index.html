@@ -88,22 +88,30 @@ header .r{display:flex;justify-content:flex-end}
 #board.pop{animation:bp .5s}
 @keyframes bp{40%{transform:scale(1.18) rotate(-3deg)}}
 
-/* hero */
-#hero{background:var(--pink);position:relative;overflow:hidden;padding-top:clamp(88px,12vh,116px)}
-#hero .loops{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
-#hero .loops path{fill:none;stroke:var(--red);stroke-width:28;stroke-linecap:round}
-#hero h1{position:relative;text-align:center;color:var(--red);z-index:2}
+/* hero — B안(2026-10-31 대표님 선택): 중앙 카피 + 부채꼴 폰 4대. 제목·한 줄 설명·상담 버튼이 주인공, 폰은 첫 화면 아래를 채움 */
+#hero{background:var(--pink);position:relative;overflow:hidden;padding-top:clamp(92px,12vh,116px);min-height:100svh;display:flex;flex-direction:column}
+#hero h1{position:relative;text-align:center;color:var(--ink);z-index:2;font-size:clamp(50px,6.4vw,100px);line-height:1.06;letter-spacing:-.045em}
+#hero h1 em{font-style:normal;color:var(--red)}
 #hero h1 .ln{display:block;overflow:hidden;padding:.02em .05em .06em}
 #hero h1 .ln span{display:inline-block;transform:translateY(110%);animation:up .9s cubic-bezier(.2,1,.2,1) forwards}
 #hero h1 .ln:nth-child(2) span{animation-delay:.12s}
 @keyframes up{to{transform:none}}
-#hero .sub{text-align:center;margin:22px auto 0;max-width:620px;color:var(--ink);font-weight:600;position:relative;z-index:2}
-#hero .ctas{display:flex;justify-content:center;gap:10px;margin-top:24px;position:relative;z-index:2}
-.stage{--ph:clamp(250px,36vh,380px);position:relative;height:calc(var(--ph) - 20px);margin-top:44px;z-index:2}
-.hp{position:absolute;bottom:-60px;width:calc(var(--ph)*.52);animation:flo 5s ease-in-out infinite}
-.hp .ph{height:var(--ph);border-radius:30px;overflow:hidden;border:7px solid var(--ink);background:var(--ink);box-shadow:0 30px 60px rgba(22,23,29,.22)}
-.hp .ph img{display:block;width:100%;height:100%;object-fit:cover;object-position:center top;transform:scale(1.02);transform-origin:center top}
-.hp .cap{position:absolute;left:0;right:0;bottom:calc(100% + 10px);display:flex;flex-direction:column;align-items:center;gap:5px;z-index:2;white-space:nowrap}.hp .cap .pill{font-size:13px;padding:6px 12px}
+#hero .sub{text-align:center;margin:20px auto 0;max-width:660px;color:var(--ink);font-weight:600;font-size:clamp(18px,1.7vw,24px);line-height:1.55;position:relative;z-index:2}
+#hero .ctas{display:flex;justify-content:center;align-items:center;gap:10px;margin-top:26px;position:relative;z-index:2}
+#hero .cta:not(.w){font-size:20px;padding:10px 10px 10px 30px}
+#hero .cta:not(.w) b{width:46px;height:46px}
+#hero .cta.w{font-size:15px;background:transparent;color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink);padding:6px 6px 6px 18px}
+#hero .cta.w b{width:32px;height:32px}
+.hB-fan{position:relative;flex:1;min-height:clamp(260px,40vh,400px);margin-top:20px}
+.hB-ring{position:absolute;left:50%;top:-40px;width:min(980px,120vw);aspect-ratio:1;border-radius:50%;background:#F4BEB4;transform:translateX(-50%);opacity:.55}
+.hP{--w:clamp(180px,17vw,250px);position:absolute;display:block;width:var(--w);aspect-ratio:9/19;left:50%;margin-left:calc(var(--w)*-.5);top:12px;border:7px solid var(--ink);border-radius:34px;overflow:hidden;background:var(--ink);box-shadow:0 30px 60px rgba(22,23,29,.30);transition:translate .35s cubic-bezier(.3,1.4,.5,1)}
+.hP:hover{translate:0 -14px}
+.hP img{display:block;width:100%;height:100%;object-fit:cover;object-position:center top}
+.hP.p1{transform:translate(calc(var(--w)*-1.62),46px) rotate(-14deg);z-index:1}
+.hP.p2{transform:translate(calc(var(--w)*-.56),6px) rotate(-5deg);z-index:3}
+.hP.p3{transform:translate(calc(var(--w)*.56),6px) rotate(5deg);z-index:3}
+.hP.p4{transform:translate(calc(var(--w)*1.62),46px) rotate(14deg);z-index:1}
+@keyframes up{to{transform:none}}
 .logostrip{background:#fff;position:relative;z-index:3;padding:22px 0;margin-top:34px}
 .mqw{overflow:hidden}
 .logostrip .ttl{position:absolute;left:var(--wl);top:-20px;z-index:2;transform:rotate(-3deg)}
@@ -111,21 +119,10 @@ header .r{display:flex;justify-content:flex-end}
 .mqi span{width:var(--cw);height:calc(var(--cw)*.5);flex:none;display:flex;align-items:center;justify-content:center;padding:8px 14px;border-radius:20px;background:var(--cream)}
 .mqi img{width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply;transform:scale(1.1)}
 @keyframes mq{to{transform:translateX(-50%)}}
-
-/* hero 강약 정리(2026-10-31): 제목·한 줄 설명·상담 버튼이 주인공, 나머지는 한 단계 낮춤 */
-#hero .loops path{stroke:#F4BEB4;stroke-width:22}
-#hero .stk.pill{background:#fff;color:var(--ink);font-size:14px;font-weight:600;box-shadow:0 6px 16px rgba(22,23,29,.08)}
-#hero .sub{font-size:clamp(20px,1.9vw,27px);line-height:1.55;font-weight:600;max-width:780px;margin-top:26px}
-#hero .ctas{margin-top:30px;align-items:center}
-#hero .cta:not(.w){font-size:20px;padding:10px 10px 10px 30px}
-#hero .cta:not(.w) b{width:46px;height:46px}
-#hero .cta.w{font-size:15px;background:transparent;color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink);padding:6px 6px 6px 18px}
-#hero .cta.w b{width:32px;height:32px}
-.stage{--ph:clamp(230px,32vh,350px)}
-.hp .cap .pill{background:#fff;color:var(--ink);font-size:12px;padding:5px 11px;font-weight:600}
 .logostrip .ttl{background:#fff;color:var(--sub);font-size:13px;font-weight:600;box-shadow:none;transform:none;top:-14px;border:2px solid var(--cream)}
 .mqi span{background:transparent}
 .mqi img{opacity:.85}
+
 /* ribbon */
 .ribbon{position:relative;height:260px;z-index:3;pointer-events:none;margin-top:-52px;overflow:hidden}
 .ribbon svg{position:absolute;left:-2%;width:104%;height:100%;overflow:visible}
@@ -424,7 +421,7 @@ footer .meta2{display:flex;justify-content:space-between;font-size:13px;color:#9
   header{grid-template-columns:auto auto;justify-content:space-between;padding:12px 14px}header .l{display:none}header .brand{padding:6px 16px}header .logo{height:20px}
   .guide{font-size:13px;padding:5px 6px 5px 12px}.guide b{width:24px;height:24px}
   #hero{padding-top:84px}#hero .wrap{padding:0 20px}#hero .stk{display:none}#hero .ctas{flex-wrap:wrap}
-  .stage{--ph:240px;margin-top:36px}
+  .hP{--w:clamp(110px,26vw,170px)}
   .shead,#faq .grid,.mgrid,.plans,.extra,#final .row,#ar .pgrid,.fwrap{grid-template-columns:1fr}
   .times{justify-content:flex-start}.stats{gap:28px}
   .vlist{flex-direction:row;overflow-x:auto}.vi{min-width:260px}
@@ -487,16 +484,11 @@ footer .meta2{display:flex;justify-content:space-between;font-size:13px;color:#9
 <div class="proto">홈 개편 시안 v4 · 내부 검토용</div>
 
 <section id="hero">
-  <svg class="loops" viewBox="0 0 1440 1000" preserveAspectRatio="none"><path d="M-60 120 C 120 60, 220 260, 110 360 C 0 460, -40 300, 80 250 C 240 190, 260 520, 120 640"/><path d="M1500 80 C 1300 140, 1260 380, 1380 420 C 1500 460, 1480 260, 1360 300 C 1200 350, 1220 620, 1500 700"/></svg>
-  <div class="wrap" style="position:relative">
-    <h1 class="xl"><span class="ln"><span>찍는 맛이 있는</span></span><span class="ln"><span>스탬프 투어</span></span></h1>
-    <span class="stk pill" style="left:14%;top:10%;--r:-6deg;--d:.9s">앱 설치 없이</span>
-    <span class="stk pill" style="right:14%;top:6%;--r:5deg;--d:1.05s">QR 한 번이면 참여 끝</span>
+  <div class="wrap"><h1 class="xl"><span class="ln"><span>찍는 맛이 있는</span></span><span class="ln"><span><em>스탬프 투어</em></span></span></h1>
     <p class="lead sub">기업 팝업부터 지자체 축제, 외국인 관광객까지.<br>디자인은 100% 우리 행사대로, 운영은 어드민에서 직접.</p>
-    <div class="ctas"><a class="cta" href="https://www.qrstp.com/contact">상담 신청하기 <b>↗</b></a><a class="cta w" href="https://makevu.gitbook.io/qr-stamp-guide/live_demo">샘플 체험해 보기 <b>↗</b></a></div>
-  </div>
-  <div class="logostrip"><span class="ttl pill r">이미 이곳들이 찍었어요 →</span><div class="mqw"><div class="mqi" id="mq"></div></div></div>
-  <div class="stage" id="stage"><a class="hp" style="left:7%;animation-delay:0s;transform:rotate(-4deg)" href="https://www.qrstp.com/post/보물찾기로-재탄생한-모바일-qr-스탬프-투어-2026-67" target="_blank"><span class="cap"><span class="pill">올리브영 X 망그러진 곰</span><span class="pill vbtn" data-field="1">▶ 현장 영상</span></span><div class="ph"><img src="assets/img/cases/d69421_a7a20dfef9d14ed79774267aa84912a1~mv2.png" alt="올리브영 X 망그러진 곰 실제 스탬프 투어 화면"></div></a><a class="hp" style="left:29%;animation-delay:-2s;transform:rotate(3deg)" href="https://www.qrstp.com/post/gps-스탬프-투어로-만든-춘천-김유정문학촌-관광-코스-단계별-리워드-설계-사례" target="_blank"><span class="cap"><span class="pill">김유정문학촌</span></span><div class="ph"><img src="assets/img/cases/gimyujeong_screen.png" alt="김유정문학촌 실제 스탬프 투어 화면"></div></a><a class="hp" style="right:29%;animation-delay:-1s;transform:rotate(-3deg)" href="https://www.qrstp.com/post/스탬프투어-대기업사례-2025-03" target="_blank"><span class="cap"><span class="pill">현대자동차 X 쿠키런: 킹덤</span><span class="pill vbtn" data-field="0">▶ 현장 영상</span></span><div class="ph"><img src="assets/img/cases/hyundai_casper_screen.png" alt="현대자동차 X 쿠키런: 킹덤 실제 스탬프 투어 화면"></div></a><a class="hp" style="right:7%;animation-delay:-3s;transform:rotate(4deg)" href="https://www.qrstp.com/post/수원화성-어드벤처-스탬프-투어-2025-48" target="_blank"><span class="cap"><span class="pill">수원화성 어드벤처</span></span><div class="ph"><img src="assets/img/cases/suwon_intro_single.png" alt="수원화성 어드벤처 실제 스탬프 투어 화면"></div></a></div>
+    <div class="ctas"><a class="cta" href="https://www.qrstp.com/contact">상담 신청하기 <b>↗</b></a><a class="cta w" href="https://makevu.gitbook.io/qr-stamp-guide/live_demo">샘플 체험해 보기 <b>↗</b></a></div></div>
+  <div class="hB-fan" id="stage"><div class="hB-ring"></div><a class="hP p1" href="https://www.qrstp.com/post/보물찾기로-재탄생한-모바일-qr-스탬프-투어-2026-67" target="_blank" title="올리브영 X 망그러진 곰"><img src="assets/img/cases/d69421_a7a20dfef9d14ed79774267aa84912a1~mv2.png" alt="올리브영 X 망그러진 곰 실제 스탬프 투어 화면"></a><a class="hP p2" href="https://www.qrstp.com/post/gps-스탬프-투어로-만든-춘천-김유정문학촌-관광-코스-단계별-리워드-설계-사례" target="_blank" title="김유정문학촌"><img src="assets/img/cases/gimyujeong_screen.png" alt="김유정문학촌 실제 스탬프 투어 화면"></a><a class="hP p3" href="https://www.qrstp.com/post/스탬프투어-대기업사례-2025-03" target="_blank" title="현대자동차 X 쿠키런: 킹덤"><img src="assets/img/cases/hyundai_casper_screen.png" alt="현대자동차 X 쿠키런: 킹덤 실제 스탬프 투어 화면"></a><a class="hP p4" href="https://www.qrstp.com/post/수원화성-어드벤처-스탬프-투어-2025-48" target="_blank" title="수원화성 어드벤처"><img src="assets/img/cases/suwon_intro_single.png" alt="수원화성 어드벤처 실제 스탬프 투어 화면"></a></div>
+  <div class="logostrip"><span class="ttl pill r">이미 이곳들이 찍었어요 →</span><div class="mqw"><div class="mqi" id="mq"></div></div>
 </section>
 
 <div class="ribbon"><svg viewBox="0 0 1440 260" preserveAspectRatio="none">

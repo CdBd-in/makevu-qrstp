@@ -104,10 +104,6 @@ header .r{display:flex;justify-content:flex-end}
 .hp .ph{height:var(--ph);border-radius:30px;overflow:hidden;border:7px solid var(--ink);background:var(--ink);box-shadow:0 30px 60px rgba(22,23,29,.22)}
 .hp .ph img{display:block;width:100%;height:100%;object-fit:cover;object-position:center top;transform:scale(1.02);transform-origin:center top}
 .hp .cap{position:absolute;left:0;right:0;bottom:calc(100% + 10px);display:flex;flex-direction:column;align-items:center;gap:5px;z-index:2;white-space:nowrap}.hp .cap .pill{font-size:13px;padding:6px 12px}
-.walker{position:absolute;bottom:0;z-index:3;animation:walk 24s linear infinite}
-.walker .bob{animation:bob .5s steps(2) infinite}
-@keyframes walk{from{left:-160px}to{left:calc(100% + 40px)}}
-@keyframes bob{50%{transform:translateY(-6px)}}
 .logostrip{background:#fff;position:relative;z-index:3;padding:22px 0;margin-top:34px}
 .mqw{overflow:hidden}
 .logostrip .ttl{position:absolute;left:var(--wl);top:-20px;z-index:2;transform:rotate(-3deg)}
@@ -734,10 +730,6 @@ const secs=[...document.querySelectorAll('[data-cell]')];
 board.addEventListener('click',e=>{const i=Math.min(6,Math.floor(e.offsetX/board.getBoundingClientRect().width*7));secs.find(s=>+s.dataset.cell===i)?.scrollIntoView({behavior:'smooth'})});
 function stamp(i){if(stamped[i])return;stamped[i]=true;paint();const b=document.getElementById('board');b.classList.remove('pop');void b.offsetWidth;b.classList.add('pop');if(stamped.every(Boolean)&&!done){done=true;confetti()}}
 function confetti(){const c=document.getElementById('confetti');for(let i=0;i<100;i++){const e=document.createElement('i');e.style.left=Math.random()*100+'vw';e.style.background=['#E8442A','#16171D','#DDDDDD','#E8442A','#fff'][i%5];e.style.borderRadius=i%3?'0':'50%';e.animate([{transform:'translateY(0) rotate(0)'},{transform:`translateY(${innerHeight+60}px) rotate(${720*Math.random()}deg)`}],{duration:1700+Math.random()*1500,delay:Math.random()*300,easing:'cubic-bezier(.2,.6,.4,1)',fill:'forwards'});c.appendChild(e)}setTimeout(()=>c.innerHTML='',4000)}
-/* 걷는 픽셀 스탬프 */
-(function(){const st=document.getElementById('stage');const body=["0111111110","1111111111","1101111011","1101111011","1111111111","1111001111","1111111111","0111111110"];const A=["0110000110","0110000110"],B=["0011001100","0011001100"];
- function walker(color,delay,size){const mk=l=>{let r='';[...body,...l].forEach((row,y)=>[...row].forEach((c,x)=>{if(c==='1')r+=`<rect x="${x}" y="${y}" width="1.03" height="1.03" fill="${(y==2||y==3)&&(x==2||x==7)?'#fff':color}"/>`}));return r};const d=document.createElement('div');d.className='walker';d.style.animationDelay=delay+'s';d.style.width=size+'px';d.innerHTML=`<div class="bob"><svg class="px" viewBox="0 0 10 10"><g class="fa">${mk(A)}</g><g class="fb" style="display:none">${mk(B)}</g></svg></div>`;st.appendChild(d);setInterval(()=>{const a=d.querySelector('.fa'),b=d.querySelector('.fb');const s=a.style.display==='none';a.style.display=s?'':'none';b.style.display=s?'none':''},250)}
- walker('#E8442A',0,96);walker('#16171D',-8,72);walker('#E8442A',-16,84)})();
 /* 리빌 */
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const t=e.target;io.unobserve(t);if(t.classList.contains('cnt')){const to=+t.dataset.to,t0=performance.now();(function f(n){const k=Math.min(1,(n-t0)/1500);t.textContent=Math.round(to*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(f)})(t0)}else t.classList.add('in')}),{threshold:.2});
 document.querySelectorAll('.rise,.cnt,#bigLogo').forEach(e=>io.observe(e));

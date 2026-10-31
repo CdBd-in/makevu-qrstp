@@ -439,6 +439,13 @@ h2.split.in .sw>i{transform:none}
 footer{background:var(--ink);color:#fff;padding:56px 0 48px;overflow:hidden}
 footer .big{width:100%;height:auto;display:block;transform:translateY(40px);opacity:0;transition:transform 1s cubic-bezier(.2,1,.2,1),opacity 1s}
 footer .big.in{transform:none;opacity:1}
+footer .meta2 a{color:#fff;font-weight:700}
+footer .corp{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-top:36px;padding-top:24px;border-top:1px solid rgba(255,255,255,.16);font-size:14px;line-height:1.7;color:#c9cad1}
+footer .corp-l{display:flex;flex-wrap:wrap;gap:4px 20px}
+footer .corp-l b{color:#fff;font-weight:700}
+footer .corp-r{display:flex;gap:20px;font-weight:700;color:#fff}
+footer .copy{margin-top:14px;font-size:12px;color:#8e8f98}
+@media(max-width:620px){footer .corp{flex-direction:column;align-items:flex-start;gap:12px}footer .corp-l{flex-direction:column;gap:0}}
 footer .meta2{display:flex;justify-content:space-between;font-size:13px;color:#9a9ba3;margin-bottom:28px}
 .confetti{position:fixed;inset:0;pointer-events:none;z-index:60}
 .confetti i{position:absolute;top:-20px;width:14px;height:14px}
@@ -493,7 +500,7 @@ footer .meta2{display:flex;justify-content:space-between;font-size:13px;color:#9
   <a class="brand" href="#hero"><img class="logo" src="assets/QRSTAMP_logo_A.svg" alt="QRSTAMP 큐알스탬프"></a>
   <div class="r"><a class="guide" href="https://qrstp.mintlify.app/intro" target="_blank">가이드 센터 <b>↗</b></a></div>
 </header>
-<div id="fab"><a class="sub" href="https://www.qrstp.com/_files/ugd/1722ff_8de6e27d887541429cb3b236ac2dbf10.pdf">소개서 받기 ↓</a><a class="main" href="https://www.qrstp.com/contact">상담 신청하기 <b>↗</b></a></div>
+<div id="fab"><a class="sub" href="https://www.qrstp.com/_files/ugd/1722ff_8de6e27d887541429cb3b236ac2dbf10.pdf">소개서 받기 ↓</a><a class="main" href="상담신청페이지.html">상담 신청하기 <b>↗</b></a></div>
 <div id="board"><p><span>MY STAMP</span><span id="bcount">2/7</span></p><svg viewBox="0 0 354 58" fill="none" xmlns="http://www.w3.org/2000/svg">
 <rect width="48" height="58" fill="#E8442A"/>
 <path d="M29.9999 33H21.9999V41H29.9999V33Z" fill="white"/>
@@ -521,7 +528,7 @@ footer .meta2{display:flex;justify-content:space-between;font-size:13px;color:#9
 <section id="hero">
   <div class="wrap"><h1 class="xl"><span class="ln"><span>찍는 맛이 있는</span></span><span class="ln"><span><em>스탬프 투어</em></span></span></h1>
     <p class="lead sub">기업 팝업부터 지자체 축제, 외국인 관광객까지.<br>디자인은 100% 우리 행사대로, 운영은 어드민에서 직접.</p>
-    <div class="ctas"><a class="cta" href="https://www.qrstp.com/contact">상담 신청하기 <b>↗</b></a><a class="cta w" href="https://makevu.gitbook.io/qr-stamp-guide/live_demo">샘플 체험해 보기 <b>↗</b></a></div></div>
+    <div class="ctas"><a class="cta" href="상담신청페이지.html">상담 신청하기 <b>↗</b></a><a class="cta w" href="https://makevu.gitbook.io/qr-stamp-guide/live_demo">샘플 체험해 보기 <b>↗</b></a></div></div>
   <div class="hB-fan" id="stage"><div class="hB-ring"></div><a class="hP p1" href="https://www.qrstp.com/post/보물찾기로-재탄생한-모바일-qr-스탬프-투어-2026-67" target="_blank" title="올리브영 X 망그러진 곰"><img src="assets/img/cases/d69421_a7a20dfef9d14ed79774267aa84912a1~mv2.png" alt="올리브영 X 망그러진 곰 실제 스탬프 투어 화면"></a><a class="hP p2" href="https://www.qrstp.com/post/gps-스탬프-투어로-만든-춘천-김유정문학촌-관광-코스-단계별-리워드-설계-사례" target="_blank" title="김유정문학촌"><img src="assets/img/cases/gimyujeong_screen.png" alt="김유정문학촌 실제 스탬프 투어 화면"></a><a class="hP p3" href="https://www.qrstp.com/post/스탬프투어-대기업사례-2025-03" target="_blank" title="현대자동차 X 쿠키런: 킹덤"><img src="assets/img/cases/hyundai_casper_screen.png" alt="현대자동차 X 쿠키런: 킹덤 실제 스탬프 투어 화면"></a><a class="hP p4" href="https://www.qrstp.com/post/수원화성-어드벤처-스탬프-투어-2025-48" target="_blank" title="수원화성 어드벤처"><img src="assets/img/cases/suwon_intro_single.png" alt="수원화성 어드벤처 실제 스탬프 투어 화면"></a></div>
   <div class="logostrip"><span class="ttl pill r">이미 이곳들이 찍었어요 →</span><div class="mqw"><div class="mqi" id="mq"></div></div>
 </section>
@@ -678,12 +685,15 @@ footer .meta2{display:flex;justify-content:space-between;font-size:13px;color:#9
 <section id="final">
   <svg class="loopbg" viewBox="0 0 1400 700" preserveAspectRatio="none"><path d="M-60 500 C 200 200, 420 700, 620 420 C 760 220, 960 240, 920 400 C 880 560, 700 480, 800 300 C 920 100, 1240 140, 1460 40"/></svg>
   <div class="wrap row">
-    <div><h2 class="md">여기까지 보셨으면,<br>한 칸 남았어요</h2><p style="font-size:19px;font-weight:600;letter-spacing:-.02em;margin:20px 0 28px;opacity:.92">우리 행사 스탬프 판을 만들어 보세요.</p><a class="cta" href="https://www.qrstp.com/contact">상담 신청하기 <b>↗</b></a></div>
+    <div><h2 class="md">여기까지 보셨으면,<br>한 칸 남았어요</h2><p style="font-size:19px;font-weight:600;letter-spacing:-.02em;margin:20px 0 28px;opacity:.92">우리 행사 스탬프 판을 만들어 보세요.</p><a class="cta" href="상담신청페이지.html">상담 신청하기 <b>↗</b></a></div>
     <nav><p>바로가기</p><a href="#custom">커스텀</a><a href="#type">적립 방식</a><a href="#admin">어드민</a><a href="#works">고객 사례</a><a href="#plans">플랜</a></nav>
     <nav><p>더 보기</p><a href="https://qrstp.mintlify.app/intro" target="_blank">가이드 센터 ↗</a><a href="https://www.qrstp.com/blog">블로그 ↗</a><a href="https://www.qrstp.com/_files/ugd/1722ff_8de6e27d887541429cb3b236ac2dbf10.pdf">소개서 받기 ↗</a><a href="https://makevu.gitbook.io/qr-stamp-guide/live_demo">샘플 체험 ↗</a></nav>
   </div>
 </section>
-<footer><div class="wrap"><div class="meta2"><span>앱 설치 없이, QR 한 번이면 참여 끝.</span><span>© QRSTAMP</span></div><img class="big" id="bigLogo" src="assets/QRSTAMP_logo_C.svg" alt="QRSTAMP"></div></footer>
+<footer><div class="wrap"><div class="meta2"><span>앱 설치 없이, QR 한 번이면 참여 끝.</span><a href="상담신청페이지.html">상담 신청하기 ↗</a></div><img class="big" id="bigLogo" src="assets/QRSTAMP_logo_C.svg" alt="QRSTAMP">
+<div class="corp"><div class="corp-l"><b>(주) 엠카</b><span>사업자등록번호 201-86-28172</span><span>서울 서초구 강남대로 373 15F</span></div>
+<div class="corp-r"><a href="mailto:help@qrstp.com">help@qrstp.com</a><a href="tel:1800-8590">1800-8590</a></div></div>
+<p class="copy">Copyright © 2026 EMKA. All Rights Reserved.</p></div></footer>
 <div class="confetti" id="confetti"></div>
 
 <script>

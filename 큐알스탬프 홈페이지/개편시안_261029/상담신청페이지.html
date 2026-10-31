@@ -230,23 +230,23 @@ header .r{display:flex;justify-content:flex-end}
 .cmeta .cnt2{font-variant-numeric:tabular-nums;min-width:62px;text-align:right}
 .cmeta .hint{color:var(--sub);font-weight:600}
 .cmeta .hn{display:none}
-.track{--ch:clamp(420px,calc(100vh - 200px),560px);--ch:clamp(420px,calc(100svh - 200px),560px);display:flex;align-items:stretch;gap:var(--gap);width:max-content;min-width:100%;padding-left:var(--wl);padding-right:var(--wl);will-change:transform}
-.cc{flex:none;height:var(--ch);width:calc(var(--ch)*.5 + 356px);background:#fff;border-radius:var(--r-card);display:grid;grid-template-columns:calc(var(--ch)*.5 + 16px) 1fr;overflow:hidden}
+.track{--ch:clamp(420px,calc(100vh - 200px),600px);--ch:clamp(420px,calc(100svh - 200px),600px);display:flex;align-items:stretch;gap:var(--gap);width:max-content;min-width:100%;padding-left:var(--wl);padding-right:var(--wl);will-change:transform}
+.cc{flex:none;height:var(--ch);width:calc(var(--ch)*.5 + 356px);background:#fff;border-radius:var(--r-card);display:grid;grid-template-columns:calc(var(--ch)*.5 + 16px) 1fr;grid-template-rows:minmax(0,1fr);overflow:hidden}
 .cc .scr{background:var(--pink);display:flex;align-items:center;justify-content:center;padding:24px 0}
 .cc .frame{display:block;height:100%;aspect-ratio:9/18;border-radius:24px;overflow:hidden;border:5px solid var(--ink);background:var(--ink);box-shadow:0 16px 34px rgba(22,23,29,.2);transition:transform .5s}
 .cc:hover .frame{transform:scale(1.04) rotate(-1.5deg)}
 .cc .frame img{display:block;width:100%;height:100%;object-fit:cover;object-position:center top;transform:scale(1.02);transform-origin:center top}
 .cc .frame.l img{object-position:left top}
-.cc .info{padding:28px 28px 28px;display:flex;flex-direction:column;min-width:0}
+.cc .info{padding:24px 26px 22px;display:flex;flex-direction:column;min-width:0;min-height:0;overflow:hidden}
 .cc .no{font-size:13px;font-weight:700;color:var(--red);letter-spacing:.04em}
 .cc h3{margin:8px 0 4px}
 .cc .ev{font-size:14px;color:var(--sub);line-height:1.5}
-.cc ul{list-style:none;margin-top:16px;display:flex;flex-direction:column;gap:8px}
-.cc li{font-size:15px;line-height:1.55;letter-spacing:-.015em;padding-left:22px;position:relative;font-weight:600}
+.cc ul{list-style:none;margin-top:12px;display:flex;flex-direction:column;gap:7px;flex:1 1 0;min-height:0;overflow:hidden}
+.cc li{font-size:14px;line-height:1.5;letter-spacing:-.015em;padding-left:22px;position:relative;font-weight:600;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
 .cc li::before{content:"";position:absolute;left:0;top:.45em;width:10px;height:10px;background:var(--red)}
-.cc .chips{margin-top:auto;display:flex;flex-wrap:wrap;gap:6px;padding-top:14px}
+.cc .chips{flex:none;display:flex;flex-wrap:wrap;gap:6px;padding-top:12px}
 .cc .chips span{font-size:12px;font-weight:700;background:var(--cream);border-radius:999px;padding:4px 10px;letter-spacing:-.01em}
-.cc .go{font-size:13px;font-weight:700;color:var(--red);margin-top:12px}
+.cc .go{flex:none;font-size:13px;font-weight:700;color:var(--red);margin-top:10px}
 .cc.end{width:calc(var(--ch)*.5 + 160px);background:var(--red);color:#fff;display:flex;flex-direction:column;justify-content:flex-end;padding:36px}
 .cc.end .lead{color:#fff;opacity:.9;margin-top:14px}
 
@@ -641,7 +641,7 @@ footer .copy{margin-top:14px;font-size:12px;color:#8e8f98}
   <svg class="loops" viewBox="0 0 1440 1000" preserveAspectRatio="none"><path d="M-60 120 C 120 60, 220 260, 110 360 C 0 460, -40 300, 80 250 C 240 190, 260 520, 120 640"/><path d="M1500 80 C 1300 140, 1260 380, 1380 420 C 1500 460, 1480 260, 1360 300 C 1200 350, 1220 620, 1500 700"/></svg>
   <div class="wrap"><div class="cf-grid">
     <div class="cf-l">
-      <div class="cf-top"><div class="label"><i>✦</i>상담 신청 <em style="color:var(--red);font-style:normal">CONTACT</em></div>
+      <div class="cf-top"><div class="label"><i>✦</i>큐알스탬프 상담 신청 <em style="color:var(--red);font-style:normal">CONTACT</em></div>
       <h1>10초면 충분한<br><em>맞춤 견적 신청</em></h1>
       <p class="lead">고민 없이 유형만 선택하세요.<br>담당자가 확인 후 바로 연락드립니다.</p></div>
       <div class="cf-bot"><div class="cf-pts">
@@ -649,7 +649,7 @@ footer .copy{margin-top:14px;font-size:12px;color:#8e8f98}
         <div class="cf-pt"><i>2</i><div><b>평균 1주일, 급하면 1일 오픈</b><span>제작 기간은 행사 일정에 맞춰요</span></div></div>
         <div class="cf-pt"><i>3</i><div><b>디자인은 100% 우리 행사대로</b><span>커스텀 디자인은 추가 비용이 발생해요</span></div></div>
       </div>
-      <div class="cf-logos"><small>누구나 아는 곳이 이미 찍었어요</small><div><span><img src="assets/logos/l06.png" alt="삼성"></span><span><img src="assets/logos/l04.png" alt="현대"></span><span><img src="assets/logos/l03.png" alt="메르세데스 벤츠"></span><span><img src="assets/logos/l12.png" alt="마이크로소프트"></span><span><img src="assets/logos/l33.png" alt="SK하이닉스"></span><span><img src="assets/logos/l08.png" alt="올리브영"></span><span><img src="assets/logos/l00.png" alt="롯데월드"></span><span><img src="assets/logos/l02.png" alt="다이슨"></span></div></div>
+      <div class="cf-logos"><small>큐알스탬프를 사용한 곳들</small><div><span><img src="assets/logos/l06.png" alt="삼성"></span><span><img src="assets/logos/l04.png" alt="현대"></span><span><img src="assets/logos/l03.png" alt="메르세데스 벤츠"></span><span><img src="assets/logos/l12.png" alt="마이크로소프트"></span><span><img src="assets/logos/l33.png" alt="SK하이닉스"></span><span><img src="assets/logos/l08.png" alt="올리브영"></span><span><img src="assets/logos/l00.png" alt="롯데월드"></span><span><img src="assets/logos/l02.png" alt="다이슨"></span></div></div>
       <p class="cf-call">전화나 메일이 편하시면 <a href="tel:1800-8590">1800-8590</a> · <a href="mailto:help@qrstp.com">help@qrstp.com</a></p></div>
     </div>
     <div class="cf-card" id="card">

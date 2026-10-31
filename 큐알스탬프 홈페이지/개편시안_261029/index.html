@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>큐알스탬프 | 찍는 맛이 있는 스탬프 투어 — 홈 개편 시안 v4</title>
+<title>큐알스탬프 | 모바일 스탬프 투어 — 찍는 맛이 있는 큐알스탬프 · 홈 개편 시안 v4</title>
 <link rel="icon" href="assets/QRSTAMP_favicon.svg">
 <style>
 @font-face{font-family:'Pretendard';font-weight:500;font-display:swap;src:url('assets/fonts/3c13694c08e346a689767efcbcef035c.woff2') format('woff2')}
@@ -232,23 +232,23 @@ header .r{display:flex;justify-content:flex-end}
 .cmeta .cnt2{font-variant-numeric:tabular-nums;min-width:62px;text-align:right}
 .cmeta .hint{color:var(--sub);font-weight:600}
 .cmeta .hn{display:none}
-.track{--ch:clamp(420px,calc(100vh - 200px),560px);--ch:clamp(420px,calc(100svh - 200px),560px);display:flex;align-items:stretch;gap:var(--gap);width:max-content;min-width:100%;padding-left:var(--wl);padding-right:var(--wl);will-change:transform}
-.cc{flex:none;height:var(--ch);width:calc(var(--ch)*.5 + 356px);background:#fff;border-radius:var(--r-card);display:grid;grid-template-columns:calc(var(--ch)*.5 + 16px) 1fr;overflow:hidden}
+.track{--ch:clamp(420px,calc(100vh - 200px),600px);--ch:clamp(420px,calc(100svh - 200px),600px);display:flex;align-items:stretch;gap:var(--gap);width:max-content;min-width:100%;padding-left:var(--wl);padding-right:var(--wl);will-change:transform}
+.cc{flex:none;height:var(--ch);width:calc(var(--ch)*.5 + 356px);background:#fff;border-radius:var(--r-card);display:grid;grid-template-columns:calc(var(--ch)*.5 + 16px) 1fr;grid-template-rows:minmax(0,1fr);overflow:hidden}
 .cc .scr{background:var(--pink);display:flex;align-items:center;justify-content:center;padding:24px 0}
 .cc .frame{display:block;height:100%;aspect-ratio:9/18;border-radius:24px;overflow:hidden;border:5px solid var(--ink);background:var(--ink);box-shadow:0 16px 34px rgba(22,23,29,.2);transition:transform .5s}
 .cc:hover .frame{transform:scale(1.04) rotate(-1.5deg)}
 .cc .frame img{display:block;width:100%;height:100%;object-fit:cover;object-position:center top;transform:scale(1.02);transform-origin:center top}
 .cc .frame.l img{object-position:left top}
-.cc .info{padding:28px 28px 28px;display:flex;flex-direction:column;min-width:0}
+.cc .info{padding:24px 26px 22px;display:flex;flex-direction:column;min-width:0;min-height:0;overflow:hidden}
 .cc .no{font-size:13px;font-weight:700;color:var(--red);letter-spacing:.04em}
 .cc h3{margin:8px 0 4px}
 .cc .ev{font-size:14px;color:var(--sub);line-height:1.5}
-.cc ul{list-style:none;margin-top:16px;display:flex;flex-direction:column;gap:8px}
-.cc li{font-size:15px;line-height:1.55;letter-spacing:-.015em;padding-left:22px;position:relative;font-weight:600}
+.cc ul{list-style:none;margin-top:12px;display:flex;flex-direction:column;gap:7px;flex:1 1 0;min-height:0;overflow:hidden}
+.cc li{font-size:14px;line-height:1.5;letter-spacing:-.015em;padding-left:22px;position:relative;font-weight:600;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
 .cc li::before{content:"";position:absolute;left:0;top:.45em;width:10px;height:10px;background:var(--red)}
-.cc .chips{margin-top:auto;display:flex;flex-wrap:wrap;gap:6px;padding-top:14px}
+.cc .chips{flex:none;display:flex;flex-wrap:wrap;gap:6px;padding-top:12px}
 .cc .chips span{font-size:12px;font-weight:700;background:var(--cream);border-radius:999px;padding:4px 10px;letter-spacing:-.01em}
-.cc .go{font-size:13px;font-weight:700;color:var(--red);margin-top:12px}
+.cc .go{flex:none;font-size:13px;font-weight:700;color:var(--red);margin-top:10px}
 .cc.end{width:calc(var(--ch)*.5 + 160px);background:var(--red);color:#fff;display:flex;flex-direction:column;justify-content:flex-end;padding:36px}
 .cc.end .lead{color:#fff;opacity:.9;margin-top:14px}
 
@@ -585,21 +585,21 @@ footer .meta2{display:flex;justify-content:space-between;font-size:13px;color:#9
 <div class="proto">홈 개편 시안 v4 · 내부 검토용</div>
 
 <section id="hero">
-  <div class="wrap"><h1 class="xl"><span class="ln"><span>찍는 맛이 있는</span></span><span class="ln"><span><em>스탬프 투어</em></span></span></h1>
-    <p class="lead sub">기업 팝업부터 지자체 축제, 외국인 관광객까지.<br>디자인은 100% 우리 행사대로, 운영은 어드민에서 직접.</p>
+  <div class="wrap"><h1 class="xl"><span class="ln"><span>찍는 맛이 있는</span></span><span class="ln"><span><em>큐알스탬프</em></span></span></h1>
+    <p class="lead sub">기업 팝업부터 지자체 축제, 외국인 관광객까지 쓰는 모바일 스탬프 투어.<br>디자인은 100% 우리 행사대로, 운영은 어드민에서 직접.</p>
     <div class="ctas"><a class="cta" href="상담신청페이지.html">상담 신청하기 <b>↗</b></a><a class="cta w" href="https://makevu.gitbook.io/qr-stamp-guide/live_demo">샘플 체험해 보기 <b>↗</b></a></div></div>
   <div class="hB-fan" id="stage"><div class="hB-ring"></div><a class="hP p1" href="https://www.qrstp.com/post/보물찾기로-재탄생한-모바일-qr-스탬프-투어-2026-67" target="_blank" title="올리브영 X 망그러진 곰"><img src="assets/img/cases/d69421_a7a20dfef9d14ed79774267aa84912a1~mv2.png" alt="올리브영 X 망그러진 곰 실제 스탬프 투어 화면"></a><a class="hP p2" href="https://www.qrstp.com/post/gps-스탬프-투어로-만든-춘천-김유정문학촌-관광-코스-단계별-리워드-설계-사례" target="_blank" title="김유정문학촌"><img src="assets/img/cases/gimyujeong_screen.png" alt="김유정문학촌 실제 스탬프 투어 화면"></a><a class="hP p3" href="https://www.qrstp.com/post/스탬프투어-대기업사례-2025-03" target="_blank" title="현대자동차 X 쿠키런: 킹덤"><img src="assets/img/cases/hyundai_casper_screen.png" alt="현대자동차 X 쿠키런: 킹덤 실제 스탬프 투어 화면"></a><a class="hP p4" href="https://www.qrstp.com/post/수원화성-어드벤처-스탬프-투어-2025-48" target="_blank" title="수원화성 어드벤처"><img src="assets/img/cases/suwon_intro_single.png" alt="수원화성 어드벤처 실제 스탬프 투어 화면"></a></div>
-  <div class="logostrip"><span class="ttl pill r">이미 이곳들이 찍었어요 →</span><div class="mqw"><div class="mqi" id="mq"></div></div>
+  <div class="logostrip"><span class="ttl pill r">큐알스탬프를 사용한 곳들 →</span><div class="mqw"><div class="mqi" id="mq"></div></div>
 </section>
 
 <div class="ribbon"><svg viewBox="0 0 1440 260" preserveAspectRatio="none">
   <path id="rb" d="M-40 220 C 360 40, 900 20, 1500 100" fill="none" stroke="#E8442A" stroke-width="90"/>
-  <text dy="18"><textPath id="rbt" href="#rb">앱 설치 ✕ • 종이 ✕ • QR 한 번이면 OK • 디자인 100% 커스텀 • 운영은 어드민에서 직접 • 앱 설치 ✕ • 종이 ✕ • QR 한 번이면 OK • 디자인 100% 커스텀 • 운영은 어드민에서 직접 •</textPath></text>
+  <text dy="18"><textPath id="rbt" href="#rb">큐알스탬프 • 앱 설치 ✕ • 종이 ✕ • QR 한 번이면 OK • 디자인 100% 커스텀 • 운영은 어드민에서 직접 • 큐알스탬프 • 앱 설치 ✕ • 종이 ✕ • QR 한 번이면 OK • 디자인 100% 커스텀 • 운영은 어드민에서 직접 •</textPath></text>
 </svg></div>
 
 <section id="field">
   <div class="wrap">
-    <div class="shead"><div><div class="label"><i>▶</i>현장 영상 <em>LIVE FROM THE FIELD</em></div><h2 class="lg">설명보다<br><span class="red">현장</span>이 빨라요</h2></div><p class="lead">QR을 찾고, 스캔하고, 리워드를 받기까지. 실제 행사장에서 참여자가 어떻게 움직이는지 보세요.</p></div>
+    <div class="shead"><div><div class="label"><i>▶</i>현장 영상 <em>LIVE FROM THE FIELD</em></div><h2 class="lg">말보다<br><span class="red">영상</span>이 빨라요</h2></div><p class="lead">QR을 찾고, 스캔하고, 리워드를 받기까지. 실제 행사장에서 참여자가 어떻게 움직이는지 보세요.</p></div>
     <div class="fwrap">
       <div class="player"><video id="fv" muted playsinline preload="metadata"></video><span class="cap"><span class="pill r">LIVE</span><span class="pill w" id="fvname"></span></span><button class="snd pill" id="snd">🔇 소리 켜기</button><div class="bar"><i id="fvbar"></i></div></div>
       <div class="vlist" id="vlist"></div>
@@ -610,14 +610,14 @@ footer .meta2{display:flex;justify-content:space-between;font-size:13px;color:#9
 <section id="why" data-cell="0">
   <div class="wrap">
     <div class="label"><i>Q</i>솔직히 말하면</div>
-    <p id="stmt">종이 스탬프는 잃어버리고, 앱은 아무도 안 깔아요. 그래서 큐알스탬프는 [QR 한 번]으로 1초 만에 참여하게 했어요. 모든 화면은 [우리 행사 톤]으로 처음부터 만들고, 참여 데이터는 [실시간]으로 모아 엑셀로 드려요. 담당자는 [어드민 하나]로 현장을 직접 움직여요.</p>
+    <p id="stmt">종이 스탬프는 잃어버리고, 앱은 아무도 안 깔아요. 그래서 큐알스탬프는 [QR 한 번]으로 1초 만에 참여하게 했어요. 모든 화면은 [우리 행사 톤]으로 처음부터 만들고, 참여 데이터는 [실시간]으로 모아 엑셀로 드려요. 담당자는 [어드민 하나]로 행사를 직접 운영해요.</p>
   </div>
 </section>
 
 <section id="custom" data-cell="1">
   <div class="wrap">
     <div class="shead"><div><div class="label"><i>R</i>100% 커스텀 <em>CUSTOM</em></div><h2 class="lg">로고만 얹는 거 말고,<br><span class="red">처음부터 끝까지</span></h2></div>
-      <p class="lead">행사 컨셉과 브랜드 톤에 맞춰 모든 화면을 원하는 대로 만들어요. 아래 일곱 곳은 최근 실제 행사에 납품한 디자인이에요. 무엇을 커스텀했는지는 각 사례 글에서 옮겼어요.</p></div>
+      <p class="lead">행사 컨셉과 브랜드 톤에 맞춰 모든 화면을 원하는 대로 만들어요. 아래 일곱 곳은 최근 실제 행사에 납품한 디자인이에요. 카드마다 어떤 부분을 커스텀했는지 적어 두었어요.</p></div>
   </div>
   <div id="cpin"><div class="stick">
     <div class="wrap cmeta"><span class="cr">R</span>100% 커스텀 <em>CUSTOM</em><span class="bar"><b id="cbar"></b></span><span class="cnt2" id="ccount">01 / 07</span><span class="hint hs">스크롤하면 넘어가요</span><span class="hint hn">옆으로 밀어 보세요 →</span></div>
@@ -672,8 +672,8 @@ footer .meta2{display:flex;justify-content:space-between;font-size:13px;color:#9
 
 <section class="sec" id="mission" data-cell="5">
   <div class="wrap">
-    <div class="shead"><div><div class="label"><i>M</i>재미 장치 <em>MISSION</em></div><h2 class="lg">찍기만 하면<br>심심하니까</h2></div><p class="lead">끝까지 돌게 만드는 장치들이에요. 어떤 화면인지, 실제로 어디서 썼는지 확인해 보세요.</p></div>
-    <div class="fgrid"><div class="mc tall rise d0"><a class="how" href="https://www.qrstp.com/post/재팬모빌리티쇼-전시-부스-스탬프-투어-2026-123" target="_blank"><span class="pill r">실제로 쓴 행사</span><div class="fr"><img src="assets/img/cases/재팬모빌리티쇼-전시-부스-스탬프-투어-2026-123--fig_02_quiz.jpg" alt="퀴즈·미션 화면"></div><b class="cn">Japan Mobility Show 2025 Hyundai 부스</b><span class="cs">NEXO 사진과 이야기 아래 O·X 퀴즈 미션 화면(일본어)</span></a><div class="body"><h3 class="sm">퀴즈·미션</h3><p>정답을 맞히거나 미션을 해야 스탬프가 적립돼요.</p><a class="go2" href="https://www.qrstp.com/post/재팬모빌리티쇼-전시-부스-스탬프-투어-2026-123" target="_blank">사례 자세히 ↗</a></div></div><div class="mc tall rise d1"><a class="how" href="https://www.qrstp.com/post/sk하이닉스-sedex-2026-박람회-스탬프-투어-2026-105" target="_blank"><span class="pill r">실제로 쓴 행사</span><div class="fr"><img src="assets/img/cases/sk하이닉스-sedex-2026-박람회-스탬프-투어-2026-105--figma_02_stamp_track.jpg" alt="단계별 리워드 화면"></div><b class="cn">SK하이닉스 SEDEX 2026</b><span class="cs">빨간 트랙 위 참여 방법 3단계와 &#x27;RUN&#x27; START 버튼 시작 화면(실서비스 캡처)</span></a><div class="body"><h3 class="sm">단계별 리워드</h3><p>적립 개수에 따라 받을 수 있는 리워드를 다르게 줄 수 있어요.</p><a class="go2" href="https://www.qrstp.com/post/sk하이닉스-sedex-2026-박람회-스탬프-투어-2026-105" target="_blank">사례 자세히 ↗</a></div></div><div class="mc tall rise d2"><a class="how" href="https://www.qrstp.com/post/삼양식품-sial-파리-2026-다국어-스탬프-투어-2026-106" target="_blank"><span class="pill r">실제로 쓴 행사</span><div class="fr"><img src="assets/img/cases/삼양식품-sial-파리-2026-다국어-스탬프-투어-2026-106--figma_03_survey.jpg" alt="설문 화면"></div><b class="cn">삼양식품 SIAL Paris 2026</b><span class="cs">Buldak·tangle 로고 아래 English/Français 언어 선택 버튼 첫 화면(실서비스 캡처)</span></a><div class="body"><h3 class="sm">설문</h3><p>참여 흐름 안에 만족도·피드백 설문을 넣어 답변을 모아요.</p><a class="go2" href="https://www.qrstp.com/post/삼양식품-sial-파리-2026-다국어-스탬프-투어-2026-106" target="_blank">사례 자세히 ↗</a></div></div></div>
+    <div class="shead"><div><div class="label"><i>M</i>재미 장치 <em>MISSION</em></div><h2 class="lg">찍기만 하면<br>심심하니까</h2></div><p class="lead">스탬프 투어에 재미를 더하는 장치들이에요. 어떤 화면인지, 실제로 어디서 썼는지 확인해 보세요.</p></div>
+    <div class="fgrid"><div class="mc tall rise d0"><a class="how" href="https://www.qrstp.com/post/재팬모빌리티쇼-전시-부스-스탬프-투어-2026-123" target="_blank"><span class="pill r">실제로 쓴 행사</span><div class="fr"><img src="assets/img/cases/재팬모빌리티쇼-전시-부스-스탬프-투어-2026-123--fig_02_quiz.jpg" alt="퀴즈·미션 화면"></div><b class="cn">Japan Mobility Show 2025 Hyundai 부스</b><span class="cs">NEXO 사진과 이야기 아래 O·X 퀴즈 미션 화면(일본어)</span></a><div class="body"><h3 class="sm">퀴즈·미션</h3><p>정답을 맞히거나 미션을 해야 스탬프가 적립돼요.</p><a class="go2" href="https://www.qrstp.com/post/재팬모빌리티쇼-전시-부스-스탬프-투어-2026-123" target="_blank">사례 자세히 ↗</a></div></div><div class="mc tall rise d1"><a class="how" href="https://www.qrstp.com/post/sk하이닉스-sedex-2026-박람회-스탬프-투어-2026-105" target="_blank"><span class="pill r">실제로 쓴 행사</span><div class="fr"><img src="assets/img/cases/sk하이닉스-sedex-2026-박람회-스탬프-투어-2026-105--figma_02_stamp_track.jpg" alt="단계별 리워드 화면"></div><b class="cn">SK하이닉스 SEDEX 2026</b><span class="cs">트랙 위에서 적립 현황을 보고 4개·8개 적립 리워드를 신청하는 화면(시안)</span></a><div class="body"><h3 class="sm">단계별 리워드</h3><p>적립 개수에 따라 받을 수 있는 리워드를 다르게 줄 수 있어요.</p><a class="go2" href="https://www.qrstp.com/post/sk하이닉스-sedex-2026-박람회-스탬프-투어-2026-105" target="_blank">사례 자세히 ↗</a></div></div><div class="mc tall rise d2"><a class="how" href="https://www.qrstp.com/post/삼양식품-sial-파리-2026-다국어-스탬프-투어-2026-106" target="_blank"><span class="pill r">실제로 쓴 행사</span><div class="fr"><img src="assets/img/cases/삼양식품-sial-파리-2026-다국어-스탬프-투어-2026-106--figma_03_survey.jpg" alt="설문 화면"></div><b class="cn">삼양식품 SIAL Paris 2026</b><span class="cs">이름·회사·국가·이메일 입력과 설문(Survey) 문항 화면(영어 · 시안)</span></a><div class="body"><h3 class="sm">설문</h3><p>참여 흐름 안에 만족도·피드백 설문을 넣어 답변을 모아요.</p><a class="go2" href="https://www.qrstp.com/post/삼양식품-sial-파리-2026-다국어-스탬프-투어-2026-106" target="_blank">사례 자세히 ↗</a></div></div></div>
   </div>
 </section>
 
@@ -694,7 +694,7 @@ footer .meta2{display:flex;justify-content:space-between;font-size:13px;color:#9
   <div class="panel">
     <svg class="loopbg" viewBox="0 0 1400 800" preserveAspectRatio="none"><path d="M1460 160 C 1200 460, 1000 -60, 760 300 C 600 540, 420 600, 460 400 C 500 220, 700 320, 600 540 C 500 740, 160 700, -60 760"/></svg>
     <div class="wrap">
-      <div class="shead"><div><div class="label"><i>✦</i>이번엔 담당자 이야기 <em>FOR ORGANIZERS</em></div><h2 class="lg">참여자는 찍고,<br>운영은 어드민에서 끝</h2></div><p class="lead">현황을 실시간으로 확인하고, 필요한 건 바로 바꿔요. 별도 요청 없이 직접 현장 대응이 가능해요.</p></div>
+      <div class="shead"><div><div class="label"><i>✦</i>이번엔 담당자 이야기 <em>FOR ORGANIZERS</em></div><h2 class="lg">참여자는 찍고,<br>운영은 큐알스탬프 어드민에서 끝</h2></div><p class="lead">현황을 실시간으로 확인하고, 필요한 건 바로 바꿔요. 별도 요청 없이 직접 현장 대응이 가능해요.</p></div>
       <div class="atabs" id="atabs">
         <button class="on">실시간 현황<span class="sw"></span></button><button>참여자별 상태 변경<span class="sw"></span></button><button>초기화·삭제<span class="sw"></span></button><button>이벤트 온·오프<span class="sw"></span></button><button>데이터 다운로드<span class="sw"></span></button><button>룰렛 확률 조정<span class="sw"></span></button>
       </div>
@@ -710,7 +710,7 @@ footer .meta2{display:flex;justify-content:space-between;font-size:13px;color:#9
 
 <section class="sec" id="works" data-cell="6">
   <div class="wrap">
-    <div class="shead"><div><div class="label"><i>P</i>고객 사례 <em>PROOF</em></div><h2 class="lg">누구나 아는 곳들이<br>이미 찍었어요</h2></div><div class="stats"><div class="stat"><b><i class="cnt" data-to="100">0</i><em>건~</em></b><span>운영 행사</span></div><div class="stat"><b><i class="cnt" data-to="20">0</i><em>만 명~</em></b><span>누적 참가자</span></div></div></div>
+    <div class="shead"><div><div class="label"><i>P</i>고객 사례 <em>PROOF</em></div><h2 class="lg">누구나 아는 곳들이<br>큐알스탬프를 사용했어요</h2></div><div class="stats"><div class="stat"><b><i class="cnt" data-to="100">0</i><em>건~</em></b><span>운영 행사</span></div><div class="stat"><b><i class="cnt" data-to="20">0</i><em>만 명~</em></b><span>누적 참가자</span></div></div></div>
     <div class="logowall" id="logowall"></div>
     <h3 class="md" style="margin-bottom:24px">위에서 못 보여드린 사례, <span class="red">전부</span> <span class="lead" style="font-size:16px;font-weight:600">· 최신순</span></h3>
     <div class="filters" id="filters"></div>
@@ -723,7 +723,7 @@ footer .meta2{display:flex;justify-content:space-between;font-size:13px;color:#9
 
 <section class="sec" id="plans">
   <div class="wrap">
-    <div class="shead"><div><div class="label"><i>✦</i>제작과 플랜 <em>PLAN</em></div><h2 class="lg">다 모으셨네요!<br>이제 우리 행사 차례</h2></div><div class="times"><span class="pill w">평균 1주일이면 오픈</span><span class="pill r" style="transform:rotate(-3deg)">급하면 1일 안에도 ⚡</span></div></div>
+    <div class="shead"><div><div class="label"><i>✦</i>제작과 플랜 <em>PLAN</em></div><h2 class="lg">우리 행사에 맞는<br>큐알스탬프 플랜</h2></div><div class="times"><span class="pill w">평균 1주일이면 오픈</span><span class="pill r" style="transform:rotate(-3deg)">급하면 1일 안에도 ⚡</span></div></div>
     <div class="flow"><span>요청사항 접수</span><i></i><span>페이지 디자인</span><i></i><span>개발 진행</span><i></i><span>검수 및 오픈</span><i></i><span>운영 어드민 전달</span></div>
     <div class="plans">
       <div class="plan rise"><p class="ld">참여율이 가장 중요할 때<br>본인인증 없이 참여하는</p><h3>이지 플랜</h3><div class="tags"><span>#지역축제</span><span>#대규모 박람회</span></div><dl><dt>본인 인증</dt><dd>없음</dd><dt>기간</dt><dd>7일~</dd><dt>스탬프</dt><dd>5회~</dd></dl><div class="price">100만원~</div></div>
@@ -792,12 +792,12 @@ footer .meta2{display:flex;justify-content:space-between;font-size:13px;color:#9
 <section id="final">
   <svg class="loopbg" viewBox="0 0 1400 700" preserveAspectRatio="none"><path d="M-60 500 C 200 200, 420 700, 620 420 C 760 220, 960 240, 920 400 C 880 560, 700 480, 800 300 C 920 100, 1240 140, 1460 40"/></svg>
   <div class="wrap row">
-    <div><h2 class="md">여기까지 보셨으면,<br>한 칸 남았어요</h2><p style="font-size:19px;font-weight:600;letter-spacing:-.02em;margin:20px 0 28px;opacity:.92">우리 행사 스탬프 판을 만들어 보세요.</p><a class="cta" href="상담신청페이지.html">상담 신청하기 <b>↗</b></a></div>
+    <div><h2 class="md">큐알스탬프로<br>우리 행사를 시작해요</h2><p style="font-size:19px;font-weight:600;letter-spacing:-.02em;margin:20px 0 28px;opacity:.92">상담 신청하시면 담당자가 확인 후 바로 연락드려요.</p><a class="cta" href="상담신청페이지.html">상담 신청하기 <b>↗</b></a></div>
     <nav><p>바로가기</p><a href="#custom">커스텀</a><a href="#type">적립 방식</a><a href="#admin">어드민</a><a href="#works">고객 사례</a><a href="#plans">플랜</a></nav>
     <nav><p>더 보기</p><a href="https://qrstp.mintlify.app/intro" target="_blank">가이드 센터 ↗</a><a href="https://www.qrstp.com/blog">블로그 ↗</a><a href="https://www.qrstp.com/_files/ugd/1722ff_8de6e27d887541429cb3b236ac2dbf10.pdf">소개서 받기 ↗</a><a href="https://makevu.gitbook.io/qr-stamp-guide/live_demo">샘플 체험 ↗</a></nav>
   </div>
 </section>
-<footer><div class="wrap"><div class="meta2"><span>앱 설치 없이, QR 한 번이면 참여 끝.</span><a href="상담신청페이지.html">상담 신청하기 ↗</a></div><img class="big" id="bigLogo" src="assets/QRSTAMP_logo_C.svg" alt="QRSTAMP">
+<footer><div class="wrap"><div class="meta2"><span>큐알스탬프 — 앱 설치 없이, QR 한 번이면 참여 끝.</span><a href="상담신청페이지.html">상담 신청하기 ↗</a></div><img class="big" id="bigLogo" src="assets/QRSTAMP_logo_C.svg" alt="QRSTAMP">
 <div class="corp"><div class="corp-l"><b>(주) 엠카</b><span>사업자등록번호 201-86-28172</span><span>서울 서초구 강남대로 373 15F</span></div>
 <div class="corp-r"><a href="mailto:help@qrstp.com">help@qrstp.com</a><a href="tel:1800-8590">1800-8590</a></div></div>
 <p class="copy">Copyright © 2026 EMKA. All Rights Reserved.</p></div></footer>
@@ -846,9 +846,9 @@ document.getElementById('logowall').innerHTML=LOGOS.map(l=>`<span title="${l.alt
    chips:['배경 이미지 설정','옵션 이미지 입력'],
    fr:[['slot',50,83,'① 슬롯 돌리기 버튼을 누르면 슬롯이 돌아가요'],['slot',null,null,'② 멈추면 자동으로 리워드 화면으로 이동해요']]},
   {k:'mystery',ic:'📦',n:'미스터리 박스',en:'MYSTERY BOX',nw:1,
-   d:'박스 열기 버튼을 누르면 박스가 열리는 영상이 재생돼요. 영상이 끝나면 자동으로 리워드 화면으로 넘어가요.',
+   d:'박스를 터치하면 박스가 열려요. 박스가 열리면 자동으로 리워드 화면으로 넘어가요.',
    chips:['배경 이미지 설정'],
-   fr:[['mystery',50,83,'① 박스 열기 버튼을 눌러요'],['mystery',null,null,'② 영상이 끝나면 자동으로 리워드 화면으로 이동해요']]},
+   fr:[['mystery',50,50,'① 박스를 터치해요'],['mystery',null,null,'② 박스가 열리면 자동으로 리워드 화면으로 이동해요']]},
   {k:'flip',ic:'🃏',n:'카드 뒤집기',en:'CARD FLIP',nw:1,
    d:'카드 9장 중 같은 카드 3장을 찾으면 리워드 당첨! 3장이 맞으면 성공이고, 뒤집어 본 카드 중 짝이 안 맞은 카드는 흑백으로 바뀌어요.',
    chips:['배경 이미지 설정','옵션 이미지·옵션명 입력'],
@@ -891,6 +891,8 @@ document.getElementById('logowall').innerHTML=LOGOS.map(l=>`<span title="${l.alt
  window.playField=i=>{document.getElementById('field').scrollIntoView({behavior:'smooth'});load(i,true)};
  document.querySelectorAll('[data-field]').forEach(b=>b.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();playField(+b.dataset.field)}));
 })();
+/* 리본 반복 주기 = 글의 절반 길이(이음새 없이 이어지게) */
+function rbPeriod(){try{window._rbp=document.getElementById('rbt').getComputedTextLength()/2}catch(e){}}if(document.fonts&&document.fonts.ready)document.fonts.ready.then(rbPeriod);addEventListener('load',rbPeriod);
 /* 문단 */
 (function(){const p=document.getElementById('stmt');let html='',k=0;p.textContent.split(/(\[[^\]]+\])/).forEach(seg=>{if(seg.startsWith('[')){seg.slice(1,-1).split(' ').forEach((w,j,a)=>html+=`<span class="w hot" data-i="${k++}"${j===a.length-1?' data-tag':''}>${w}</span> `)}else seg.split(/\s+/).filter(Boolean).forEach(w=>html+=`<span class="w" data-i="${k++}">${w}</span> `)});p.innerHTML=html;const labels=['1초 참여','100% 커스텀','LIVE','직접 운영'],rots=[-6,5,-4,6];p.querySelectorAll('[data-tag]').forEach((s,i)=>{const t=document.createElement('span');t.className='tag pill r';t.style.setProperty('--r',rots[i]+'deg');t.textContent=labels[i];t.dataset.at=s.dataset.i;p.appendChild(t);s._tag=t});
  window._stmt={p,words:[...p.querySelectorAll('.w')],tags:[...p.querySelectorAll('.tag')]};
@@ -925,7 +927,7 @@ setInterval(()=>{if(aVis&&!aLock)setAdmin((ai+1)%6)},3300);
 new IntersectionObserver(es=>es.forEach(e=>aVis=e.isIntersecting),{threshold:.4}).observe(document.getElementById('screen'));
 /* 메뉴: 지금 보고 있는 구간 표시 */
 const spy=[['custom','#custom'],['type','#type'],['admin','#admin'],['works','#works'],['plans','#plans']].map(([k,s])=>[document.querySelector('header .l a[href="#'+k+'"]'),document.querySelector(s)]);
-function tick(){const y=scrollY;{const hb=document.querySelector('header .brand').getBoundingClientRect(),cy=hb.top+hb.height/2;document.querySelector('header').classList.toggle('ondark',[...document.querySelectorAll('.panel,#final,footer')].some(e=>{const r=e.getBoundingClientRect();return r.top<=cy&&r.bottom>=cy}))}document.getElementById('rbt').setAttribute('startOffset',String(-((y*.6)%1300)));
+function tick(){const y=scrollY;{const hb=document.querySelector('header .brand').getBoundingClientRect(),cy=hb.top+hb.height/2;document.querySelector('header').classList.toggle('ondark',[...document.querySelectorAll('.panel,#final,footer')].some(e=>{const r=e.getBoundingClientRect();return r.top<=cy&&r.bottom>=cy}))}document.getElementById('rbt').setAttribute('startOffset',String(-((y*.6)%(window._rbp||1300))));
  const sp=_stmt.p.getBoundingClientRect();const k=Math.min(1,Math.max(0,(innerHeight*.8-sp.top)/(sp.height+innerHeight*.25)));const n=Math.floor(k*_stmt.words.length);_stmt.words.forEach((w,i)=>w.classList.toggle('on',i<n));_stmt.tags.forEach(t=>t.classList.toggle('on',+t.dataset.at<n));
  if(travel){const r=cpin.getBoundingClientRect();const p=Math.min(1,Math.max(0,-r.top/Math.max(1,r.height-innerHeight)));track.style.transform=`translateX(${-p*travel}px)`;const step=track.children[0].offsetWidth+parseFloat(getComputedStyle(track).columnGap||24);ccount.textContent=String(Math.min(7,Math.round(p*travel/step)+1)).padStart(2,'0')+' / 07';cbar.style.width=(p*100)+'%'}
  let cur=null;spy.forEach(([a,s])=>{if(a&&s.getBoundingClientRect().top<=innerHeight*.4)cur=a});spy.forEach(([a])=>a&&a.classList.toggle('on',a===cur))}

@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(D=$\\(mktemp -d /tmp/tissot-assets.XXXXXX\\); BASE=\"https://yncpifbuhjhfolsngkov.supabase.co/storage/v1/object/public/images/tissotwook\"; for p in \"kr/PAGE/5-1.REWARD-bg\" \"en/PAGE/4-1.REWARD-bg\" \"kr/PAGE/5-1.REWARD-Default-bg\" \"en/PAGE/4-1.REWARD-Default-bg\"; do n=$\\(echo \"$p\" | tr '/' '_'\\); code=$\\(curl -s -o \"$D/$n.webp\" -w \"%{http_code}\" \"$BASE/$p.webp\"\\); sz=$\\(stat -f%z \"$D/$n.webp\" 2>/dev/null\\); echo \"$p -> $code ${sz}B\"; if [ \"$code\" = 200 ]; then sips -s format png \"$D/$n.webp\" --out \"$D/$n.png\" >/dev/null 2>&1; sips -g pixelWidth -g pixelHeight \"$D/$n.png\" 2>/dev/null | tail -2 | tr '\\\\n' ' '; echo; else rm -f \"$D/$n.webp\"; fi; done; ls \"$D\"; echo \"D=$D\")"
+      "Bash(D=$\\(mktemp -d /tmp/tissot-assets.XXXXXX\\); BASE=\"https://yncpifbuhjhfolsngkov.supabase.co/storage/v1/object/public/images/tissotwook\"; for p in \"kr/PAGE/5-1.REWARD-bg\" \"en/PAGE/4-1.REWARD-bg\" \"kr/PAGE/5-1.REWARD-Default-bg\" \"en/PAGE/4-1.REWARD-Default-bg\"; do n=$\\(echo \"$p\" | tr '/' '_'\\); code=$\\(curl -s -o \"$D/$n.webp\" -w \"%{http_code}\" \"$BASE/$p.webp\"\\); sz=$\\(stat -f%z \"$D/$n.webp\" 2>/dev/null\\); echo \"$p -> $code ${sz}B\"; if [ \"$code\" = 200 ]; then sips -s format png \"$D/$n.webp\" --out \"$D/$n.png\" >/dev/null 2>&1; sips -g pixelWidth -g pixelHeight \"$D/$n.png\" 2>/dev/null | tail -2 | tr '\\\\n' ' '; echo; else rm -f \"$D/$n.webp\"; fi; done; ls \"$D\"; echo \"D=$D\")",
+      "Bash(DST=\"/Users/leesunho/Desktop/큐알스탬프_홈개편시안_261103\"; ls \"$DST\"; for f in 히어로개선안A.html 히어로개선안B.html 히어로개선안C.html; do [ -e \"$DST/$f\" ] && rm \"$DST/$f\" && echo \"removed $f \\(원래 바탕화면 폴더에 없던 파일\\)\"; done; ls \"$DST\")"
     ]
   }
 }
